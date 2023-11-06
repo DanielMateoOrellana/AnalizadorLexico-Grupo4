@@ -12,6 +12,7 @@ reservadas = {'if':'IF', 'while': 'WHILE', 'else': 'ELSE', 'case' : 'CASE',
 # Secuencia de tokens
 tokens = (
     'ID',
+    'COMNT',
     'EOL',
     'ENTERO',
     'FLOTANTE',
@@ -51,7 +52,7 @@ tokens = (
     'COMILLA_SIMPLE_CADENA',
 )+tuple(reservadas.values())
 
-# ---Expresiones regulares simples para simbolos---
+# ---Expresiones regulares simples para simbolos o caracteres especiales---
 # Simbolos aritmeticos
 t_SUMA = r'\+'
 t_RESTA = r'\-'
@@ -73,16 +74,13 @@ t_RBRACE = r'\}'
 t_EOL = r'\;'
 
 
-
-
-# ---Numeros---
-
-
-# ---Strings---
-
-
-
 #---Definicion de funciones---
+
+# Comentarios
+def t_COMNT(t):
+  r'\/\/.*'
+  t.type = reservadas.get(t.value, 'COMNT')
+  return t
 
 # Identificadores
 def t_ID(t):
@@ -104,9 +102,9 @@ def t_ENTERO(t):
   t.value = int(t.value)
   return t
 
-# Cadenas (TODO: SOLO FUNCIONA PARA COMILLAS DOBLES)
+# Cadenas 
 def t_CADENA(t):
-  r'\"([^"\n]|(\\"))*"'
+  r'"([^"\n]|(\\"))*"|\'([^\'\n]|(\\\'))*\''
   t.value = str(t.value)
   return t
 
@@ -146,7 +144,10 @@ def test_tokens(code):
     print(token)
 
 test_tokens('''
+            //hola mundo
             $mivar = 12;
-            $otrovar = "Hola mundo";
+            $stringComillasDobles = "Hola mundo";
+            $stringComillasSimples = 'Hola mundo';
             12>=4;
+            {}
             ''')
