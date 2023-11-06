@@ -12,6 +12,7 @@ reservadas = {'if':'IF', 'while': 'WHILE', 'else': 'ELSE', 'case' : 'CASE',
 # Secuencia de tokens
 tokens = (
     'ID',
+    'VAR',
     'COMNT',
     'EOL',
     'ENTERO',
@@ -84,8 +85,14 @@ def t_COMNT(t):
 
 # Identificadores
 def t_ID(t):
+    r'[a-z_]\w*'
+    t.type = reservadas.get(t.value, 'ID')
+    return t
+
+# Definicion de variables
+def t_VAR(t):
   r'\$([a-zA-z]|_)+\w*[^\$\s]*'
-  t.type = reservadas.get(t.value, 'ID')
+  t.type = reservadas.get(t.value, 'VAR')
   return t
 
 # ---Tipos de datos basicos---
@@ -110,8 +117,8 @@ def t_CADENA(t):
 
 # Booleanos
 def t_BOOLEANO(t):
-  r'^(true|false)$'
-  t.value = int(t.value)
+  r'true|false'
+  t.value = bool(t.value)
   return t
 
 
@@ -144,12 +151,15 @@ def test_tokens(code):
     print(token)
 
 test_tokens('''
+            if
             //hola mundo
             /*
             Hola
             mundo
             */
             $mivar = 12;
+            $var2 = true;
+            $var3 = false;
             $stringComillasDobles = "Hola mundo";
             $stringComillasSimples = 'Hola mundo';
             12>=4;
