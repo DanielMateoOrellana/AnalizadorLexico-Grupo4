@@ -78,7 +78,7 @@ t_EOL = r'\;'
 
 # Comentarios
 def t_COMNT(t):
-  r'\/\/.*'
+  r'\/\/.*|\/\*(\*(?!\/)|[^*])*\*\/'
   t.type = reservadas.get(t.value, 'COMNT')
   return t
 
@@ -145,6 +145,10 @@ def test_tokens(code):
 
 test_tokens('''
             //hola mundo
+            /*
+            Hola
+            mundo
+            */
             $mivar = 12;
             $stringComillasDobles = "Hola mundo";
             $stringComillasSimples = 'Hola mundo';
