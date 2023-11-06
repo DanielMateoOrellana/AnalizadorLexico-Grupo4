@@ -73,7 +73,6 @@ t_RBRACE = r'\}'
 t_EOL = r'\;'
 
 
-# ---Identificadores---
 
 
 # ---Numeros---
@@ -87,7 +86,7 @@ t_EOL = r'\;'
 
 # Identificadores
 def t_ID(t):
-  r'^\$([a-zA-z]|_)+\w*[^\$\s]*$'
+  r'\$([a-zA-z]|_)+\w*[^\$\s]*'
   t.type = reservadas.get(t.value, 'ID')
   return t
 
@@ -107,7 +106,7 @@ def t_ENTERO(t):
 
 # Cadenas (TODO: SOLO FUNCIONA PARA COMILLAS DOBLES)
 def t_CADENA(t):
-  r'"([^"\n]|(\\"))*"$'
+  r'\"([^"\n]|(\\"))*"'
   t.value = str(t.value)
   return t
 
@@ -138,13 +137,16 @@ t_ignore = ' \t'
 # Construye el lexer
 lexer = lex.lex()
 
-#################################################################
-# Funcion para validar que los tokens sean validos (Reutilizable)
-#################################################################
+# #################################################################
+# # Funcion para validar que los tokens sean validos (Reutilizable)
+# #################################################################
 def test_tokens(code):
   lexer.input(code)
   for token in lexer:
     print(token)
+
 test_tokens('''
-            12.5**2
+            $mivar = 12;
+            $otrovar = "Hola mundo";
+            12>=4;
             ''')
