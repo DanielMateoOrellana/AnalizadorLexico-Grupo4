@@ -51,6 +51,12 @@ tokens = (
     'COMILLA_SIMPLE',
     'COMILLA_DOBLE_CADENA',
     'COMILLA_SIMPLE_CADENA',
+    'VARIABLE_ARRAY',
+    'VARIABLE_FUNCION',
+    'VARIABLE_OBJETO',
+    'ARRAY',
+    'FUNCION', 
+    'OBJETO'
 )+tuple(reservadas.values())
 
 # ---Expresiones regulares simples para simbolos o caracteres especiales---
@@ -119,6 +125,32 @@ def t_CADENA(t):
 def t_BOOLEANO(t):
   r'true|false'
   t.value = bool(t.value)
+  return t
+
+# Variable Array
+def t_VARIABLE_ARRAY(t):
+  r'^array\((((\d+)(, \d)+)|("\w+"(, "\w+")*)|(\$\w+(, \$\w+)*))\)$'
+  return t
+
+# Variable Funcion
+def t_VARIABLE_FUNCION(t):
+  r'^[a-z]\w*\(\$\w+(, \$\w+)*\)$'
+  return t
+# Variable Objeto
+def t_VARIABLE_OBJETO(t):
+  r'^\$[a-z]\w*->[a-z]\w*$'
+  return t
+# Array
+def t_ARRAY(t):
+  r'^\[(((\d+)(, \d)+)|("\w+"(, "\w+")*)|(\$\w+(, \$\w+)*))\]$'
+  return t
+# Funcion
+def t_FUNCION(t):
+  r'^[a-z]\w*\(\)$'
+  return t
+# Objeto
+def t_OBJETO(t):
+  r'^[A-Z][a-z]*$'
   return t
 
 
