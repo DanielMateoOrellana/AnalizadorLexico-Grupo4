@@ -42,6 +42,7 @@ tokens = (
     'RBRACE',
     'COMA',
     'PUNTO',
+    'DOSPUNTOS',
     'IGUAL',
     'MENOR',
     'MAYOR',
@@ -85,6 +86,7 @@ tokens = (
 # Asignacion
 t_ASIGNACION = r'\='
 t_COMA = r'\,'
+t_DOSPUNTOS = r'\:'
 # Simbolos aritmeticos
 t_SUMA = r'\+'
 t_RESTA = r'\-'
@@ -145,6 +147,11 @@ def t_COMNT(t):
   r'\/\/.*|\/\*(\*(?!\/)|[^*])*\*\/'
   t.type = reservadas.get(t.value, 'COMNT')
   return t
+  
+# Diccionarios
+def t_DICT(t):
+  r'array\("\w+"\s=>\s(("\w+")|(\d+))(,\s"\w+"\s=>\s("\w+"|\d+))*\)'
+  return t
 
 
 # Identificadores
@@ -203,10 +210,6 @@ def t_ARRAY(t):
   return t
 
 
-# Diccionarios
-def t_DICT(t):
-  r'\=\s?{[^\}]*\}'
-  return t
 
 
 # Manejo de errores
@@ -242,7 +245,12 @@ def test_tokens(code):
 # Prueba Daniel
 print("\n---- Prueba Daniel ----\n")
 
-codigo_prueba_daniel = '''[3,4,5,6] {asd: asd} (4,5,6) ; x = 3 + - * /'''
+codigo_prueba_daniel = '''[3,4,5,6] array("nombre" => "Juan", "edad" => 30, "ciudad" => "Madrid") (4,5,6) ; x = 3 + - * / 
+  $diccionario = array(
+    "gato" => "animal doméstico",
+    "perro" => "animal doméstico",
+    "pez" => "animal acuático"
+);'''
 test_tokens(codigo_prueba_daniel)
 
 # Prueba Roberto
