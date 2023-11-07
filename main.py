@@ -138,25 +138,26 @@ def t_BOOLEANO(t):
 
   # ---- Tipos de datos avanzados ----
   
-  # Listas
-  def t_LIST(t):
-    r'\[[^\]]*\]'
-    return t
+# Listas
+def t_LIST(t):
+  r'\[[^\]]*\]'
+  return t
   
-  # Diccionarios
-  def t_DICT(t):
-    r'\{[^\}]*\}'
-    return t
-    
-  # Tuplas
-  def t_TUPLE(t):
-    r'\([^\)]*\)'
-    return t
-   
-  # Set 
-  def t_SET(t):
-    r'\{[^\}]*\}'
-    return t
+# Diccionarios
+def t_DICT(t):
+  r'\=\s?{[^\}]*\}'
+  return t
+  
+# Tuplas
+def t_TUPLE(t):
+  # r'\=\s?([^\)]*\\)' tuple()
+  r'\(.*?,.*?\)'
+  return t
+  
+# Set 
+def t_SET(t):
+  r'\=\s?{[^\}]*\}'
+  return t
 
 # Aporte Cristopher --------
 
@@ -235,25 +236,6 @@ test_tokens(codigo_prueba_daniel)
 print("\n---- Prueba Roberto ----\n")
 
 test_tokens('''
-            if
-            //hola mundo
-            /*
-            Hola
-            mundo
-            */
-            $mivar = 12;
-            $var2 = true;
-            $var3 = false;
-            $stringComillasDobles = "Hola mundo";
-            $stringComillasSimples = 'Hola mundo';
-            12>=4;
-            {}
-            ''')
-
-# Prueba Cristopher
-print("\n---- Prueba Cristopher ----\n")
-
-codigo_prueba_cristopher = '''
             //hola mundo
             /*
             Hola
@@ -285,6 +267,13 @@ codigo_prueba_cristopher = '''
             }else{
               $mivar1 = 0;
             }
+            ''')
+
+# Prueba Cristopher
+print("\n---- Prueba Cristopher ----\n")
+
+codigo_prueba_cristopher = '''
+
 '''
 
 test_tokens(codigo_prueba_cristopher)
