@@ -78,6 +78,8 @@ t_MAYOR_IGUAL = r'\>='
 # Simbolos para delimitar bloques
 t_LBRACE = r'\{'
 t_RBRACE = r'\}'
+t_LPAREN = r'\('
+t_RPAREN = r'\)'
 t_EOL = r'\;'
 
 
@@ -89,17 +91,6 @@ def t_COMNT(t):
   t.type = reservadas.get(t.value, 'COMNT')
   return t
 
-# Identificadores
-def t_ID(t):
-    r'[a-z_]\w*'
-    t.type = reservadas.get(t.value, 'ID')
-    return t
-
-# Definicion de variables
-def t_VAR(t):
-  r'\$([a-zA-z]|_)+\w*[^\$\s]*'
-  t.type = reservadas.get(t.value, 'VAR')
-  return t
 
 # ---Tipos de datos basicos---
 
@@ -123,8 +114,11 @@ def t_CADENA(t):
 
 # Booleanos
 def t_BOOLEANO(t):
-  r'true|false'
-  t.value = bool(t.value)
+  r'True|False'
+  if t.value =='True':
+    t.value = True
+  else:
+    t.value = False
   return t
 
 # Variable Array
@@ -153,7 +147,17 @@ def t_OBJETO(t):
   r'^[A-Z][a-z]*$'
   return t
 
+# Identificadores
+def t_ID(t):
+    r'[a-z_]\w*'
+    t.type = reservadas.get(t.value, 'ID')
+    return t
 
+# Definicion de variables
+def t_VAR(t):
+  r'\$([a-zA-z]|_)+\w*[^\$\s]*'
+  t.type = reservadas.get(t.value, 'VAR')
+  return t
 # Manejo de errores
 def t_error(t):
   print(
@@ -183,17 +187,35 @@ def test_tokens(code):
     print(token)
 
 test_tokens('''
-            if
             //hola mundo
             /*
             Hola
             mundo
             */
-            $mivar = 12;
-            $var2 = true;
-            $var3 = false;
+            $mivar1 = (12.5+12)*7-(2/1)+3**2;
+
+            $mivarBool1 = True;
+            $mivarBool2 = False;
+
+            $mivarBool3 = $mivar1 > 12;
+            $mivarBool4 = 4>=10.5;
+            $mivarBool5 = 5.5==5.5;
+            $mivarBool6 = 7<5;
+            $mivarBool7 = 1<=1.5;
+
             $stringComillasDobles = "Hola mundo";
             $stringComillasSimples = 'Hola mundo';
-            12>=4;
-            {}
+
+            if($mivarBool1 == False){
+              while(True){
+                $mivar1 = $mivar1 + 1;
+                if($mivar1 > 10){
+                  break;
+                }
+              }
+            }elseif($mivarBool2 == True){
+              $mivar1 = $mivar1 - 1;
+            }else{
+              $mivar1 = 0;
+            }
             ''')
