@@ -12,6 +12,7 @@ reservadas = {'if':'IF', 'while': 'WHILE', 'else': 'ELSE', 'case' : 'CASE',
 # Secuencia de tokens
 tokens = (
     'ID',
+    'ASIGNACION',
     'VAR',
     'COMNT',
     'EOL',
@@ -56,10 +57,22 @@ tokens = (
     'VARIABLE_OBJETO',
     'ARRAY',
     'FUNCION', 
+    'OBJETO',
+    'LIST',
+    'DICT',
+    'TUPLE',
+    'SET',
+    'VARIABLE_ARRAY',
+    'VARIABLE_FUNCION',
+    'VARIABLE_OBJETO',
+    'ARRAY',
+    'FUNCION', 
     'OBJETO'
 )+tuple(reservadas.values())
 
 # ---Expresiones regulares simples para simbolos o caracteres especiales---
+# Asignacion
+t_ASIGNACION = r'\='
 # Simbolos aritmeticos
 t_SUMA = r'\+'
 t_RESTA = r'\-'
@@ -120,6 +133,32 @@ def t_BOOLEANO(t):
   else:
     t.value = False
   return t
+
+# Aporte Daniel -------
+
+  # ---- Tipos de datos avanzados ----
+  
+  # Listas
+  def t_LIST(t):
+    r'\[[^\]]*\]'
+    return t
+  
+  # Diccionarios
+  def t_DICT(t):
+    r'\{[^\}]*\}'
+    return t
+    
+  # Tuplas
+  def t_TUPLE(t):
+    r'\([^\)]*\)'
+    return t
+   
+  # Set 
+  def t_SET(t):
+    r'\{[^\}]*\}'
+    return t
+
+# Aporte Cristopher --------
 
 # Variable Array
 def t_VARIABLE_ARRAY(t):
@@ -186,7 +225,35 @@ def test_tokens(code):
   for token in lexer:
     print(token)
 
+# Prueba Daniel
+print("\n---- Prueba Daniel ----\n")
+
+codigo_prueba_daniel = "[3,4,5,6] {asd: asd} (4,5,6) ; x = 3 + - * /"
+test_tokens(codigo_prueba_daniel)
+
+# Prueba Roberto
+print("\n---- Prueba Roberto ----\n")
+
 test_tokens('''
+            if
+            //hola mundo
+            /*
+            Hola
+            mundo
+            */
+            $mivar = 12;
+            $var2 = true;
+            $var3 = false;
+            $stringComillasDobles = "Hola mundo";
+            $stringComillasSimples = 'Hola mundo';
+            12>=4;
+            {}
+            ''')
+
+# Prueba Cristopher
+print("\n---- Prueba Cristopher ----\n")
+
+codigo_prueba_cristopher = '''
             //hola mundo
             /*
             Hola
@@ -218,4 +285,6 @@ test_tokens('''
             }else{
               $mivar1 = 0;
             }
-            ''')
+'''
+
+test_tokens(codigo_prueba_cristopher)
