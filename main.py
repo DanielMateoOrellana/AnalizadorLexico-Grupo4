@@ -155,7 +155,7 @@ def t_ID(t):
 
 # Definicion de variables
 def t_VAR(t):
-  r'\$([a-zA-z]|_)+\w*[^\$\s]*'
+  r'\^\$[a-zA-Z_][a-zA-Z0-9_]*$'
   t.type = reservadas.get(t.value, 'VAR')
   return t
 # Manejo de errores
@@ -213,7 +213,7 @@ test_tokens('''
                   break;
                 }
               }
-            }elseif($mivarBool2 == True){
+            }elseif($mivarBool2==True){
               $mivar1 = $mivar1 - 1;
             }else{
               $mivar1 = 0;
