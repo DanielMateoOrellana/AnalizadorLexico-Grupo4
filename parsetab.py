@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'ARRAY ASIGNACION ASIGNAR BOOLEANO BREAK CADENA CASE COMA COMILLA_DOBLE COMILLA_DOBLE_CADENA COMILLA_SIMPLE COMILLA_SIMPLE_CADENA COMNT CONTINUE DICT DIFERENTE DIV DIV_ASIGNAR DO DOSPUNTOS ECHO ELSE ELSEIF ENDWHILE ENTERO EOL FLOTANTE FOR FOREACH FUNCION FUNCTION GLOBAL ID IF IGUAL LBRACE LBRACKET LPAREN MAYOR MAYOR_IGUAL MAYOR_MENOR MENOR MENOR_IGUAL MENOR_MAYOR MODULO MULT MULT_ASIGNAR OBJETO POT POT_ASIGNAR PUNTO RBRACE RBRACKET RESTA RESTA_ASIGNAR RETURN RPAREN SET SUMA SUMA_ASIGNAR SWITCH TUPLE VAR VARIABLE_ARRAY VARIABLE_FUNCION VARIABLE_OBJETO WHILEsentencia : asignacion\n  asignacion : VAR ASIGNACION valor EOLvalor : ENTERO\n          | FLOTANTE\n          | BOOLEANO    \n          | CADENA\n          | VAR\n          | VARIABLE_ARRAY\n  '
+_lr_signature = 'ARRAY ASIGNACION ASIGNAR BOOLEANO BREAK CADENA CASE COMA COMILLA_DOBLE COMILLA_DOBLE_CADENA COMILLA_SIMPLE COMILLA_SIMPLE_CADENA COMNT CONTINUE DICT DIFERENTE DIV DIV_ASIGNAR DO DOSPUNTOS ECHO ELSE ELSEIF ENDWHILE ENTERO EOL FLOTANTE FOR FOREACH FUNCION FUNCTION GLOBAL ID IF IGUAL LBRACE LBRACKET LPAREN MAYOR MAYOR_IGUAL MAYOR_MENOR MENOR MENOR_IGUAL MENOR_MAYOR MODULO MULT MULT_ASIGNAR OBJETO POT POT_ASIGNAR PUNTO RBRACE RBRACKET RESTA RESTA_ASIGNAR RETURN RPAREN SET SUMA SUMA_ASIGNAR SWITCH TUPLE VAR VARIABLE_ARRAY VARIABLE_FUNCION VARIABLE_OBJETO WHILEsentencia : asignacion\n\n  asignacion : VAR ASIGNACION valor EOL\n   echo : ECHO valor EOL\n   valor : ENTERO\n          | FLOTANTE\n          | BOOLEANO    \n          | CADENA\n          | VAR\n  '
     
-_lr_action_items = {'VAR':([0,4,],[3,5,]),'$end':([1,2,12,],[0,-1,-2,]),'ASIGNACION':([3,],[4,]),'ENTERO':([4,],[7,]),'FLOTANTE':([4,],[8,]),'BOOLEANO':([4,],[9,]),'CADENA':([4,],[10,]),'VARIABLE_ARRAY':([4,],[11,]),'EOL':([5,6,7,8,9,10,11,],[-7,12,-3,-4,-5,-6,-8,]),}
+_lr_action_items = {'VAR':([0,4,],[3,5,]),'$end':([1,2,11,],[0,-1,-2,]),'ASIGNACION':([3,],[4,]),'ENTERO':([4,],[7,]),'FLOTANTE':([4,],[8,]),'BOOLEANO':([4,],[9,]),'CADENA':([4,],[10,]),'EOL':([5,6,7,8,9,10,],[-8,11,-4,-5,-6,-7,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -28,11 +28,11 @@ del _lr_goto_items
 _lr_productions = [
   ("S' -> sentencia","S'",1,None,None,None),
   ('sentencia -> asignacion','sentencia',1,'p_sentencia','main.py',11),
-  ('asignacion -> VAR ASIGNACION valor EOL','asignacion',4,'p_asignacion','main.py',16),
-  ('valor -> ENTERO','valor',1,'p_valor','main.py',25),
-  ('valor -> FLOTANTE','valor',1,'p_valor','main.py',26),
-  ('valor -> BOOLEANO','valor',1,'p_valor','main.py',27),
-  ('valor -> CADENA','valor',1,'p_valor','main.py',28),
-  ('valor -> VAR','valor',1,'p_valor','main.py',29),
-  ('valor -> VARIABLE_ARRAY','valor',1,'p_valor','main.py',30),
+  ('asignacion -> VAR ASIGNACION valor EOL','asignacion',4,'p_asignacion','main.py',17),
+  ('echo -> ECHO valor EOL','echo',3,'p_echo','main.py',22),
+  ('valor -> ENTERO','valor',1,'p_valor','main.py',31),
+  ('valor -> FLOTANTE','valor',1,'p_valor','main.py',32),
+  ('valor -> BOOLEANO','valor',1,'p_valor','main.py',33),
+  ('valor -> CADENA','valor',1,'p_valor','main.py',34),
+  ('valor -> VAR','valor',1,'p_valor','main.py',35),
 ]

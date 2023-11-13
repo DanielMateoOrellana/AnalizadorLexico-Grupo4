@@ -19,7 +19,6 @@ Unused terminals:
     DIV_ASIGNAR
     DO
     DOSPUNTOS
-    ECHO
     ELSE
     ELSEIF
     ENDWHILE
@@ -58,6 +57,7 @@ Unused terminals:
     SUMA_ASIGNAR
     SWITCH
     TUPLE
+    VARIABLE_ARRAY
     VARIABLE_FUNCION
     VARIABLE_OBJETO
     WHILE
@@ -67,21 +67,21 @@ Grammar
 Rule 0     S' -> sentencia
 Rule 1     sentencia -> asignacion
 Rule 2     asignacion -> VAR ASIGNACION valor EOL
-Rule 3     valor -> ENTERO
-Rule 4     valor -> FLOTANTE
-Rule 5     valor -> BOOLEANO
-Rule 6     valor -> CADENA
-Rule 7     valor -> VAR
-Rule 8     valor -> VARIABLE_ARRAY
+Rule 3     echo -> ECHO valor EOL
+Rule 4     valor -> ENTERO
+Rule 5     valor -> FLOTANTE
+Rule 6     valor -> BOOLEANO
+Rule 7     valor -> CADENA
+Rule 8     valor -> VAR
 
 Terminals, with rules where they appear
 
 ARRAY                : 
 ASIGNACION           : 2
 ASIGNAR              : 
-BOOLEANO             : 5
+BOOLEANO             : 6
 BREAK                : 
-CADENA               : 6
+CADENA               : 7
 CASE                 : 
 COMA                 : 
 COMILLA_DOBLE        : 
@@ -96,13 +96,13 @@ DIV                  :
 DIV_ASIGNAR          : 
 DO                   : 
 DOSPUNTOS            : 
-ECHO                 : 
+ECHO                 : 3
 ELSE                 : 
 ELSEIF               : 
 ENDWHILE             : 
-ENTERO               : 3
-EOL                  : 2
-FLOTANTE             : 4
+ENTERO               : 4
+EOL                  : 2 3
+FLOTANTE             : 5
 FOR                  : 
 FOREACH              : 
 FUNCION              : 
@@ -138,8 +138,8 @@ SUMA                 :
 SUMA_ASIGNAR         : 
 SWITCH               : 
 TUPLE                : 
-VAR                  : 2 7
-VARIABLE_ARRAY       : 8
+VAR                  : 2 8
+VARIABLE_ARRAY       : 
 VARIABLE_FUNCION     : 
 VARIABLE_OBJETO      : 
 WHILE                : 
@@ -148,8 +148,9 @@ error                :
 Nonterminals, with rules where they appear
 
 asignacion           : 1
+echo                 : 
 sentencia            : 0
-valor                : 2
+valor                : 2 3
 
 Parsing method: LALR
 
@@ -187,72 +188,63 @@ state 3
 state 4
 
     (2) asignacion -> VAR ASIGNACION . valor EOL
-    (3) valor -> . ENTERO
-    (4) valor -> . FLOTANTE
-    (5) valor -> . BOOLEANO
-    (6) valor -> . CADENA
-    (7) valor -> . VAR
-    (8) valor -> . VARIABLE_ARRAY
+    (4) valor -> . ENTERO
+    (5) valor -> . FLOTANTE
+    (6) valor -> . BOOLEANO
+    (7) valor -> . CADENA
+    (8) valor -> . VAR
 
     ENTERO          shift and go to state 7
     FLOTANTE        shift and go to state 8
     BOOLEANO        shift and go to state 9
     CADENA          shift and go to state 10
     VAR             shift and go to state 5
-    VARIABLE_ARRAY  shift and go to state 11
 
     valor                          shift and go to state 6
 
 state 5
 
-    (7) valor -> VAR .
+    (8) valor -> VAR .
 
-    EOL             reduce using rule 7 (valor -> VAR .)
+    EOL             reduce using rule 8 (valor -> VAR .)
 
 
 state 6
 
     (2) asignacion -> VAR ASIGNACION valor . EOL
 
-    EOL             shift and go to state 12
+    EOL             shift and go to state 11
 
 
 state 7
 
-    (3) valor -> ENTERO .
+    (4) valor -> ENTERO .
 
-    EOL             reduce using rule 3 (valor -> ENTERO .)
+    EOL             reduce using rule 4 (valor -> ENTERO .)
 
 
 state 8
 
-    (4) valor -> FLOTANTE .
+    (5) valor -> FLOTANTE .
 
-    EOL             reduce using rule 4 (valor -> FLOTANTE .)
+    EOL             reduce using rule 5 (valor -> FLOTANTE .)
 
 
 state 9
 
-    (5) valor -> BOOLEANO .
+    (6) valor -> BOOLEANO .
 
-    EOL             reduce using rule 5 (valor -> BOOLEANO .)
+    EOL             reduce using rule 6 (valor -> BOOLEANO .)
 
 
 state 10
 
-    (6) valor -> CADENA .
+    (7) valor -> CADENA .
 
-    EOL             reduce using rule 6 (valor -> CADENA .)
+    EOL             reduce using rule 7 (valor -> CADENA .)
 
 
 state 11
-
-    (8) valor -> VARIABLE_ARRAY .
-
-    EOL             reduce using rule 8 (valor -> VARIABLE_ARRAY .)
-
-
-state 12
 
     (2) asignacion -> VAR ASIGNACION valor EOL .
 

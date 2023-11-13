@@ -9,6 +9,7 @@ from lexico import tokens
 # ---Definicion de sentencias---
 def p_sentencia(p):
   '''sentencia : asignacion
+
   '''
 
 # ---Declaracion y asignacion de variables---
@@ -16,18 +17,23 @@ def p_asignacion(p):
   "asignacion : VAR ASIGNACION valor EOL"
 
 
+def p_echo(p):
+   '''
+   echo : ECHO valor EOL
+   '''
+
 
 
 #OJO: BOOLEANO NO FUNCIONA
 # VARIABLE_ARRAY NO FUNCIONA PARA ARRAYS DE 1 SOLO ELEMENTO
 
 def p_valor(p):
-  '''valor : ENTERO
+  '''valor : 
+            ENTERO
           | FLOTANTE
           | BOOLEANO    
           | CADENA
           | VAR
-          | VARIABLE_ARRAY
   '''
 
 def p_error(p):
