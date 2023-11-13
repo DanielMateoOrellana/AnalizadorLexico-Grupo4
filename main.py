@@ -21,12 +21,18 @@ def p_asignacion(p):
 
 def p_echo(p):
    '''
-   echo : ECHO valor EOL
+   echo : ECHO valores EOL
    '''
 
 
 
 # VARIABLE_ARRAY NO FUNCIONA PARA ARRAYS DE 1 SOLO ELEMENTO
+
+def p_valores(p):
+   '''
+   valores : valor
+           | valor COMA valores
+   '''
 
 def p_valor(p):
   '''valor : ENTERO
@@ -36,6 +42,7 @@ def p_valor(p):
           | VAR
           | VARIABLE_ARRAY
           | operacion
+          | argumentologico
   '''
 
 def p_operacion(p):
