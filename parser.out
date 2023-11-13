@@ -57,7 +57,6 @@ Unused terminals:
     SUMA_ASIGNAR
     SWITCH
     TUPLE
-    VARIABLE_ARRAY
     VARIABLE_FUNCION
     VARIABLE_OBJETO
     WHILE
@@ -73,6 +72,7 @@ Rule 5     valor -> FLOTANTE
 Rule 6     valor -> BOOLEANO
 Rule 7     valor -> CADENA
 Rule 8     valor -> VAR
+Rule 9     valor -> VARIABLE_ARRAY
 
 Terminals, with rules where they appear
 
@@ -139,7 +139,7 @@ SUMA_ASIGNAR         :
 SWITCH               : 
 TUPLE                : 
 VAR                  : 2 8
-VARIABLE_ARRAY       : 
+VARIABLE_ARRAY       : 9
 VARIABLE_FUNCION     : 
 VARIABLE_OBJETO      : 
 WHILE                : 
@@ -193,12 +193,14 @@ state 4
     (6) valor -> . BOOLEANO
     (7) valor -> . CADENA
     (8) valor -> . VAR
+    (9) valor -> . VARIABLE_ARRAY
 
     ENTERO          shift and go to state 7
     FLOTANTE        shift and go to state 8
     BOOLEANO        shift and go to state 9
     CADENA          shift and go to state 10
     VAR             shift and go to state 5
+    VARIABLE_ARRAY  shift and go to state 11
 
     valor                          shift and go to state 6
 
@@ -213,7 +215,7 @@ state 6
 
     (2) asignacion -> VAR ASIGNACION valor . EOL
 
-    EOL             shift and go to state 11
+    EOL             shift and go to state 12
 
 
 state 7
@@ -245,6 +247,13 @@ state 10
 
 
 state 11
+
+    (9) valor -> VARIABLE_ARRAY .
+
+    EOL             reduce using rule 9 (valor -> VARIABLE_ARRAY .)
+
+
+state 12
 
     (2) asignacion -> VAR ASIGNACION valor EOL .
 

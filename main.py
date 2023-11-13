@@ -28,12 +28,12 @@ def p_echo(p):
 # VARIABLE_ARRAY NO FUNCIONA PARA ARRAYS DE 1 SOLO ELEMENTO
 
 def p_valor(p):
-  '''valor : 
-            ENTERO
+  '''valor : ENTERO
           | FLOTANTE
           | BOOLEANO    
           | CADENA
           | VAR
+          | VARIABLE_ARRAY
   '''
 
 def p_error(p):

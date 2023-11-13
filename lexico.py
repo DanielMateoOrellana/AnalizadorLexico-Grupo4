@@ -135,6 +135,12 @@ def t_FUNCION(t):
   r'[a-z]\w*\(\)'
   return t
 
+# Booleanos
+def t_BOOLEANO(t):
+  r'True|False'
+  t.value = bool(t.value)
+  return t
+
 
 # Objeto
 def t_OBJETO(t):
@@ -163,7 +169,7 @@ def t_ID(t):
 
 # Definicion de variables
 def t_VAR(t):
-  r'\$([a-zA-z]|_)+\w*[^\$\s]*'
+  r'\$([a-zA-z]|_)+\w*[^\$\s\;]*'
   t.type = reservadas.get(t.value, 'VAR')
   return t
 
@@ -192,11 +198,7 @@ def t_CADENA(t):
   return t
 
 
-# Booleanos
-def t_BOOLEANO(t):
-  r'true|false'
-  t.value = bool(t.value)
-  return t
+
 
 
 # Aporte Daniel -------
@@ -251,7 +253,7 @@ codigo_prueba_daniel = '''[3,4,5,6] array("nombre" => "Juan", "edad" => 30, "ciu
     "perro" => "animal doméstico",
     "pez" => "animal acuático"
 );'''
-test_tokens(codigo_prueba_daniel)
+# test_tokens(codigo_prueba_daniel)
 
 # Prueba Roberto
 print("\n---- Prueba Roberto ----\n")
@@ -318,4 +320,4 @@ Carro
 Oficina
 
 '''
-test_tokens(codigo_prueba_cristopher)
+# test_tokens(codigo_prueba_cristopher)
