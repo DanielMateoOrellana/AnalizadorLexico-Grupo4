@@ -20,7 +20,7 @@ def p_sentencia(p):
 def p_asignacion(p):
   "asignacion : VAR ASIGNACION valor EOL"
 
-
+# ---Sentencia echo para imprimir valores---
 def p_echo(p):
    '''
    echo : ECHO valores EOL
@@ -165,12 +165,21 @@ def p_error(p):
 
 parser = sint.yacc()
 
-while True:
-   try:
-       s = input('calc >>> ')
-   except EOFError:
-       break
-   if not s: continue
-   result = parser.parse(s)
-   if result != None:
-     print(result)
+# while True:
+#    try:
+#        s = input('calc >>> ')
+#    except EOFError:
+#        break
+#    if not s: continue
+#    result = parser.parse(s)
+#    if result != None:
+#      print(result)
+
+testRoberto = '''
+   //Hola mundo
+   $a1 = 2;
+'''
+
+result = parser.parse(testRoberto)
+if result != None:
+   print(result)
