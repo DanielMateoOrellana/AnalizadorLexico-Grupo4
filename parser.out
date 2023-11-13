@@ -15,7 +15,6 @@ Unused terminals:
     CONTINUE
     DICT
     DIFERENTE
-    DIV
     DIV_ASIGNAR
     DO
     DOSPUNTOS
@@ -40,20 +39,16 @@ Unused terminals:
     MENOR_IGUAL
     MENOR_MAYOR
     MODULO
-    MULT
     MULT_ASIGNAR
     OBJETO
-    POT
     POT_ASIGNAR
     PUNTO
     RBRACE
     RBRACKET
-    RESTA
     RESTA_ASIGNAR
     RETURN
     RPAREN
     SET
-    SUMA
     SUMA_ASIGNAR
     SWITCH
     TUPLE
@@ -74,6 +69,16 @@ Rule 7     valor -> BOOLEANO
 Rule 8     valor -> CADENA
 Rule 9     valor -> VAR
 Rule 10    valor -> VARIABLE_ARRAY
+Rule 11    valor -> operacion
+Rule 12    operacion -> ENTERO
+Rule 13    operacion -> FLOTANTE
+Rule 14    operacion -> ENTERO operador operacion
+Rule 15    operacion -> FLOTANTE operador operacion
+Rule 16    operador -> SUMA
+Rule 17    operador -> RESTA
+Rule 18    operador -> MULT
+Rule 19    operador -> DIV
+Rule 20    operador -> POT
 
 Terminals, with rules where they appear
 
@@ -93,7 +98,7 @@ COMNT                :
 CONTINUE             : 
 DICT                 : 
 DIFERENTE            : 
-DIV                  : 
+DIV                  : 19
 DIV_ASIGNAR          : 
 DO                   : 
 DOSPUNTOS            : 
@@ -101,9 +106,9 @@ ECHO                 : 4
 ELSE                 : 
 ELSEIF               : 
 ENDWHILE             : 
-ENTERO               : 5
+ENTERO               : 5 12 14
 EOL                  : 3 4
-FLOTANTE             : 6
+FLOTANTE             : 6 13 15
 FOR                  : 
 FOREACH              : 
 FUNCION              : 
@@ -122,20 +127,20 @@ MENOR                :
 MENOR_IGUAL          : 
 MENOR_MAYOR          : 
 MODULO               : 
-MULT                 : 
+MULT                 : 18
 MULT_ASIGNAR         : 
 OBJETO               : 
-POT                  : 
+POT                  : 20
 POT_ASIGNAR          : 
 PUNTO                : 
 RBRACE               : 
 RBRACKET             : 
-RESTA                : 
+RESTA                : 17
 RESTA_ASIGNAR        : 
 RETURN               : 
 RPAREN               : 
 SET                  : 
-SUMA                 : 
+SUMA                 : 16
 SUMA_ASIGNAR         : 
 SWITCH               : 
 TUPLE                : 
@@ -150,6 +155,8 @@ Nonterminals, with rules where they appear
 
 asignacion           : 1
 echo                 : 2
+operacion            : 11 14 15
+operador             : 14 15
 sentencia            : 0
 valor                : 3 4
 
@@ -206,6 +213,11 @@ state 5
     (8) valor -> . CADENA
     (9) valor -> . VAR
     (10) valor -> . VARIABLE_ARRAY
+    (11) valor -> . operacion
+    (12) operacion -> . ENTERO
+    (13) operacion -> . FLOTANTE
+    (14) operacion -> . ENTERO operador operacion
+    (15) operacion -> . FLOTANTE operador operacion
 
     ENTERO          shift and go to state 8
     FLOTANTE        shift and go to state 9
@@ -215,6 +227,7 @@ state 5
     VARIABLE_ARRAY  shift and go to state 13
 
     valor                          shift and go to state 7
+    operacion                      shift and go to state 14
 
 state 6
 
@@ -225,6 +238,11 @@ state 6
     (8) valor -> . CADENA
     (9) valor -> . VAR
     (10) valor -> . VARIABLE_ARRAY
+    (11) valor -> . operacion
+    (12) operacion -> . ENTERO
+    (13) operacion -> . FLOTANTE
+    (14) operacion -> . ENTERO operador operacion
+    (15) operacion -> . FLOTANTE operador operacion
 
     ENTERO          shift and go to state 8
     FLOTANTE        shift and go to state 9
@@ -233,28 +251,61 @@ state 6
     VAR             shift and go to state 12
     VARIABLE_ARRAY  shift and go to state 13
 
-    valor                          shift and go to state 14
+    valor                          shift and go to state 15
+    operacion                      shift and go to state 14
 
 state 7
 
     (4) echo -> ECHO valor . EOL
 
-    EOL             shift and go to state 15
+    EOL             shift and go to state 16
 
 
 state 8
 
     (5) valor -> ENTERO .
+    (12) operacion -> ENTERO .
+    (14) operacion -> ENTERO . operador operacion
+    (16) operador -> . SUMA
+    (17) operador -> . RESTA
+    (18) operador -> . MULT
+    (19) operador -> . DIV
+    (20) operador -> . POT
 
+  ! reduce/reduce conflict for EOL resolved using rule 5 (valor -> ENTERO .)
     EOL             reduce using rule 5 (valor -> ENTERO .)
+    SUMA            shift and go to state 18
+    RESTA           shift and go to state 19
+    MULT            shift and go to state 20
+    DIV             shift and go to state 21
+    POT             shift and go to state 22
 
+  ! EOL             [ reduce using rule 12 (operacion -> ENTERO .) ]
+
+    operador                       shift and go to state 17
 
 state 9
 
     (6) valor -> FLOTANTE .
+    (13) operacion -> FLOTANTE .
+    (15) operacion -> FLOTANTE . operador operacion
+    (16) operador -> . SUMA
+    (17) operador -> . RESTA
+    (18) operador -> . MULT
+    (19) operador -> . DIV
+    (20) operador -> . POT
 
+  ! reduce/reduce conflict for EOL resolved using rule 6 (valor -> FLOTANTE .)
     EOL             reduce using rule 6 (valor -> FLOTANTE .)
+    SUMA            shift and go to state 18
+    RESTA           shift and go to state 19
+    MULT            shift and go to state 20
+    DIV             shift and go to state 21
+    POT             shift and go to state 22
 
+  ! EOL             [ reduce using rule 13 (operacion -> FLOTANTE .) ]
+
+    operador                       shift and go to state 23
 
 state 10
 
@@ -286,21 +337,153 @@ state 13
 
 state 14
 
-    (3) asignacion -> VAR ASIGNACION valor . EOL
+    (11) valor -> operacion .
 
-    EOL             shift and go to state 16
+    EOL             reduce using rule 11 (valor -> operacion .)
 
 
 state 15
+
+    (3) asignacion -> VAR ASIGNACION valor . EOL
+
+    EOL             shift and go to state 24
+
+
+state 16
 
     (4) echo -> ECHO valor EOL .
 
     $end            reduce using rule 4 (echo -> ECHO valor EOL .)
 
 
-state 16
+state 17
+
+    (14) operacion -> ENTERO operador . operacion
+    (12) operacion -> . ENTERO
+    (13) operacion -> . FLOTANTE
+    (14) operacion -> . ENTERO operador operacion
+    (15) operacion -> . FLOTANTE operador operacion
+
+    ENTERO          shift and go to state 25
+    FLOTANTE        shift and go to state 27
+
+    operacion                      shift and go to state 26
+
+state 18
+
+    (16) operador -> SUMA .
+
+    ENTERO          reduce using rule 16 (operador -> SUMA .)
+    FLOTANTE        reduce using rule 16 (operador -> SUMA .)
+
+
+state 19
+
+    (17) operador -> RESTA .
+
+    ENTERO          reduce using rule 17 (operador -> RESTA .)
+    FLOTANTE        reduce using rule 17 (operador -> RESTA .)
+
+
+state 20
+
+    (18) operador -> MULT .
+
+    ENTERO          reduce using rule 18 (operador -> MULT .)
+    FLOTANTE        reduce using rule 18 (operador -> MULT .)
+
+
+state 21
+
+    (19) operador -> DIV .
+
+    ENTERO          reduce using rule 19 (operador -> DIV .)
+    FLOTANTE        reduce using rule 19 (operador -> DIV .)
+
+
+state 22
+
+    (20) operador -> POT .
+
+    ENTERO          reduce using rule 20 (operador -> POT .)
+    FLOTANTE        reduce using rule 20 (operador -> POT .)
+
+
+state 23
+
+    (15) operacion -> FLOTANTE operador . operacion
+    (12) operacion -> . ENTERO
+    (13) operacion -> . FLOTANTE
+    (14) operacion -> . ENTERO operador operacion
+    (15) operacion -> . FLOTANTE operador operacion
+
+    ENTERO          shift and go to state 25
+    FLOTANTE        shift and go to state 27
+
+    operacion                      shift and go to state 28
+
+state 24
 
     (3) asignacion -> VAR ASIGNACION valor EOL .
 
     $end            reduce using rule 3 (asignacion -> VAR ASIGNACION valor EOL .)
 
+
+state 25
+
+    (12) operacion -> ENTERO .
+    (14) operacion -> ENTERO . operador operacion
+    (16) operador -> . SUMA
+    (17) operador -> . RESTA
+    (18) operador -> . MULT
+    (19) operador -> . DIV
+    (20) operador -> . POT
+
+    EOL             reduce using rule 12 (operacion -> ENTERO .)
+    SUMA            shift and go to state 18
+    RESTA           shift and go to state 19
+    MULT            shift and go to state 20
+    DIV             shift and go to state 21
+    POT             shift and go to state 22
+
+    operador                       shift and go to state 17
+
+state 26
+
+    (14) operacion -> ENTERO operador operacion .
+
+    EOL             reduce using rule 14 (operacion -> ENTERO operador operacion .)
+
+
+state 27
+
+    (13) operacion -> FLOTANTE .
+    (15) operacion -> FLOTANTE . operador operacion
+    (16) operador -> . SUMA
+    (17) operador -> . RESTA
+    (18) operador -> . MULT
+    (19) operador -> . DIV
+    (20) operador -> . POT
+
+    EOL             reduce using rule 13 (operacion -> FLOTANTE .)
+    SUMA            shift and go to state 18
+    RESTA           shift and go to state 19
+    MULT            shift and go to state 20
+    DIV             shift and go to state 21
+    POT             shift and go to state 22
+
+    operador                       shift and go to state 23
+
+state 28
+
+    (15) operacion -> FLOTANTE operador operacion .
+
+    EOL             reduce using rule 15 (operacion -> FLOTANTE operador operacion .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: reduce/reduce conflict in state 8 resolved using rule (valor -> ENTERO)
+WARNING: rejected rule (operacion -> ENTERO) in state 8
+WARNING: reduce/reduce conflict in state 9 resolved using rule (valor -> FLOTANTE)
+WARNING: rejected rule (operacion -> FLOTANTE) in state 9

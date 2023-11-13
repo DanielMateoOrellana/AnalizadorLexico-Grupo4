@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'ARRAY ASIGNACION ASIGNAR BOOLEANO BREAK CADENA CASE COMA COMILLA_DOBLE COMILLA_DOBLE_CADENA COMILLA_SIMPLE COMILLA_SIMPLE_CADENA COMNT CONTINUE DICT DIFERENTE DIV DIV_ASIGNAR DO DOSPUNTOS ECHO ELSE ELSEIF ENDWHILE ENTERO EOL FLOTANTE FOR FOREACH FUNCION FUNCTION GLOBAL ID IF IGUAL LBRACE LBRACKET LPAREN MAYOR MAYOR_IGUAL MAYOR_MENOR MENOR MENOR_IGUAL MENOR_MAYOR MODULO MULT MULT_ASIGNAR OBJETO POT POT_ASIGNAR PUNTO RBRACE RBRACKET RESTA RESTA_ASIGNAR RETURN RPAREN SET SUMA SUMA_ASIGNAR SWITCH TUPLE VAR VARIABLE_ARRAY VARIABLE_FUNCION VARIABLE_OBJETO WHILEsentencia : asignacion\n                | echo\n\n  asignacion : VAR ASIGNACION valor EOL\n   echo : ECHO valor EOL\n   valor : ENTERO\n          | FLOTANTE\n          | BOOLEANO    \n          | CADENA\n          | VAR\n          | VARIABLE_ARRAY\n  '
+_lr_signature = 'ARRAY ASIGNACION ASIGNAR BOOLEANO BREAK CADENA CASE COMA COMILLA_DOBLE COMILLA_DOBLE_CADENA COMILLA_SIMPLE COMILLA_SIMPLE_CADENA COMNT CONTINUE DICT DIFERENTE DIV DIV_ASIGNAR DO DOSPUNTOS ECHO ELSE ELSEIF ENDWHILE ENTERO EOL FLOTANTE FOR FOREACH FUNCION FUNCTION GLOBAL ID IF IGUAL LBRACE LBRACKET LPAREN MAYOR MAYOR_IGUAL MAYOR_MENOR MENOR MENOR_IGUAL MENOR_MAYOR MODULO MULT MULT_ASIGNAR OBJETO POT POT_ASIGNAR PUNTO RBRACE RBRACKET RESTA RESTA_ASIGNAR RETURN RPAREN SET SUMA SUMA_ASIGNAR SWITCH TUPLE VAR VARIABLE_ARRAY VARIABLE_FUNCION VARIABLE_OBJETO WHILEsentencia : asignacion\n                | echo\n\n  asignacion : VAR ASIGNACION valor EOL\n   echo : ECHO valor EOL\n   valor : ENTERO\n          | FLOTANTE\n          | BOOLEANO    \n          | CADENA\n          | VAR\n          | VARIABLE_ARRAY\n          | operacion\n  \n   operacion : ENTERO \n            | FLOTANTE\n            | ENTERO operador operacion\n            | FLOTANTE operador operacion\n   \n   operador : SUMA \n            | RESTA \n            | MULT \n            | DIV \n            | POT\n   '
     
-_lr_action_items = {'VAR':([0,5,6,],[4,12,12,]),'ECHO':([0,],[5,]),'$end':([1,2,3,15,16,],[0,-1,-2,-4,-3,]),'ASIGNACION':([4,],[6,]),'ENTERO':([5,6,],[8,8,]),'FLOTANTE':([5,6,],[9,9,]),'BOOLEANO':([5,6,],[10,10,]),'CADENA':([5,6,],[11,11,]),'VARIABLE_ARRAY':([5,6,],[13,13,]),'EOL':([7,8,9,10,11,12,13,14,],[15,-5,-6,-7,-8,-9,-10,16,]),}
+_lr_action_items = {'VAR':([0,5,6,],[4,12,12,]),'ECHO':([0,],[5,]),'$end':([1,2,3,16,24,],[0,-1,-2,-4,-3,]),'ASIGNACION':([4,],[6,]),'ENTERO':([5,6,17,18,19,20,21,22,23,],[8,8,25,-16,-17,-18,-19,-20,25,]),'FLOTANTE':([5,6,17,18,19,20,21,22,23,],[9,9,27,-16,-17,-18,-19,-20,27,]),'BOOLEANO':([5,6,],[10,10,]),'CADENA':([5,6,],[11,11,]),'VARIABLE_ARRAY':([5,6,],[13,13,]),'EOL':([7,8,9,10,11,12,13,14,15,25,26,27,28,],[16,-5,-6,-7,-8,-9,-10,-11,24,-12,-14,-13,-15,]),'SUMA':([8,9,25,27,],[18,18,18,18,]),'RESTA':([8,9,25,27,],[19,19,19,19,]),'MULT':([8,9,25,27,],[20,20,20,20,]),'DIV':([8,9,25,27,],[21,21,21,21,]),'POT':([8,9,25,27,],[22,22,22,22,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'sentencia':([0,],[1,]),'asignacion':([0,],[2,]),'echo':([0,],[3,]),'valor':([5,6,],[7,14,]),}
+_lr_goto_items = {'sentencia':([0,],[1,]),'asignacion':([0,],[2,]),'echo':([0,],[3,]),'valor':([5,6,],[7,15,]),'operacion':([5,6,17,23,],[14,14,26,28,]),'operador':([8,9,25,27,],[17,23,17,23,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -37,4 +37,14 @@ _lr_productions = [
   ('valor -> CADENA','valor',1,'p_valor','main.py',34),
   ('valor -> VAR','valor',1,'p_valor','main.py',35),
   ('valor -> VARIABLE_ARRAY','valor',1,'p_valor','main.py',36),
+  ('valor -> operacion','valor',1,'p_valor','main.py',37),
+  ('operacion -> ENTERO','operacion',1,'p_operacion','main.py',42),
+  ('operacion -> FLOTANTE','operacion',1,'p_operacion','main.py',43),
+  ('operacion -> ENTERO operador operacion','operacion',3,'p_operacion','main.py',44),
+  ('operacion -> FLOTANTE operador operacion','operacion',3,'p_operacion','main.py',45),
+  ('operador -> SUMA','operador',1,'p_operador','main.py',50),
+  ('operador -> RESTA','operador',1,'p_operador','main.py',51),
+  ('operador -> MULT','operador',1,'p_operador','main.py',52),
+  ('operador -> DIV','operador',1,'p_operador','main.py',53),
+  ('operador -> POT','operador',1,'p_operador','main.py',54),
 ]

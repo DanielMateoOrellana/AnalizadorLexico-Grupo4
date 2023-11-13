@@ -34,7 +34,25 @@ def p_valor(p):
           | CADENA
           | VAR
           | VARIABLE_ARRAY
+          | operacion
   '''
+
+def p_operacion(p):
+   '''
+   operacion : ENTERO 
+            | FLOTANTE
+            | ENTERO operador operacion
+            | FLOTANTE operador operacion
+   '''
+
+def p_operador(p):
+   '''
+   operador : SUMA 
+            | RESTA 
+            | MULT 
+            | DIV 
+            | POT
+   '''
 
 def p_error(p):
   print("Error de sintaxis")
