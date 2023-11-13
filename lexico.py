@@ -179,14 +179,14 @@ def t_VAR(t):
 
 # Flotantes
 def t_FLOTANTE(t):
-  r'\d+\.\d+'
+  r'\-?\d+\.\d+'
   t.value = float(t.value)
   return t
 
 
 # Enteros
 def t_ENTERO(t):
-  r'\d+'
+  r'\-?\d+'
   t.value = int(t.value)
   return t
 

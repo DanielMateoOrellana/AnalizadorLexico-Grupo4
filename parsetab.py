@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'ARRAY ASIGNACION ASIGNAR BOOLEANO BREAK CADENA CASE COMA COMILLA_DOBLE COMILLA_DOBLE_CADENA COMILLA_SIMPLE COMILLA_SIMPLE_CADENA COMNT CONTINUE DICT DIFERENTE DIV DIV_ASIGNAR DO DOSPUNTOS ECHO ELSE ELSEIF ENDWHILE ENTERO EOL FLOTANTE FOR FOREACH FUNCION FUNCTION GLOBAL ID IF IGUAL LBRACE LBRACKET LPAREN MAYOR MAYOR_IGUAL MAYOR_MENOR MENOR MENOR_IGUAL MENOR_MAYOR MODULO MULT MULT_ASIGNAR OBJETO POT POT_ASIGNAR PUNTO RBRACE RBRACKET RESTA RESTA_ASIGNAR RETURN RPAREN SET SUMA SUMA_ASIGNAR SWITCH TUPLE VAR VARIABLE_ARRAY VARIABLE_FUNCION VARIABLE_OBJETO WHILEsentencia : asignacion\n                | echo\n                | estructuracontrol\n                | comentario\n  asignacion : VAR ASIGNACION valor EOL\n   echo : ECHO valor EOL\n   valor : ENTERO\n          | FLOTANTE\n          | BOOLEANO    \n          | CADENA\n          | VAR\n          | VARIABLE_ARRAY\n          | operacion\n  \n   operacion : ENTERO \n            | FLOTANTE\n            | ENTERO operador operacion\n            | FLOTANTE operador operacion\n   \n   estructuracontrol : while\n                     | if\n   \n   while : WHILE LPAREN argumentologico RPAREN\n   \n   if : IF LPAREN argumentologico RPAREN\n   \n   argumentologico : VAR simboloLogico VAR\n                   | BOOLEANO\n                   | VAR simboloLogico ENTERO\n                   | VAR simboloLogico FLOTANTE\n                   | VAR IGUAL BOOLEANO\n                   | VAR IGUAL CADENA\n                   | ENTERO simboloLogico VAR\n                   | FLOTANTE simboloLogico VAR\n                   | BOOLEANO IGUAL VAR\n                   | CADENA IGUAL VAR\n   \n   simboloLogico : IGUAL\n                 | DIFERENTE\n                 | MENOR\n                 | MAYOR\n                 | MENOR_IGUAL\n                 | MAYOR_IGUAL      \n   \n   comentario : COMNT\n   \n   operador : SUMA \n            | RESTA \n            | MULT \n            | DIV \n            | POT\n   '
+_lr_signature = 'ARRAY ASIGNACION ASIGNAR BOOLEANO BREAK CADENA CASE COMA COMILLA_DOBLE COMILLA_DOBLE_CADENA COMILLA_SIMPLE COMILLA_SIMPLE_CADENA COMNT CONTINUE DICT DIFERENTE DIV DIV_ASIGNAR DO DOSPUNTOS ECHO ELSE ELSEIF ENDWHILE ENTERO EOL FLOTANTE FOR FOREACH FUNCION FUNCTION GLOBAL ID IF IGUAL LBRACE LBRACKET LPAREN MAYOR MAYOR_IGUAL MAYOR_MENOR MENOR MENOR_IGUAL MENOR_MAYOR MODULO MULT MULT_ASIGNAR OBJETO POT POT_ASIGNAR PUNTO RBRACE RBRACKET RESTA RESTA_ASIGNAR RETURN RPAREN SET SUMA SUMA_ASIGNAR SWITCH TUPLE VAR VARIABLE_ARRAY VARIABLE_FUNCION VARIABLE_OBJETO WHILEsentencia : asignacion\n                | echo\n                | estructuracontrol\n                | comentario\n  asignacion : VAR ASIGNACION valor EOL\n   echo : ECHO valor EOL\n   valor : ENTERO\n          | FLOTANTE\n          | BOOLEANO    \n          | CADENA\n          | VAR\n          | VARIABLE_ARRAY\n          | operacion\n  \n   operacion : ENTERO \n            | FLOTANTE\n            | ENTERO operador operacion\n            | FLOTANTE operador operacion\n   \n   estructuracontrol : while\n                     | if\n   \n   while : WHILE LPAREN argumentologico RPAREN\n   \n   if : IF LPAREN argumentologico RPAREN\n   \n   argumentologico : VAR simboloLogico VAR\n                   | numero simboloLogico numero\n                   | VAR simboloLogico numero\n                   | VAR IGUAL BOOLEANO\n                   | VAR IGUAL CADENA\n                   | numero simboloLogico VAR\n                   | BOOLEANO IGUAL VAR\n                   | CADENA IGUAL VAR\n                   | CADENA IGUAL CADENA\n                   | BOOLEANO\n   \n   numero : ENTERO\n          | FLOTANTE\n   \n   simboloLogico : IGUAL\n                 | DIFERENTE\n                 | MENOR\n                 | MAYOR\n                 | MENOR_IGUAL\n                 | MAYOR_IGUAL      \n   \n   comentario : COMNT\n   \n   operador : SUMA \n            | RESTA \n            | MULT \n            | DIV \n            | POT\n   '
     
-_lr_action_items = {'VAR':([0,7,13,22,23,46,47,48,49,50,51,52,53,54,55,56,57,],[6,19,19,34,34,59,-32,-33,-34,-35,-36,-37,64,65,-32,66,67,]),'ECHO':([0,],[7,]),'COMNT':([0,],[10,]),'WHILE':([0,],[11,]),'IF':([0,],[12,]),'$end':([1,2,3,4,5,8,9,10,25,40,45,58,],[0,-1,-2,-3,-4,-18,-19,-38,-6,-5,-20,-21,]),'ASIGNACION':([6,],[13,]),'ENTERO':([7,13,22,23,26,27,28,29,30,31,32,46,47,48,49,50,51,52,],[15,15,36,36,41,-39,-40,-41,-42,-43,41,60,-32,-33,-34,-35,-36,-37,]),'FLOTANTE':([7,13,22,23,26,27,28,29,30,31,32,46,47,48,49,50,51,52,],[16,16,37,37,43,-39,-40,-41,-42,-43,43,61,-32,-33,-34,-35,-36,-37,]),'BOOLEANO':([7,13,22,23,47,],[17,17,35,35,62,]),'CADENA':([7,13,22,23,47,],[18,18,38,38,63,]),'VARIABLE_ARRAY':([7,13,],[20,20,]),'LPAREN':([11,12,],[22,23,]),'EOL':([14,15,16,17,18,19,20,21,24,41,42,43,44,],[25,-7,-8,-9,-10,-11,-12,-13,40,-14,-16,-15,-17,]),'SUMA':([15,16,41,43,],[27,27,27,27,]),'RESTA':([15,16,41,43,],[28,28,28,28,]),'MULT':([15,16,41,43,],[29,29,29,29,]),'DIV':([15,16,41,43,],[30,30,30,30,]),'POT':([15,16,41,43,],[31,31,31,31,]),'RPAREN':([33,35,39,59,60,61,62,63,64,65,66,67,],[45,-23,58,-22,-24,-25,-26,-27,-30,-28,-29,-31,]),'IGUAL':([34,35,36,37,38,],[47,53,55,55,57,]),'DIFERENTE':([34,36,37,],[48,48,48,]),'MENOR':([34,36,37,],[49,49,49,]),'MAYOR':([34,36,37,],[50,50,50,]),'MENOR_IGUAL':([34,36,37,],[51,51,51,]),'MAYOR_IGUAL':([34,36,37,],[52,52,52,]),}
+_lr_action_items = {'VAR':([0,7,13,22,23,47,48,49,50,51,52,53,54,55,56,57,],[6,19,19,34,34,59,-34,-35,-36,-37,-38,-39,64,-34,65,67,]),'ECHO':([0,],[7,]),'COMNT':([0,],[10,]),'WHILE':([0,],[11,]),'IF':([0,],[12,]),'$end':([1,2,3,4,5,8,9,10,25,41,46,58,],[0,-1,-2,-3,-4,-18,-19,-40,-6,-5,-20,-21,]),'ASIGNACION':([6,],[13,]),'ENTERO':([7,13,22,23,26,27,28,29,30,31,32,47,48,49,50,51,52,53,54,55,],[15,15,38,38,42,-41,-42,-43,-44,-45,42,38,-34,-35,-36,-37,-38,-39,38,-34,]),'FLOTANTE':([7,13,22,23,26,27,28,29,30,31,32,47,48,49,50,51,52,53,54,55,],[16,16,39,39,44,-41,-42,-43,-44,-45,44,39,-34,-35,-36,-37,-38,-39,39,-34,]),'BOOLEANO':([7,13,22,23,48,],[17,17,36,36,61,]),'CADENA':([7,13,22,23,48,57,],[18,18,37,37,62,66,]),'VARIABLE_ARRAY':([7,13,],[20,20,]),'LPAREN':([11,12,],[22,23,]),'EOL':([14,15,16,17,18,19,20,21,24,42,43,44,45,],[25,-7,-8,-9,-10,-11,-12,-13,41,-14,-16,-15,-17,]),'SUMA':([15,16,42,44,],[27,27,27,27,]),'RESTA':([15,16,42,44,],[28,28,28,28,]),'MULT':([15,16,42,44,],[29,29,29,29,]),'DIV':([15,16,42,44,],[30,30,30,30,]),'POT':([15,16,42,44,],[31,31,31,31,]),'RPAREN':([33,36,38,39,40,59,60,61,62,63,64,65,66,67,],[46,-31,-32,-33,58,-22,-24,-25,-26,-23,-27,-28,-30,-29,]),'IGUAL':([34,35,36,37,38,39,],[48,55,56,57,-32,-33,]),'DIFERENTE':([34,35,38,39,],[49,49,-32,-33,]),'MENOR':([34,35,38,39,],[50,50,-32,-33,]),'MAYOR':([34,35,38,39,],[51,51,-32,-33,]),'MENOR_IGUAL':([34,35,38,39,],[52,52,-32,-33,]),'MAYOR_IGUAL':([34,35,38,39,],[53,53,-32,-33,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'sentencia':([0,],[1,]),'asignacion':([0,],[2,]),'echo':([0,],[3,]),'estructuracontrol':([0,],[4,]),'comentario':([0,],[5,]),'while':([0,],[8,]),'if':([0,],[9,]),'valor':([7,13,],[14,24,]),'operacion':([7,13,26,32,],[21,21,42,44,]),'operador':([15,16,41,43,],[26,32,26,32,]),'argumentologico':([22,23,],[33,39,]),'simboloLogico':([34,36,37,],[46,54,56,]),}
+_lr_goto_items = {'sentencia':([0,],[1,]),'asignacion':([0,],[2,]),'echo':([0,],[3,]),'estructuracontrol':([0,],[4,]),'comentario':([0,],[5,]),'while':([0,],[8,]),'if':([0,],[9,]),'valor':([7,13,],[14,24,]),'operacion':([7,13,26,32,],[21,21,43,45,]),'operador':([15,16,42,44,],[26,32,26,32,]),'argumentologico':([22,23,],[33,40,]),'numero':([22,23,47,54,],[35,35,60,63,]),'simboloLogico':([34,35,],[47,54,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -49,25 +49,27 @@ _lr_productions = [
   ('while -> WHILE LPAREN argumentologico RPAREN','while',4,'p_while','main.py',58),
   ('if -> IF LPAREN argumentologico RPAREN','if',4,'p_if','main.py',63),
   ('argumentologico -> VAR simboloLogico VAR','argumentologico',3,'p_argumentologico','main.py',68),
-  ('argumentologico -> BOOLEANO','argumentologico',1,'p_argumentologico','main.py',69),
-  ('argumentologico -> VAR simboloLogico ENTERO','argumentologico',3,'p_argumentologico','main.py',70),
-  ('argumentologico -> VAR simboloLogico FLOTANTE','argumentologico',3,'p_argumentologico','main.py',71),
-  ('argumentologico -> VAR IGUAL BOOLEANO','argumentologico',3,'p_argumentologico','main.py',72),
-  ('argumentologico -> VAR IGUAL CADENA','argumentologico',3,'p_argumentologico','main.py',73),
-  ('argumentologico -> ENTERO simboloLogico VAR','argumentologico',3,'p_argumentologico','main.py',74),
-  ('argumentologico -> FLOTANTE simboloLogico VAR','argumentologico',3,'p_argumentologico','main.py',75),
-  ('argumentologico -> BOOLEANO IGUAL VAR','argumentologico',3,'p_argumentologico','main.py',76),
-  ('argumentologico -> CADENA IGUAL VAR','argumentologico',3,'p_argumentologico','main.py',77),
-  ('simboloLogico -> IGUAL','simboloLogico',1,'p_simboloLogico','main.py',83),
-  ('simboloLogico -> DIFERENTE','simboloLogico',1,'p_simboloLogico','main.py',84),
-  ('simboloLogico -> MENOR','simboloLogico',1,'p_simboloLogico','main.py',85),
-  ('simboloLogico -> MAYOR','simboloLogico',1,'p_simboloLogico','main.py',86),
-  ('simboloLogico -> MENOR_IGUAL','simboloLogico',1,'p_simboloLogico','main.py',87),
-  ('simboloLogico -> MAYOR_IGUAL','simboloLogico',1,'p_simboloLogico','main.py',88),
-  ('comentario -> COMNT','comentario',1,'p_comentario','main.py',94),
-  ('operador -> SUMA','operador',1,'p_operador','main.py',98),
-  ('operador -> RESTA','operador',1,'p_operador','main.py',99),
-  ('operador -> MULT','operador',1,'p_operador','main.py',100),
-  ('operador -> DIV','operador',1,'p_operador','main.py',101),
-  ('operador -> POT','operador',1,'p_operador','main.py',102),
+  ('argumentologico -> numero simboloLogico numero','argumentologico',3,'p_argumentologico','main.py',69),
+  ('argumentologico -> VAR simboloLogico numero','argumentologico',3,'p_argumentologico','main.py',70),
+  ('argumentologico -> VAR IGUAL BOOLEANO','argumentologico',3,'p_argumentologico','main.py',71),
+  ('argumentologico -> VAR IGUAL CADENA','argumentologico',3,'p_argumentologico','main.py',72),
+  ('argumentologico -> numero simboloLogico VAR','argumentologico',3,'p_argumentologico','main.py',73),
+  ('argumentologico -> BOOLEANO IGUAL VAR','argumentologico',3,'p_argumentologico','main.py',74),
+  ('argumentologico -> CADENA IGUAL VAR','argumentologico',3,'p_argumentologico','main.py',75),
+  ('argumentologico -> CADENA IGUAL CADENA','argumentologico',3,'p_argumentologico','main.py',76),
+  ('argumentologico -> BOOLEANO','argumentologico',1,'p_argumentologico','main.py',77),
+  ('numero -> ENTERO','numero',1,'p_numero','main.py',82),
+  ('numero -> FLOTANTE','numero',1,'p_numero','main.py',83),
+  ('simboloLogico -> IGUAL','simboloLogico',1,'p_simboloLogico','main.py',88),
+  ('simboloLogico -> DIFERENTE','simboloLogico',1,'p_simboloLogico','main.py',89),
+  ('simboloLogico -> MENOR','simboloLogico',1,'p_simboloLogico','main.py',90),
+  ('simboloLogico -> MAYOR','simboloLogico',1,'p_simboloLogico','main.py',91),
+  ('simboloLogico -> MENOR_IGUAL','simboloLogico',1,'p_simboloLogico','main.py',92),
+  ('simboloLogico -> MAYOR_IGUAL','simboloLogico',1,'p_simboloLogico','main.py',93),
+  ('comentario -> COMNT','comentario',1,'p_comentario','main.py',99),
+  ('operador -> SUMA','operador',1,'p_operador','main.py',103),
+  ('operador -> RESTA','operador',1,'p_operador','main.py',104),
+  ('operador -> MULT','operador',1,'p_operador','main.py',105),
+  ('operador -> DIV','operador',1,'p_operador','main.py',106),
+  ('operador -> POT','operador',1,'p_operador','main.py',107),
 ]

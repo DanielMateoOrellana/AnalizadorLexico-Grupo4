@@ -66,17 +66,22 @@ def p_if(p):
 def p_argumentologico(p):
    '''
    argumentologico : VAR simboloLogico VAR
-                   | BOOLEANO
-                   | VAR simboloLogico ENTERO
-                   | VAR simboloLogico FLOTANTE
+                   | numero simboloLogico numero
+                   | VAR simboloLogico numero
                    | VAR IGUAL BOOLEANO
                    | VAR IGUAL CADENA
-                   | ENTERO simboloLogico VAR
-                   | FLOTANTE simboloLogico VAR
+                   | numero simboloLogico VAR
                    | BOOLEANO IGUAL VAR
                    | CADENA IGUAL VAR
+                   | CADENA IGUAL CADENA
+                   | BOOLEANO
    '''
   
+def p_numero(p):
+   '''
+   numero : ENTERO
+          | FLOTANTE
+   '''
 
 def p_simboloLogico(p):
    '''
@@ -101,7 +106,9 @@ def p_operador(p):
             | DIV 
             | POT
    '''
-
+#--------------------------
+# Fin de Aporte Roberto Patiño
+#--------------------------
 
 
 def p_error(p):
