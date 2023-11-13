@@ -12,6 +12,8 @@ def p_sentencia(p):
                 | echo
                 | estructuracontrol
                 | comentario
+                | declaracion_numeros
+                | array
   '''
 
 # ---Declaracion y asignacion de variables---
@@ -110,6 +112,45 @@ def p_operador(p):
 # Fin de Aporte Roberto Patiño
 #--------------------------
 
+# Aporte Cristopher Arroba
+def p_numero(p):
+  '''numero : ENTERO
+            | FLOTANTE'''
+
+def p_declaracion_numeros(p):
+  '''declaracion_numeros : VAR ASIGNACION numero'''
+
+def p_array(p):
+  '''array : VAR ASIGNACION ARRAY LPAREN elementos RPAREN '''
+
+def p_elementos(p):
+  '''elementos : lista
+               | diccionario'''
+
+def p_diccionario(p):
+  '''diccionario : CADENA ASIGNACION MAYOR valor
+                 | CADENA ASIGNACION MAYOR valor COMA diccionario'''
+
+def p_valor(p):
+  '''valor : numero
+           | CADENA'''
+
+def p_lista(p):
+  '''lista : palabras
+           | numeros
+           | variables'''
+
+def p_palabras(p):
+  '''palabras : CADENA COMA palabras
+              | CADENA'''
+
+def p_numeros(p):
+  '''numeros : numero COMA numeros
+             | numero'''
+
+def p_variables(p):
+  '''variables : VAR COMA variables
+               | VAR'''
 
 def p_error(p):
   print("Error de sintaxis")
