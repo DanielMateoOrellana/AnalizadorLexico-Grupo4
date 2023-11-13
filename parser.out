@@ -65,23 +65,24 @@ Grammar
 
 Rule 0     S' -> sentencia
 Rule 1     sentencia -> asignacion
-Rule 2     asignacion -> VAR ASIGNACION valor EOL
-Rule 3     echo -> ECHO valor EOL
-Rule 4     valor -> ENTERO
-Rule 5     valor -> FLOTANTE
-Rule 6     valor -> BOOLEANO
-Rule 7     valor -> CADENA
-Rule 8     valor -> VAR
-Rule 9     valor -> VARIABLE_ARRAY
+Rule 2     sentencia -> echo
+Rule 3     asignacion -> VAR ASIGNACION valor EOL
+Rule 4     echo -> ECHO valor EOL
+Rule 5     valor -> ENTERO
+Rule 6     valor -> FLOTANTE
+Rule 7     valor -> BOOLEANO
+Rule 8     valor -> CADENA
+Rule 9     valor -> VAR
+Rule 10    valor -> VARIABLE_ARRAY
 
 Terminals, with rules where they appear
 
 ARRAY                : 
-ASIGNACION           : 2
+ASIGNACION           : 3
 ASIGNAR              : 
-BOOLEANO             : 6
+BOOLEANO             : 7
 BREAK                : 
-CADENA               : 7
+CADENA               : 8
 CASE                 : 
 COMA                 : 
 COMILLA_DOBLE        : 
@@ -96,13 +97,13 @@ DIV                  :
 DIV_ASIGNAR          : 
 DO                   : 
 DOSPUNTOS            : 
-ECHO                 : 3
+ECHO                 : 4
 ELSE                 : 
 ELSEIF               : 
 ENDWHILE             : 
-ENTERO               : 4
-EOL                  : 2 3
-FLOTANTE             : 5
+ENTERO               : 5
+EOL                  : 3 4
+FLOTANTE             : 6
 FOR                  : 
 FOREACH              : 
 FUNCION              : 
@@ -138,8 +139,8 @@ SUMA                 :
 SUMA_ASIGNAR         : 
 SWITCH               : 
 TUPLE                : 
-VAR                  : 2 8
-VARIABLE_ARRAY       : 9
+VAR                  : 3 9
+VARIABLE_ARRAY       : 10
 VARIABLE_FUNCION     : 
 VARIABLE_OBJETO      : 
 WHILE                : 
@@ -148,9 +149,9 @@ error                :
 Nonterminals, with rules where they appear
 
 asignacion           : 1
-echo                 : 
+echo                 : 2
 sentencia            : 0
-valor                : 2 3
+valor                : 3 4
 
 Parsing method: LALR
 
@@ -158,12 +159,16 @@ state 0
 
     (0) S' -> . sentencia
     (1) sentencia -> . asignacion
-    (2) asignacion -> . VAR ASIGNACION valor EOL
+    (2) sentencia -> . echo
+    (3) asignacion -> . VAR ASIGNACION valor EOL
+    (4) echo -> . ECHO valor EOL
 
-    VAR             shift and go to state 3
+    VAR             shift and go to state 4
+    ECHO            shift and go to state 5
 
     sentencia                      shift and go to state 1
     asignacion                     shift and go to state 2
+    echo                           shift and go to state 3
 
 state 1
 
@@ -180,82 +185,122 @@ state 2
 
 state 3
 
-    (2) asignacion -> VAR . ASIGNACION valor EOL
+    (2) sentencia -> echo .
 
-    ASIGNACION      shift and go to state 4
+    $end            reduce using rule 2 (sentencia -> echo .)
 
 
 state 4
 
-    (2) asignacion -> VAR ASIGNACION . valor EOL
-    (4) valor -> . ENTERO
-    (5) valor -> . FLOTANTE
-    (6) valor -> . BOOLEANO
-    (7) valor -> . CADENA
-    (8) valor -> . VAR
-    (9) valor -> . VARIABLE_ARRAY
+    (3) asignacion -> VAR . ASIGNACION valor EOL
 
-    ENTERO          shift and go to state 7
-    FLOTANTE        shift and go to state 8
-    BOOLEANO        shift and go to state 9
-    CADENA          shift and go to state 10
-    VAR             shift and go to state 5
-    VARIABLE_ARRAY  shift and go to state 11
+    ASIGNACION      shift and go to state 6
 
-    valor                          shift and go to state 6
 
 state 5
 
-    (8) valor -> VAR .
+    (4) echo -> ECHO . valor EOL
+    (5) valor -> . ENTERO
+    (6) valor -> . FLOTANTE
+    (7) valor -> . BOOLEANO
+    (8) valor -> . CADENA
+    (9) valor -> . VAR
+    (10) valor -> . VARIABLE_ARRAY
 
-    EOL             reduce using rule 8 (valor -> VAR .)
+    ENTERO          shift and go to state 8
+    FLOTANTE        shift and go to state 9
+    BOOLEANO        shift and go to state 10
+    CADENA          shift and go to state 11
+    VAR             shift and go to state 12
+    VARIABLE_ARRAY  shift and go to state 13
 
+    valor                          shift and go to state 7
 
 state 6
 
-    (2) asignacion -> VAR ASIGNACION valor . EOL
+    (3) asignacion -> VAR ASIGNACION . valor EOL
+    (5) valor -> . ENTERO
+    (6) valor -> . FLOTANTE
+    (7) valor -> . BOOLEANO
+    (8) valor -> . CADENA
+    (9) valor -> . VAR
+    (10) valor -> . VARIABLE_ARRAY
 
-    EOL             shift and go to state 12
+    ENTERO          shift and go to state 8
+    FLOTANTE        shift and go to state 9
+    BOOLEANO        shift and go to state 10
+    CADENA          shift and go to state 11
+    VAR             shift and go to state 12
+    VARIABLE_ARRAY  shift and go to state 13
 
+    valor                          shift and go to state 14
 
 state 7
 
-    (4) valor -> ENTERO .
+    (4) echo -> ECHO valor . EOL
 
-    EOL             reduce using rule 4 (valor -> ENTERO .)
+    EOL             shift and go to state 15
 
 
 state 8
 
-    (5) valor -> FLOTANTE .
+    (5) valor -> ENTERO .
 
-    EOL             reduce using rule 5 (valor -> FLOTANTE .)
+    EOL             reduce using rule 5 (valor -> ENTERO .)
 
 
 state 9
 
-    (6) valor -> BOOLEANO .
+    (6) valor -> FLOTANTE .
 
-    EOL             reduce using rule 6 (valor -> BOOLEANO .)
+    EOL             reduce using rule 6 (valor -> FLOTANTE .)
 
 
 state 10
 
-    (7) valor -> CADENA .
+    (7) valor -> BOOLEANO .
 
-    EOL             reduce using rule 7 (valor -> CADENA .)
+    EOL             reduce using rule 7 (valor -> BOOLEANO .)
 
 
 state 11
 
-    (9) valor -> VARIABLE_ARRAY .
+    (8) valor -> CADENA .
 
-    EOL             reduce using rule 9 (valor -> VARIABLE_ARRAY .)
+    EOL             reduce using rule 8 (valor -> CADENA .)
 
 
 state 12
 
-    (2) asignacion -> VAR ASIGNACION valor EOL .
+    (9) valor -> VAR .
 
-    $end            reduce using rule 2 (asignacion -> VAR ASIGNACION valor EOL .)
+    EOL             reduce using rule 9 (valor -> VAR .)
+
+
+state 13
+
+    (10) valor -> VARIABLE_ARRAY .
+
+    EOL             reduce using rule 10 (valor -> VARIABLE_ARRAY .)
+
+
+state 14
+
+    (3) asignacion -> VAR ASIGNACION valor . EOL
+
+    EOL             shift and go to state 16
+
+
+state 15
+
+    (4) echo -> ECHO valor EOL .
+
+    $end            reduce using rule 4 (echo -> ECHO valor EOL .)
+
+
+state 16
+
+    (3) asignacion -> VAR ASIGNACION valor EOL .
+
+    $end            reduce using rule 3 (asignacion -> VAR ASIGNACION valor EOL .)
 

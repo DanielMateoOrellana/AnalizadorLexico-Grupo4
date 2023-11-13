@@ -9,6 +9,7 @@ from lexico import tokens
 # ---Definicion de sentencias---
 def p_sentencia(p):
   '''sentencia : asignacion
+                | echo
 
   '''
 
@@ -24,7 +25,6 @@ def p_echo(p):
 
 
 
-#OJO: BOOLEANO NO FUNCIONA
 # VARIABLE_ARRAY NO FUNCIONA PARA ARRAYS DE 1 SOLO ELEMENTO
 
 def p_valor(p):
