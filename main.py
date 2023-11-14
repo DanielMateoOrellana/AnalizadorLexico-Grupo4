@@ -185,7 +185,37 @@ def p_cuerpo_funcion(p):
 def p_error(p):
   print("Error de sintaxis")
 
+# Aporte Daniel Mateo
 
+def p_ingreso_datos(p):
+   '''
+    ingreso_datos : VAR ASIGNACION readline EOL
+    '''
+
+def p_readline(p):
+  '''
+  readline : READLINE LPAREN CADENA RPAREN
+  '''
+
+def p_objeto(p):
+   '''
+    objeto : CLASE OBJETO LBRACE mas_objetos RBRACE VAR ASIGNACION NEW OBJETO LPAREN RPAREN EOL VARIABLE_OBJETO ASIGNACION CADENA EOL
+           | CLASE OBJETO LBRACE mas_objetos PUBLIC VAR EOL RBRACE
+           | CLASE OBJETO LBRACE mas_objetos RBRACE VAR ASIGNACION NEW OBJETO LPAREN RPAREN EOL
+           | CLASE OBJETO LBRACE mas_objetos RBRACE VAR ASIGNACION NEW OBJETO LPAREN RPAREN EOL VARIABLE_OBJETO EOL
+    '''
+
+def p_cuerpo_objeto(p):
+   '''
+   cuerpo_objeto : PUBLIC VAR EOL
+   '''
+
+def p_mas_objetos(p):
+   '''
+   mas_objetos : cuerpo_objeto
+               | cuerpo_objeto mas_objetos 
+   '''
+  
 parser = sint.yacc()
 
 # while True:
@@ -255,3 +285,19 @@ for linea in lCristopher:
   result = parser.parse(linea)
   if result != None:
       print(result)
+
+testDaniel = '''echo "El valor de pi es: ", pi;
+echo "<br>";
+$nombre = readline("Ingrese su nombre: ");
+$edad = readline("Ingrese su edad: ");
+$suma = $edad + 1;
+$resta = $edad - 1;
+$multiplicacion = $edad * 2;
+$division = $edad / 2;
+echo "El símbolo de dólar es: \$";
+echo "El símbolo de porcentaje es: %";
+$persona = new stdClass();
+$persona->nombre = $nombre;
+$persona->edad = $edad;
+echo "El nombre de la persona es: " . $persona->nombre;
+echo "La edad de la persona es: " . $persona->edad;'''
