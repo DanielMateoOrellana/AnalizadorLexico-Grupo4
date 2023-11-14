@@ -144,7 +144,7 @@ def p_diccionario(p):
                  | CADENA ASIGNACION MAYOR valor COMA diccionario'''
 
 def p_valor_dic(p):
-  '''valor : numero
+  '''valor_dic : numero
            | CADENA'''
 
 def p_lista(p):
