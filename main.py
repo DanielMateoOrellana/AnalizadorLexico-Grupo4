@@ -14,6 +14,7 @@ def p_sentencia(p):
                 | comentario
                 | declaracion_numeros
                 | array
+                | funcion
   '''
 
 # ---Declaracion y asignacion de variables---
@@ -129,22 +130,22 @@ def p_numero(p):
             | FLOTANTE'''
 
 def p_declaracion_numeros(p):
-  '''declaracion_numeros : VAR ASIGNACION numero'''
+  '''declaracion_numeros : VAR ASIGNACION numero EOL'''
 
 def p_array(p):
-  '''array : VAR ASIGNACION ARRAY LPAREN elementos RPAREN '''
+  '''array : VAR ASIGNACION ARRAY LPAREN elementos RPAREN EOL'''
 
 def p_elementos(p):
   '''elementos : lista
                | diccionario'''
 
 def p_diccionario(p):
-  '''diccionario : CADENA ASIGNACION MAYOR valor
+  '''diccionario : CADENA ASIGNACION MAYOR valor_dic
                  | CADENA ASIGNACION MAYOR valor COMA diccionario'''
 
-# def p_valor(p):
-#   '''valor : numero
-#            | CADENA'''
+def p_valor_dic(p):
+  '''valor : numero
+           | CADENA'''
 
 def p_lista(p):
   '''lista : palabras
@@ -162,6 +163,24 @@ def p_numeros(p):
 def p_variables(p):
   '''variables : VAR COMA variables
                | VAR'''
+  
+def p_funcion(p):
+  '''funcion : FUNCTION tipo_funcion LBRACE final_funcion RBRACE'''''
+
+def p_tipo_funcion(p):
+  '''tipo_funcion : FUNCION
+                  | VARIABLE_FUNCION'''
+
+def p_final_funcion(p):
+  '''final_funcion : RETURN VAR EOL
+                    | cuerpo_funcion
+  '''
+
+def p_cuerpo_funcion(p):
+  '''cuerpo_funcion : declaracion_numeros final_funcion
+                    | array final_funcion
+                    | estructuracontrol final_funcion'''
+
 
 def p_error(p):
   print("Error de sintaxis")
@@ -221,3 +240,18 @@ for linea in lRoberto:
   if result != None:
       print(result)
 
+testCristopher = '''$array1 = array("hola","mundo");
+$array1 = array(1,2,3);
+$array2 = array(1.2, 5.2, 6.5);
+$array3 = array($p1 , $p2 , $p3 );
+$array4 = array("rojo", "verde", "azul" );
+$array5 = array("Hola" => "valor", "Clave" => 35 );
+$entero = 45;
+$decimal = 53.2;
+function longitud($texto) {$entero = 45; $array1 = array(1,2,3); $array5 = array("Hola" => "valor", "Clave" => 35 ); return $entero ;}'''
+lCristopher = testCristopher.split("\n")
+
+for linea in lCristopher:
+  result = parser.parse(linea)
+  if result != None:
+      print(result)
