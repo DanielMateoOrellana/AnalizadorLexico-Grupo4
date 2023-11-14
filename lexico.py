@@ -21,7 +21,11 @@ reservadas = {
     'global': 'GLOBAL',
     'return': 'RETURN',
     'switch': 'SWITCH',
-    'array': 'ARRAY'
+    'array': 'ARRAY',
+    'class' : 'CLASE',
+    'new': 'NEW',
+    'public': 'PUBLIC',
+    'readline': 'READLINE'
 }
 # Secuencia de tokens
 tokens = (
@@ -94,6 +98,7 @@ t_RESTA = r'\-'
 t_MULT = r'\*'
 t_DIV = r'\/'
 t_POT = r'\*\*'
+t_PUNTO = r'\.'
 
 # Simbolos de comparacion
 t_IGUAL = r'\=='
