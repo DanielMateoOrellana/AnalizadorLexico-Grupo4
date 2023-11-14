@@ -20,7 +20,8 @@ reservadas = {
     'function': 'FUNCTION',
     'global': 'GLOBAL',
     'return': 'RETURN',
-    'switch': 'SWITCH'
+    'switch': 'SWITCH',
+    'array': 'ARRAY'
 }
 # Secuencia de tokens
 tokens = (
