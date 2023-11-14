@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'ARRAY ASIGNACION ASIGNAR BOOLEANO BREAK CADENA CASE COMA COMILLA_DOBLE COMILLA_DOBLE_CADENA COMILLA_SIMPLE COMILLA_SIMPLE_CADENA COMNT CONTINUE DICT DIFERENTE DIV DIV_ASIGNAR DO DOSPUNTOS ECHO ELSE ELSEIF ENDWHILE ENTERO EOL FLOTANTE FOR FOREACH FUNCION FUNCTION GLOBAL ID IF IGUAL LBRACE LBRACKET LPAREN MAYOR MAYOR_IGUAL MAYOR_MENOR MENOR MENOR_IGUAL MENOR_MAYOR MODULO MULT MULT_ASIGNAR OBJETO POT POT_ASIGNAR PUNTO RBRACE RBRACKET RESTA RESTA_ASIGNAR RETURN RPAREN SET SUMA SUMA_ASIGNAR SWITCH TUPLE VAR VARIABLE_ARRAY VARIABLE_FUNCION VARIABLE_OBJETO WHILEsentencia : asignacion\n                | echo\n                | estructuracontrol\n                | comentario\n                | declaracion_numeros\n                | array\n  asignacion : VAR ASIGNACION valor EOL\n   echo : ECHO valores EOL\n   \n   valores : valor\n           | valor COMA valores\n   valor : ENTERO\n          | FLOTANTE\n          | BOOLEANO    \n          | CADENA\n          | VAR\n          | VARIABLE_ARRAY\n          | operacion\n          | argumentologico\n  \n   operacion : ENTERO \n            | FLOTANTE\n            | ENTERO operador operacion\n            | FLOTANTE operador operacion\n   \n   estructuracontrol : while\n                     | if\n   \n   while : WHILE LPAREN argumentologico RPAREN\n   \n   if : IF LPAREN argumentologico RPAREN\n   \n   argumentologico : VAR simboloLogico VAR\n                   | numero simboloLogico numero\n                   | VAR simboloLogico numero\n                   | VAR IGUAL BOOLEANO\n                   | VAR IGUAL CADENA\n                   | numero simboloLogico VAR\n                   | BOOLEANO IGUAL VAR\n                   | CADENA IGUAL VAR\n                   | CADENA IGUAL CADENA\n                   | BOOLEANO\n   \n   simboloLogico : IGUAL\n                 | DIFERENTE\n                 | MENOR\n                 | MAYOR\n                 | MENOR_IGUAL\n                 | MAYOR_IGUAL      \n   \n   comentario : COMNT\n   \n   operador : SUMA \n            | RESTA \n            | MULT \n            | DIV \n            | POT\n   numero : ENTERO\n            | FLOTANTEdeclaracion_numeros : VAR ASIGNACION numeroarray : VAR ASIGNACION ARRAY LPAREN elementos RPAREN elementos : lista\n               | diccionariodiccionario : CADENA ASIGNACION MAYOR valor\n                 | CADENA ASIGNACION MAYOR valor COMA diccionariolista : palabras\n           | numeros\n           | variablespalabras : CADENA COMA palabras\n              | CADENAnumeros : numero COMA numeros\n             | numerovariables : VAR COMA variables\n               | VAR'
+_lr_signature = 'ARRAY ASIGNACION ASIGNAR BOOLEANO BREAK CADENA CASE COMA COMILLA_DOBLE COMILLA_DOBLE_CADENA COMILLA_SIMPLE COMILLA_SIMPLE_CADENA COMNT CONTINUE DICT DIFERENTE DIV DIV_ASIGNAR DO DOSPUNTOS ECHO ELSE ELSEIF ENDWHILE ENTERO EOL FLOTANTE FOR FOREACH FUNCION FUNCTION GLOBAL ID IF IGUAL LBRACE LBRACKET LPAREN MAYOR MAYOR_IGUAL MAYOR_MENOR MENOR MENOR_IGUAL MENOR_MAYOR MODULO MULT MULT_ASIGNAR OBJETO POT POT_ASIGNAR PUNTO RBRACE RBRACKET RESTA RESTA_ASIGNAR RETURN RPAREN SET SUMA SUMA_ASIGNAR SWITCH TUPLE VAR VARIABLE_ARRAY VARIABLE_FUNCION VARIABLE_OBJETO WHILEsentencia : asignacion\n                | echo\n                | estructuracontrol\n                | comentario\n                | declaracion_numeros\n                | array\n  asignacion : VAR ASIGNACION valor EOL\n   echo : ECHO valores EOL\n   \n   valores : valor\n           | valor COMA valores\n   valor : ENTERO\n          | FLOTANTE\n          | BOOLEANO    \n          | CADENA\n          | VAR\n          | VARIABLE_ARRAY\n          | operacion\n          | argumentologico\n  \n   operacion : ENTERO \n            | FLOTANTE\n            | ENTERO operador operacion\n            | FLOTANTE operador operacion\n   \n   estructuracontrol : while\n                     | if\n   \n   while : WHILE LPAREN argumentologico RPAREN\n   \n   if : IF LPAREN argumentologico RPAREN\n   \n   argumentologico : VAR simboloLogico VAR\n                   | numero simboloLogico numero\n                   | VAR simboloLogico numero\n                   | VAR IGUAL BOOLEANO\n                   | VAR IGUAL CADENA\n                   | VAR DIFERENTE BOOLEANO\n                   | VAR DIFERENTE CADENA\n                   | numero simboloLogico VAR\n                   | BOOLEANO IGUAL VAR\n                   | CADENA IGUAL VAR\n                   | CADENA IGUAL CADENA\n                   | CADENA DIFERENTE VAR\n                   | CADENA DIFERENTE CADENA\n                   | BOOLEANO\n   \n   simboloLogico : IGUAL\n                 | DIFERENTE\n                 | MENOR\n                 | MAYOR\n                 | MENOR_IGUAL\n                 | MAYOR_IGUAL      \n   \n   comentario : COMNT\n   \n   operador : SUMA \n            | RESTA \n            | MULT \n            | DIV \n            | POT\n   numero : ENTERO\n            | FLOTANTEdeclaracion_numeros : VAR ASIGNACION numeroarray : VAR ASIGNACION ARRAY LPAREN elementos RPAREN elementos : lista\n               | diccionariodiccionario : CADENA ASIGNACION MAYOR valor\n                 | CADENA ASIGNACION MAYOR valor COMA diccionariolista : palabras\n           | numeros\n           | variablespalabras : CADENA COMA palabras\n              | CADENAnumeros : numero COMA numeros\n             | numerovariables : VAR COMA variables\n               | VAR'
     
-_lr_action_items = {'VAR':([0,9,15,27,28,35,43,44,45,46,47,48,49,50,51,52,53,62,88,94,],[8,22,22,55,55,22,68,70,71,-37,-38,-39,-40,-41,-42,76,-37,79,79,22,]),'ECHO':([0,],[9,]),'COMNT':([0,],[12,]),'WHILE':([0,],[13,]),'IF':([0,],[14,]),'$end':([1,2,3,4,5,6,7,10,11,12,30,32,33,34,61,77,78,89,],[0,-1,-2,-3,-4,-5,-6,-23,-24,-43,-51,-49,-50,-8,-7,-25,-26,-52,]),'ASIGNACION':([8,86,100,],[15,90,90,]),'ENTERO':([9,15,27,28,35,36,37,38,39,40,41,42,45,46,47,48,49,50,51,52,53,62,92,94,],[18,32,58,58,18,64,-44,-45,-46,-47,-48,64,58,-37,-38,-39,-40,-41,-42,58,-37,58,58,18,]),'FLOTANTE':([9,15,27,28,35,36,37,38,39,40,41,42,45,46,47,48,49,50,51,52,53,62,92,94,],[19,33,59,59,19,66,-44,-45,-46,-47,-48,66,59,-37,-38,-39,-40,-41,-42,59,-37,59,59,19,]),'BOOLEANO':([9,15,27,28,35,46,94,],[20,20,56,56,20,73,20,]),'CADENA':([9,15,27,28,35,44,46,62,91,94,99,],[21,21,57,57,21,69,74,86,95,21,100,]),'VARIABLE_ARRAY':([9,15,35,94,],[23,23,23,23,]),'LPAREN':([13,14,31,],[27,28,62,]),'ARRAY':([15,],[31,]),'EOL':([16,17,18,19,20,21,22,23,24,25,29,32,33,58,59,63,64,65,66,67,68,69,70,71,72,73,74,75,76,],[34,-9,-11,-12,-13,-14,-15,-16,-17,-18,61,-11,-12,-49,-50,-10,-19,-21,-20,-22,-33,-35,-34,-27,-29,-30,-31,-28,-32,]),'COMA':([17,18,19,20,21,22,23,24,25,58,59,64,65,66,67,68,69,70,71,72,73,74,75,76,79,86,87,95,98,],[35,-11,-12,-13,-14,-15,-16,-17,-18,-49,-50,-19,-21,-20,-22,-33,-35,-34,-27,-29,-30,-31,-28,-32,88,91,92,91,99,]),'RPAREN':([18,19,20,21,22,23,24,25,54,56,58,59,60,64,65,66,67,68,69,70,71,72,73,74,75,76,79,80,81,82,83,84,85,86,87,93,95,96,97,98,101,],[-11,-12,-13,-14,-15,-16,-17,-18,77,-36,-49,-50,78,-19,-21,-20,-22,-33,-35,-34,-27,-29,-30,-31,-28,-32,-65,89,-53,-54,-57,-58,-59,-61,-63,-64,-61,-60,-62,-55,-56,]),'IGUAL':([18,19,20,21,22,26,30,32,33,55,56,57,58,59,],[-49,-50,43,44,46,53,53,-49,-50,46,43,44,-49,-50,]),'DIFERENTE':([18,19,22,26,30,32,33,55,58,59,],[-49,-50,47,47,47,-49,-50,47,-49,-50,]),'MENOR':([18,19,22,26,30,32,33,55,58,59,],[-49,-50,48,48,48,-49,-50,48,-49,-50,]),'MAYOR':([18,19,22,26,30,32,33,55,58,59,90,],[-49,-50,49,49,49,-49,-50,49,-49,-50,94,]),'MENOR_IGUAL':([18,19,22,26,30,32,33,55,58,59,],[-49,-50,50,50,50,-49,-50,50,-49,-50,]),'MAYOR_IGUAL':([18,19,22,26,30,32,33,55,58,59,],[-49,-50,51,51,51,-49,-50,51,-49,-50,]),'SUMA':([18,19,32,33,64,66,],[37,37,37,37,37,37,]),'RESTA':([18,19,32,33,64,66,],[38,38,38,38,38,38,]),'MULT':([18,19,32,33,64,66,],[39,39,39,39,39,39,]),'DIV':([18,19,32,33,64,66,],[40,40,40,40,40,40,]),'POT':([18,19,32,33,64,66,],[41,41,41,41,41,41,]),}
+_lr_action_items = {'VAR':([0,9,15,27,28,35,43,44,45,46,47,48,49,50,51,52,53,54,55,64,94,100,],[8,22,22,57,57,22,70,72,74,75,-41,-42,-43,-44,-45,-46,82,-41,-42,85,85,22,]),'ECHO':([0,],[9,]),'COMNT':([0,],[12,]),'WHILE':([0,],[13,]),'IF':([0,],[14,]),'$end':([1,2,3,4,5,6,7,10,11,12,30,32,33,34,63,83,84,95,],[0,-1,-2,-3,-4,-5,-6,-23,-24,-47,-55,-53,-54,-8,-7,-25,-26,-56,]),'ASIGNACION':([8,92,106,],[15,96,96,]),'ENTERO':([9,15,27,28,35,36,37,38,39,40,41,42,46,47,48,49,50,51,52,53,54,55,64,98,100,],[18,32,60,60,18,66,-48,-49,-50,-51,-52,66,60,-41,-42,-43,-44,-45,-46,60,-41,-42,60,60,18,]),'FLOTANTE':([9,15,27,28,35,36,37,38,39,40,41,42,46,47,48,49,50,51,52,53,54,55,64,98,100,],[19,33,61,61,19,68,-48,-49,-50,-51,-52,68,61,-41,-42,-43,-44,-45,-46,61,-41,-42,61,61,19,]),'BOOLEANO':([9,15,27,28,35,47,48,100,],[20,20,58,58,20,77,79,20,]),'CADENA':([9,15,27,28,35,44,45,47,48,64,97,100,105,],[21,21,59,59,21,71,73,78,80,92,101,21,106,]),'VARIABLE_ARRAY':([9,15,35,100,],[23,23,23,23,]),'LPAREN':([13,14,31,],[27,28,64,]),'ARRAY':([15,],[31,]),'EOL':([16,17,18,19,20,21,22,23,24,25,29,32,33,60,61,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,],[34,-9,-11,-12,-13,-14,-15,-16,-17,-18,63,-11,-12,-53,-54,-10,-19,-21,-20,-22,-35,-37,-36,-39,-38,-27,-29,-30,-31,-32,-33,-28,-34,]),'COMA':([17,18,19,20,21,22,23,24,25,60,61,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,85,92,93,101,104,],[35,-11,-12,-13,-14,-15,-16,-17,-18,-53,-54,-19,-21,-20,-22,-35,-37,-36,-39,-38,-27,-29,-30,-31,-32,-33,-28,-34,94,97,98,97,105,]),'RPAREN':([18,19,20,21,22,23,24,25,56,58,60,61,62,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,85,86,87,88,89,90,91,92,93,99,101,102,103,104,107,],[-11,-12,-13,-14,-15,-16,-17,-18,83,-40,-53,-54,84,-19,-21,-20,-22,-35,-37,-36,-39,-38,-27,-29,-30,-31,-32,-33,-28,-34,-69,95,-57,-58,-61,-62,-63,-65,-67,-68,-65,-64,-66,-59,-60,]),'IGUAL':([18,19,20,21,22,26,30,32,33,57,58,59,60,61,],[-53,-54,43,44,47,54,54,-53,-54,47,43,44,-53,-54,]),'DIFERENTE':([18,19,21,22,26,30,32,33,57,59,60,61,],[-53,-54,45,48,55,55,-53,-54,48,45,-53,-54,]),'MENOR':([18,19,22,26,30,32,33,57,60,61,],[-53,-54,49,49,49,-53,-54,49,-53,-54,]),'MAYOR':([18,19,22,26,30,32,33,57,60,61,96,],[-53,-54,50,50,50,-53,-54,50,-53,-54,100,]),'MENOR_IGUAL':([18,19,22,26,30,32,33,57,60,61,],[-53,-54,51,51,51,-53,-54,51,-53,-54,]),'MAYOR_IGUAL':([18,19,22,26,30,32,33,57,60,61,],[-53,-54,52,52,52,-53,-54,52,-53,-54,]),'SUMA':([18,19,32,33,66,68,],[37,37,37,37,37,37,]),'RESTA':([18,19,32,33,66,68,],[38,38,38,38,38,38,]),'MULT':([18,19,32,33,66,68,],[39,39,39,39,39,39,]),'DIV':([18,19,32,33,66,68,],[40,40,40,40,40,40,]),'POT':([18,19,32,33,66,68,],[41,41,41,41,41,41,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'sentencia':([0,],[1,]),'asignacion':([0,],[2,]),'echo':([0,],[3,]),'estructuracontrol':([0,],[4,]),'comentario':([0,],[5,]),'declaracion_numeros':([0,],[6,]),'array':([0,],[7,]),'while':([0,],[10,]),'if':([0,],[11,]),'valores':([9,35,],[16,63,]),'valor':([9,15,35,94,],[17,29,17,98,]),'operacion':([9,15,35,36,42,94,],[24,24,24,65,67,24,]),'argumentologico':([9,15,27,28,35,94,],[25,25,54,60,25,25,]),'numero':([9,15,27,28,35,45,52,62,92,94,],[26,30,26,26,26,72,75,87,87,26,]),'operador':([18,19,32,33,64,66,],[36,42,36,42,36,42,]),'simboloLogico':([22,26,30,55,],[45,52,52,45,]),'elementos':([62,],[80,]),'lista':([62,],[81,]),'diccionario':([62,99,],[82,101,]),'palabras':([62,91,],[83,96,]),'numeros':([62,92,],[84,97,]),'variables':([62,88,],[85,93,]),}
+_lr_goto_items = {'sentencia':([0,],[1,]),'asignacion':([0,],[2,]),'echo':([0,],[3,]),'estructuracontrol':([0,],[4,]),'comentario':([0,],[5,]),'declaracion_numeros':([0,],[6,]),'array':([0,],[7,]),'while':([0,],[10,]),'if':([0,],[11,]),'valores':([9,35,],[16,65,]),'valor':([9,15,35,100,],[17,29,17,104,]),'operacion':([9,15,35,36,42,100,],[24,24,24,67,69,24,]),'argumentologico':([9,15,27,28,35,100,],[25,25,56,62,25,25,]),'numero':([9,15,27,28,35,46,53,64,98,100,],[26,30,26,26,26,76,81,93,93,26,]),'operador':([18,19,32,33,66,68,],[36,42,36,42,36,42,]),'simboloLogico':([22,26,30,57,],[46,53,53,46,]),'elementos':([64,],[86,]),'lista':([64,],[87,]),'diccionario':([64,105,],[88,107,]),'palabras':([64,97,],[89,102,]),'numeros':([64,98,],[90,103,]),'variables':([64,94,],[91,99,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -58,38 +58,42 @@ _lr_productions = [
   ('argumentologico -> VAR simboloLogico numero','argumentologico',3,'p_argumentologico','main.py',79),
   ('argumentologico -> VAR IGUAL BOOLEANO','argumentologico',3,'p_argumentologico','main.py',80),
   ('argumentologico -> VAR IGUAL CADENA','argumentologico',3,'p_argumentologico','main.py',81),
-  ('argumentologico -> numero simboloLogico VAR','argumentologico',3,'p_argumentologico','main.py',82),
-  ('argumentologico -> BOOLEANO IGUAL VAR','argumentologico',3,'p_argumentologico','main.py',83),
-  ('argumentologico -> CADENA IGUAL VAR','argumentologico',3,'p_argumentologico','main.py',84),
-  ('argumentologico -> CADENA IGUAL CADENA','argumentologico',3,'p_argumentologico','main.py',85),
-  ('argumentologico -> BOOLEANO','argumentologico',1,'p_argumentologico','main.py',86),
-  ('simboloLogico -> IGUAL','simboloLogico',1,'p_simboloLogico','main.py',97),
-  ('simboloLogico -> DIFERENTE','simboloLogico',1,'p_simboloLogico','main.py',98),
-  ('simboloLogico -> MENOR','simboloLogico',1,'p_simboloLogico','main.py',99),
-  ('simboloLogico -> MAYOR','simboloLogico',1,'p_simboloLogico','main.py',100),
-  ('simboloLogico -> MENOR_IGUAL','simboloLogico',1,'p_simboloLogico','main.py',101),
-  ('simboloLogico -> MAYOR_IGUAL','simboloLogico',1,'p_simboloLogico','main.py',102),
-  ('comentario -> COMNT','comentario',1,'p_comentario','main.py',108),
-  ('operador -> SUMA','operador',1,'p_operador','main.py',112),
-  ('operador -> RESTA','operador',1,'p_operador','main.py',113),
-  ('operador -> MULT','operador',1,'p_operador','main.py',114),
-  ('operador -> DIV','operador',1,'p_operador','main.py',115),
-  ('operador -> POT','operador',1,'p_operador','main.py',116),
-  ('numero -> ENTERO','numero',1,'p_numero','main.py',124),
-  ('numero -> FLOTANTE','numero',1,'p_numero','main.py',125),
-  ('declaracion_numeros -> VAR ASIGNACION numero','declaracion_numeros',3,'p_declaracion_numeros','main.py',128),
-  ('array -> VAR ASIGNACION ARRAY LPAREN elementos RPAREN','array',6,'p_array','main.py',131),
-  ('elementos -> lista','elementos',1,'p_elementos','main.py',134),
-  ('elementos -> diccionario','elementos',1,'p_elementos','main.py',135),
-  ('diccionario -> CADENA ASIGNACION MAYOR valor','diccionario',4,'p_diccionario','main.py',138),
-  ('diccionario -> CADENA ASIGNACION MAYOR valor COMA diccionario','diccionario',6,'p_diccionario','main.py',139),
-  ('lista -> palabras','lista',1,'p_lista','main.py',146),
-  ('lista -> numeros','lista',1,'p_lista','main.py',147),
-  ('lista -> variables','lista',1,'p_lista','main.py',148),
-  ('palabras -> CADENA COMA palabras','palabras',3,'p_palabras','main.py',151),
-  ('palabras -> CADENA','palabras',1,'p_palabras','main.py',152),
-  ('numeros -> numero COMA numeros','numeros',3,'p_numeros','main.py',155),
-  ('numeros -> numero','numeros',1,'p_numeros','main.py',156),
-  ('variables -> VAR COMA variables','variables',3,'p_variables','main.py',159),
-  ('variables -> VAR','variables',1,'p_variables','main.py',160),
+  ('argumentologico -> VAR DIFERENTE BOOLEANO','argumentologico',3,'p_argumentologico','main.py',82),
+  ('argumentologico -> VAR DIFERENTE CADENA','argumentologico',3,'p_argumentologico','main.py',83),
+  ('argumentologico -> numero simboloLogico VAR','argumentologico',3,'p_argumentologico','main.py',84),
+  ('argumentologico -> BOOLEANO IGUAL VAR','argumentologico',3,'p_argumentologico','main.py',85),
+  ('argumentologico -> CADENA IGUAL VAR','argumentologico',3,'p_argumentologico','main.py',86),
+  ('argumentologico -> CADENA IGUAL CADENA','argumentologico',3,'p_argumentologico','main.py',87),
+  ('argumentologico -> CADENA DIFERENTE VAR','argumentologico',3,'p_argumentologico','main.py',88),
+  ('argumentologico -> CADENA DIFERENTE CADENA','argumentologico',3,'p_argumentologico','main.py',89),
+  ('argumentologico -> BOOLEANO','argumentologico',1,'p_argumentologico','main.py',90),
+  ('simboloLogico -> IGUAL','simboloLogico',1,'p_simboloLogico','main.py',101),
+  ('simboloLogico -> DIFERENTE','simboloLogico',1,'p_simboloLogico','main.py',102),
+  ('simboloLogico -> MENOR','simboloLogico',1,'p_simboloLogico','main.py',103),
+  ('simboloLogico -> MAYOR','simboloLogico',1,'p_simboloLogico','main.py',104),
+  ('simboloLogico -> MENOR_IGUAL','simboloLogico',1,'p_simboloLogico','main.py',105),
+  ('simboloLogico -> MAYOR_IGUAL','simboloLogico',1,'p_simboloLogico','main.py',106),
+  ('comentario -> COMNT','comentario',1,'p_comentario','main.py',112),
+  ('operador -> SUMA','operador',1,'p_operador','main.py',116),
+  ('operador -> RESTA','operador',1,'p_operador','main.py',117),
+  ('operador -> MULT','operador',1,'p_operador','main.py',118),
+  ('operador -> DIV','operador',1,'p_operador','main.py',119),
+  ('operador -> POT','operador',1,'p_operador','main.py',120),
+  ('numero -> ENTERO','numero',1,'p_numero','main.py',128),
+  ('numero -> FLOTANTE','numero',1,'p_numero','main.py',129),
+  ('declaracion_numeros -> VAR ASIGNACION numero','declaracion_numeros',3,'p_declaracion_numeros','main.py',132),
+  ('array -> VAR ASIGNACION ARRAY LPAREN elementos RPAREN','array',6,'p_array','main.py',135),
+  ('elementos -> lista','elementos',1,'p_elementos','main.py',138),
+  ('elementos -> diccionario','elementos',1,'p_elementos','main.py',139),
+  ('diccionario -> CADENA ASIGNACION MAYOR valor','diccionario',4,'p_diccionario','main.py',142),
+  ('diccionario -> CADENA ASIGNACION MAYOR valor COMA diccionario','diccionario',6,'p_diccionario','main.py',143),
+  ('lista -> palabras','lista',1,'p_lista','main.py',150),
+  ('lista -> numeros','lista',1,'p_lista','main.py',151),
+  ('lista -> variables','lista',1,'p_lista','main.py',152),
+  ('palabras -> CADENA COMA palabras','palabras',3,'p_palabras','main.py',155),
+  ('palabras -> CADENA','palabras',1,'p_palabras','main.py',156),
+  ('numeros -> numero COMA numeros','numeros',3,'p_numeros','main.py',159),
+  ('numeros -> numero','numeros',1,'p_numeros','main.py',160),
+  ('variables -> VAR COMA variables','variables',3,'p_variables','main.py',163),
+  ('variables -> VAR','variables',1,'p_variables','main.py',164),
 ]

@@ -79,10 +79,14 @@ def p_argumentologico(p):
                    | VAR simboloLogico numero
                    | VAR IGUAL BOOLEANO
                    | VAR IGUAL CADENA
+                   | VAR DIFERENTE BOOLEANO
+                   | VAR DIFERENTE CADENA
                    | numero simboloLogico VAR
                    | BOOLEANO IGUAL VAR
                    | CADENA IGUAL VAR
                    | CADENA IGUAL CADENA
+                   | CADENA DIFERENTE VAR
+                   | CADENA DIFERENTE CADENA
                    | BOOLEANO
    '''
   
@@ -177,7 +181,39 @@ parser = sint.yacc()
 
 testRoberto = '''//Hola mundo
 $a1 = 2;
-$a2 = 2+1-3.4+1*2/1.5**4;'''
+$a2 = 2.4;
+$a3 = True;
+$a4 = False;
+$a5 = 'Hola mundo';
+$a6 = "Hola mundo";
+$a7 = $a3;
+$a9 = 2+1-3.4+1*2/1.5**4;
+$a10 = $a1 >= 4.2;
+$a11 = $a1 == 2.2;
+$a12 = $a1 <= 1.2;
+$a13 = $a1 < 0.2;
+$a14 = $a1 > 4.2;
+$a14 = $a1 != 4.2;
+$a15 = $a1 == True;
+$a16 = $a1 == False;
+$a17 = 1 <= 1.2;
+$a18 = 1 == 1;
+$a19 = 1.1 >= 1.2;
+$a20 = 1.3 < 1.2;
+$a21 = 1 > 1.2;
+$a22 = 1 > 1.2;
+$a22 = 1 != 1.2;
+$a23 = $a5 == 'Hola mundo';
+$a24 = 'Hola PHP' == 'Hola mundo';
+$a25 = 'Hola PHP' != 'Hola mundo';
+$a26 = "Hey" != 'Hola mundo';
+echo $a1;
+echo 1;
+echo 2.4;
+echo 'Hello world';
+echo True;
+echo False;
+echo 'Hola mundo', 1.4, 2, True, False, $a21;'''
 lRoberto = testRoberto.split("\n")
 
 for linea in lRoberto:
