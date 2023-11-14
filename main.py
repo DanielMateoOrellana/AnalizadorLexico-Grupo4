@@ -138,9 +138,9 @@ def p_diccionario(p):
   '''diccionario : CADENA ASIGNACION MAYOR valor
                  | CADENA ASIGNACION MAYOR valor COMA diccionario'''
 
-def p_valor(p):
-  '''valor : numero
-           | CADENA'''
+# def p_valor(p):
+#   '''valor : numero
+#            | CADENA'''
 
 def p_lista(p):
   '''lista : palabras
@@ -175,11 +175,13 @@ parser = sint.yacc()
 #    if result != None:
 #      print(result)
 
-testRoberto = '''
-   //Hola mundo
-   $a1 = 2;
-'''
+testRoberto = '''//Hola mundo
+$a1 = 2;
+$a2 = 2+1-3.4+1*2/1.5**4;'''
+lRoberto = testRoberto.split("\n")
 
-result = parser.parse(testRoberto)
-if result != None:
-   print(result)
+for linea in lRoberto:
+  result = parser.parse(linea)
+  if result != None:
+      print(result)
+

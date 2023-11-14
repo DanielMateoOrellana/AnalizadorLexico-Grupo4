@@ -40,7 +40,6 @@ Unused terminals:
     SUMA_ASIGNAR
     SWITCH
     TUPLE
-    VARIABLE_ARRAY
     VARIABLE_FUNCION
     VARIABLE_OBJETO
 
@@ -57,75 +56,81 @@ Rule 7     asignacion -> VAR ASIGNACION valor EOL
 Rule 8     echo -> ECHO valores EOL
 Rule 9     valores -> valor
 Rule 10    valores -> valor COMA valores
-Rule 11    operacion -> ENTERO
-Rule 12    operacion -> FLOTANTE
-Rule 13    operacion -> ENTERO operador operacion
-Rule 14    operacion -> FLOTANTE operador operacion
-Rule 15    estructuracontrol -> while
-Rule 16    estructuracontrol -> if
-Rule 17    while -> WHILE LPAREN argumentologico RPAREN
-Rule 18    if -> IF LPAREN argumentologico RPAREN
-Rule 19    argumentologico -> VAR simboloLogico VAR
-Rule 20    argumentologico -> numero simboloLogico numero
-Rule 21    argumentologico -> VAR simboloLogico numero
-Rule 22    argumentologico -> VAR IGUAL BOOLEANO
-Rule 23    argumentologico -> VAR IGUAL CADENA
-Rule 24    argumentologico -> numero simboloLogico VAR
-Rule 25    argumentologico -> BOOLEANO IGUAL VAR
-Rule 26    argumentologico -> CADENA IGUAL VAR
-Rule 27    argumentologico -> CADENA IGUAL CADENA
-Rule 28    argumentologico -> BOOLEANO
-Rule 29    simboloLogico -> IGUAL
-Rule 30    simboloLogico -> DIFERENTE
-Rule 31    simboloLogico -> MENOR
-Rule 32    simboloLogico -> MAYOR
-Rule 33    simboloLogico -> MENOR_IGUAL
-Rule 34    simboloLogico -> MAYOR_IGUAL
-Rule 35    comentario -> COMNT
-Rule 36    operador -> SUMA
-Rule 37    operador -> RESTA
-Rule 38    operador -> MULT
-Rule 39    operador -> DIV
-Rule 40    operador -> POT
-Rule 41    numero -> ENTERO
-Rule 42    numero -> FLOTANTE
-Rule 43    declaracion_numeros -> VAR ASIGNACION numero
-Rule 44    array -> VAR ASIGNACION ARRAY LPAREN elementos RPAREN
-Rule 45    elementos -> lista
-Rule 46    elementos -> diccionario
-Rule 47    diccionario -> CADENA ASIGNACION MAYOR valor
-Rule 48    diccionario -> CADENA ASIGNACION MAYOR valor COMA diccionario
-Rule 49    valor -> numero
-Rule 50    valor -> CADENA
-Rule 51    lista -> palabras
-Rule 52    lista -> numeros
-Rule 53    lista -> variables
-Rule 54    palabras -> CADENA COMA palabras
-Rule 55    palabras -> CADENA
-Rule 56    numeros -> numero COMA numeros
-Rule 57    numeros -> numero
-Rule 58    variables -> VAR COMA variables
-Rule 59    variables -> VAR
+Rule 11    valor -> ENTERO
+Rule 12    valor -> FLOTANTE
+Rule 13    valor -> BOOLEANO
+Rule 14    valor -> CADENA
+Rule 15    valor -> VAR
+Rule 16    valor -> VARIABLE_ARRAY
+Rule 17    valor -> operacion
+Rule 18    valor -> argumentologico
+Rule 19    operacion -> ENTERO
+Rule 20    operacion -> FLOTANTE
+Rule 21    operacion -> ENTERO operador operacion
+Rule 22    operacion -> FLOTANTE operador operacion
+Rule 23    estructuracontrol -> while
+Rule 24    estructuracontrol -> if
+Rule 25    while -> WHILE LPAREN argumentologico RPAREN
+Rule 26    if -> IF LPAREN argumentologico RPAREN
+Rule 27    argumentologico -> VAR simboloLogico VAR
+Rule 28    argumentologico -> numero simboloLogico numero
+Rule 29    argumentologico -> VAR simboloLogico numero
+Rule 30    argumentologico -> VAR IGUAL BOOLEANO
+Rule 31    argumentologico -> VAR IGUAL CADENA
+Rule 32    argumentologico -> numero simboloLogico VAR
+Rule 33    argumentologico -> BOOLEANO IGUAL VAR
+Rule 34    argumentologico -> CADENA IGUAL VAR
+Rule 35    argumentologico -> CADENA IGUAL CADENA
+Rule 36    argumentologico -> BOOLEANO
+Rule 37    simboloLogico -> IGUAL
+Rule 38    simboloLogico -> DIFERENTE
+Rule 39    simboloLogico -> MENOR
+Rule 40    simboloLogico -> MAYOR
+Rule 41    simboloLogico -> MENOR_IGUAL
+Rule 42    simboloLogico -> MAYOR_IGUAL
+Rule 43    comentario -> COMNT
+Rule 44    operador -> SUMA
+Rule 45    operador -> RESTA
+Rule 46    operador -> MULT
+Rule 47    operador -> DIV
+Rule 48    operador -> POT
+Rule 49    numero -> ENTERO
+Rule 50    numero -> FLOTANTE
+Rule 51    declaracion_numeros -> VAR ASIGNACION numero
+Rule 52    array -> VAR ASIGNACION ARRAY LPAREN elementos RPAREN
+Rule 53    elementos -> lista
+Rule 54    elementos -> diccionario
+Rule 55    diccionario -> CADENA ASIGNACION MAYOR valor
+Rule 56    diccionario -> CADENA ASIGNACION MAYOR valor COMA diccionario
+Rule 57    lista -> palabras
+Rule 58    lista -> numeros
+Rule 59    lista -> variables
+Rule 60    palabras -> CADENA COMA palabras
+Rule 61    palabras -> CADENA
+Rule 62    numeros -> numero COMA numeros
+Rule 63    numeros -> numero
+Rule 64    variables -> VAR COMA variables
+Rule 65    variables -> VAR
 
 Terminals, with rules where they appear
 
-ARRAY                : 44
-ASIGNACION           : 7 43 44 47 48
+ARRAY                : 52
+ASIGNACION           : 7 51 52 55 56
 ASIGNAR              : 
-BOOLEANO             : 22 25 28
+BOOLEANO             : 13 30 33 36
 BREAK                : 
-CADENA               : 23 26 27 27 47 48 50 54 55
+CADENA               : 14 31 34 35 35 55 56 60 61
 CASE                 : 
-COMA                 : 10 48 54 56 58
+COMA                 : 10 56 60 62 64
 COMILLA_DOBLE        : 
 COMILLA_DOBLE_CADENA : 
 COMILLA_SIMPLE       : 
 COMILLA_SIMPLE_CADENA : 
-COMNT                : 35
+COMNT                : 43
 CONTINUE             : 
 DICT                 : 
-DIFERENTE            : 30
-DIV                  : 39
+DIFERENTE            : 38
+DIV                  : 47
 DIV_ASIGNAR          : 
 DO                   : 
 DOSPUNTOS            : 
@@ -133,75 +138,75 @@ ECHO                 : 8
 ELSE                 : 
 ELSEIF               : 
 ENDWHILE             : 
-ENTERO               : 11 13 41
+ENTERO               : 11 19 21 49
 EOL                  : 7 8
-FLOTANTE             : 12 14 42
+FLOTANTE             : 12 20 22 50
 FOR                  : 
 FOREACH              : 
 FUNCION              : 
 FUNCTION             : 
 GLOBAL               : 
 ID                   : 
-IF                   : 18
-IGUAL                : 22 23 25 26 27 29
+IF                   : 26
+IGUAL                : 30 31 33 34 35 37
 LBRACE               : 
 LBRACKET             : 
-LPAREN               : 17 18 44
-MAYOR                : 32 47 48
-MAYOR_IGUAL          : 34
+LPAREN               : 25 26 52
+MAYOR                : 40 55 56
+MAYOR_IGUAL          : 42
 MAYOR_MENOR          : 
-MENOR                : 31
-MENOR_IGUAL          : 33
+MENOR                : 39
+MENOR_IGUAL          : 41
 MENOR_MAYOR          : 
 MODULO               : 
-MULT                 : 38
+MULT                 : 46
 MULT_ASIGNAR         : 
 OBJETO               : 
-POT                  : 40
+POT                  : 48
 POT_ASIGNAR          : 
 PUNTO                : 
 RBRACE               : 
 RBRACKET             : 
-RESTA                : 37
+RESTA                : 45
 RESTA_ASIGNAR        : 
 RETURN               : 
-RPAREN               : 17 18 44
+RPAREN               : 25 26 52
 SET                  : 
-SUMA                 : 36
+SUMA                 : 44
 SUMA_ASIGNAR         : 
 SWITCH               : 
 TUPLE                : 
-VAR                  : 7 19 19 21 22 23 24 25 26 43 44 58 59
-VARIABLE_ARRAY       : 
+VAR                  : 7 15 27 27 29 30 31 32 33 34 51 52 64 65
+VARIABLE_ARRAY       : 16
 VARIABLE_FUNCION     : 
 VARIABLE_OBJETO      : 
-WHILE                : 17
+WHILE                : 25
 error                : 
 
 Nonterminals, with rules where they appear
 
-argumentologico      : 17 18
+argumentologico      : 18 25 26
 array                : 6
 asignacion           : 1
 comentario           : 4
 declaracion_numeros  : 5
-diccionario          : 46 48
+diccionario          : 54 56
 echo                 : 2
-elementos            : 44
+elementos            : 52
 estructuracontrol    : 3
-if                   : 16
-lista                : 45
-numero               : 20 20 21 24 43 49 56 57
-numeros              : 52 56
-operacion            : 13 14
-operador             : 13 14
-palabras             : 51 54
+if                   : 24
+lista                : 53
+numero               : 28 28 29 32 51 62 63
+numeros              : 58 62
+operacion            : 17 21 22
+operador             : 21 22
+palabras             : 57 60
 sentencia            : 0
-simboloLogico        : 19 20 21 24
-valor                : 7 9 10 47 48
+simboloLogico        : 27 28 29 32
+valor                : 7 9 10 55 56
 valores              : 8 10
-variables            : 53 58
-while                : 15
+variables            : 59 64
+while                : 23
 
 Parsing method: LALR
 
@@ -216,13 +221,13 @@ state 0
     (6) sentencia -> . array
     (7) asignacion -> . VAR ASIGNACION valor EOL
     (8) echo -> . ECHO valores EOL
-    (15) estructuracontrol -> . while
-    (16) estructuracontrol -> . if
-    (35) comentario -> . COMNT
-    (43) declaracion_numeros -> . VAR ASIGNACION numero
-    (44) array -> . VAR ASIGNACION ARRAY LPAREN elementos RPAREN
-    (17) while -> . WHILE LPAREN argumentologico RPAREN
-    (18) if -> . IF LPAREN argumentologico RPAREN
+    (23) estructuracontrol -> . while
+    (24) estructuracontrol -> . if
+    (43) comentario -> . COMNT
+    (51) declaracion_numeros -> . VAR ASIGNACION numero
+    (52) array -> . VAR ASIGNACION ARRAY LPAREN elementos RPAREN
+    (25) while -> . WHILE LPAREN argumentologico RPAREN
+    (26) if -> . IF LPAREN argumentologico RPAREN
 
     VAR             shift and go to state 8
     ECHO            shift and go to state 9
@@ -291,8 +296,8 @@ state 7
 state 8
 
     (7) asignacion -> VAR . ASIGNACION valor EOL
-    (43) declaracion_numeros -> VAR . ASIGNACION numero
-    (44) array -> VAR . ASIGNACION ARRAY LPAREN elementos RPAREN
+    (51) declaracion_numeros -> VAR . ASIGNACION numero
+    (52) array -> VAR . ASIGNACION ARRAY LPAREN elementos RPAREN
 
     ASIGNACION      shift and go to state 15
 
@@ -302,77 +307,127 @@ state 9
     (8) echo -> ECHO . valores EOL
     (9) valores -> . valor
     (10) valores -> . valor COMA valores
-    (49) valor -> . numero
-    (50) valor -> . CADENA
-    (41) numero -> . ENTERO
-    (42) numero -> . FLOTANTE
+    (11) valor -> . ENTERO
+    (12) valor -> . FLOTANTE
+    (13) valor -> . BOOLEANO
+    (14) valor -> . CADENA
+    (15) valor -> . VAR
+    (16) valor -> . VARIABLE_ARRAY
+    (17) valor -> . operacion
+    (18) valor -> . argumentologico
+    (19) operacion -> . ENTERO
+    (20) operacion -> . FLOTANTE
+    (21) operacion -> . ENTERO operador operacion
+    (22) operacion -> . FLOTANTE operador operacion
+    (27) argumentologico -> . VAR simboloLogico VAR
+    (28) argumentologico -> . numero simboloLogico numero
+    (29) argumentologico -> . VAR simboloLogico numero
+    (30) argumentologico -> . VAR IGUAL BOOLEANO
+    (31) argumentologico -> . VAR IGUAL CADENA
+    (32) argumentologico -> . numero simboloLogico VAR
+    (33) argumentologico -> . BOOLEANO IGUAL VAR
+    (34) argumentologico -> . CADENA IGUAL VAR
+    (35) argumentologico -> . CADENA IGUAL CADENA
+    (36) argumentologico -> . BOOLEANO
+    (49) numero -> . ENTERO
+    (50) numero -> . FLOTANTE
 
-    CADENA          shift and go to state 19
-    ENTERO          shift and go to state 20
-    FLOTANTE        shift and go to state 21
+    ENTERO          shift and go to state 18
+    FLOTANTE        shift and go to state 19
+    BOOLEANO        shift and go to state 20
+    CADENA          shift and go to state 21
+    VAR             shift and go to state 22
+    VARIABLE_ARRAY  shift and go to state 23
 
     valores                        shift and go to state 16
     valor                          shift and go to state 17
-    numero                         shift and go to state 18
+    operacion                      shift and go to state 24
+    argumentologico                shift and go to state 25
+    numero                         shift and go to state 26
 
 state 10
 
-    (15) estructuracontrol -> while .
+    (23) estructuracontrol -> while .
 
-    $end            reduce using rule 15 (estructuracontrol -> while .)
+    $end            reduce using rule 23 (estructuracontrol -> while .)
 
 
 state 11
 
-    (16) estructuracontrol -> if .
+    (24) estructuracontrol -> if .
 
-    $end            reduce using rule 16 (estructuracontrol -> if .)
+    $end            reduce using rule 24 (estructuracontrol -> if .)
 
 
 state 12
 
-    (35) comentario -> COMNT .
+    (43) comentario -> COMNT .
 
-    $end            reduce using rule 35 (comentario -> COMNT .)
+    $end            reduce using rule 43 (comentario -> COMNT .)
 
 
 state 13
 
-    (17) while -> WHILE . LPAREN argumentologico RPAREN
+    (25) while -> WHILE . LPAREN argumentologico RPAREN
 
-    LPAREN          shift and go to state 22
+    LPAREN          shift and go to state 27
 
 
 state 14
 
-    (18) if -> IF . LPAREN argumentologico RPAREN
+    (26) if -> IF . LPAREN argumentologico RPAREN
 
-    LPAREN          shift and go to state 23
+    LPAREN          shift and go to state 28
 
 
 state 15
 
     (7) asignacion -> VAR ASIGNACION . valor EOL
-    (43) declaracion_numeros -> VAR ASIGNACION . numero
-    (44) array -> VAR ASIGNACION . ARRAY LPAREN elementos RPAREN
-    (49) valor -> . numero
-    (50) valor -> . CADENA
-    (41) numero -> . ENTERO
-    (42) numero -> . FLOTANTE
+    (51) declaracion_numeros -> VAR ASIGNACION . numero
+    (52) array -> VAR ASIGNACION . ARRAY LPAREN elementos RPAREN
+    (11) valor -> . ENTERO
+    (12) valor -> . FLOTANTE
+    (13) valor -> . BOOLEANO
+    (14) valor -> . CADENA
+    (15) valor -> . VAR
+    (16) valor -> . VARIABLE_ARRAY
+    (17) valor -> . operacion
+    (18) valor -> . argumentologico
+    (49) numero -> . ENTERO
+    (50) numero -> . FLOTANTE
+    (19) operacion -> . ENTERO
+    (20) operacion -> . FLOTANTE
+    (21) operacion -> . ENTERO operador operacion
+    (22) operacion -> . FLOTANTE operador operacion
+    (27) argumentologico -> . VAR simboloLogico VAR
+    (28) argumentologico -> . numero simboloLogico numero
+    (29) argumentologico -> . VAR simboloLogico numero
+    (30) argumentologico -> . VAR IGUAL BOOLEANO
+    (31) argumentologico -> . VAR IGUAL CADENA
+    (32) argumentologico -> . numero simboloLogico VAR
+    (33) argumentologico -> . BOOLEANO IGUAL VAR
+    (34) argumentologico -> . CADENA IGUAL VAR
+    (35) argumentologico -> . CADENA IGUAL CADENA
+    (36) argumentologico -> . BOOLEANO
 
-    ARRAY           shift and go to state 26
-    CADENA          shift and go to state 19
-    ENTERO          shift and go to state 20
-    FLOTANTE        shift and go to state 21
+    ARRAY           shift and go to state 31
+    ENTERO          shift and go to state 32
+    FLOTANTE        shift and go to state 33
+    BOOLEANO        shift and go to state 20
+    CADENA          shift and go to state 21
+    VAR             shift and go to state 22
+    VARIABLE_ARRAY  shift and go to state 23
 
-    valor                          shift and go to state 24
-    numero                         shift and go to state 25
+    valor                          shift and go to state 29
+    numero                         shift and go to state 30
+    operacion                      shift and go to state 24
+    argumentologico                shift and go to state 25
 
 state 16
 
     (8) echo -> ECHO valores . EOL
 
-    EOL             shift and go to state 27
+    EOL             shift and go to state 34
 
 
 state 17
@@ -381,659 +436,1077 @@ state 17
     (10) valores -> valor . COMA valores
 
     EOL             reduce using rule 9 (valores -> valor .)
-    COMA            shift and go to state 28
+    COMA            shift and go to state 35
 
 
 state 18
 
-    (49) valor -> numero .
+    (11) valor -> ENTERO .
+    (19) operacion -> ENTERO .
+    (21) operacion -> ENTERO . operador operacion
+    (49) numero -> ENTERO .
+    (44) operador -> . SUMA
+    (45) operador -> . RESTA
+    (46) operador -> . MULT
+    (47) operador -> . DIV
+    (48) operador -> . POT
 
-    COMA            reduce using rule 49 (valor -> numero .)
-    EOL             reduce using rule 49 (valor -> numero .)
-    RPAREN          reduce using rule 49 (valor -> numero .)
+  ! reduce/reduce conflict for COMA resolved using rule 11 (valor -> ENTERO .)
+  ! reduce/reduce conflict for EOL resolved using rule 11 (valor -> ENTERO .)
+  ! reduce/reduce conflict for RPAREN resolved using rule 11 (valor -> ENTERO .)
+    COMA            reduce using rule 11 (valor -> ENTERO .)
+    EOL             reduce using rule 11 (valor -> ENTERO .)
+    RPAREN          reduce using rule 11 (valor -> ENTERO .)
+    IGUAL           reduce using rule 49 (numero -> ENTERO .)
+    DIFERENTE       reduce using rule 49 (numero -> ENTERO .)
+    MENOR           reduce using rule 49 (numero -> ENTERO .)
+    MAYOR           reduce using rule 49 (numero -> ENTERO .)
+    MENOR_IGUAL     reduce using rule 49 (numero -> ENTERO .)
+    MAYOR_IGUAL     reduce using rule 49 (numero -> ENTERO .)
+    SUMA            shift and go to state 37
+    RESTA           shift and go to state 38
+    MULT            shift and go to state 39
+    DIV             shift and go to state 40
+    POT             shift and go to state 41
 
+  ! COMA            [ reduce using rule 19 (operacion -> ENTERO .) ]
+  ! EOL             [ reduce using rule 19 (operacion -> ENTERO .) ]
+  ! RPAREN          [ reduce using rule 19 (operacion -> ENTERO .) ]
+
+    operador                       shift and go to state 36
 
 state 19
 
-    (50) valor -> CADENA .
+    (12) valor -> FLOTANTE .
+    (20) operacion -> FLOTANTE .
+    (22) operacion -> FLOTANTE . operador operacion
+    (50) numero -> FLOTANTE .
+    (44) operador -> . SUMA
+    (45) operador -> . RESTA
+    (46) operador -> . MULT
+    (47) operador -> . DIV
+    (48) operador -> . POT
 
-    COMA            reduce using rule 50 (valor -> CADENA .)
-    EOL             reduce using rule 50 (valor -> CADENA .)
-    RPAREN          reduce using rule 50 (valor -> CADENA .)
+  ! reduce/reduce conflict for COMA resolved using rule 12 (valor -> FLOTANTE .)
+  ! reduce/reduce conflict for EOL resolved using rule 12 (valor -> FLOTANTE .)
+  ! reduce/reduce conflict for RPAREN resolved using rule 12 (valor -> FLOTANTE .)
+    COMA            reduce using rule 12 (valor -> FLOTANTE .)
+    EOL             reduce using rule 12 (valor -> FLOTANTE .)
+    RPAREN          reduce using rule 12 (valor -> FLOTANTE .)
+    IGUAL           reduce using rule 50 (numero -> FLOTANTE .)
+    DIFERENTE       reduce using rule 50 (numero -> FLOTANTE .)
+    MENOR           reduce using rule 50 (numero -> FLOTANTE .)
+    MAYOR           reduce using rule 50 (numero -> FLOTANTE .)
+    MENOR_IGUAL     reduce using rule 50 (numero -> FLOTANTE .)
+    MAYOR_IGUAL     reduce using rule 50 (numero -> FLOTANTE .)
+    SUMA            shift and go to state 37
+    RESTA           shift and go to state 38
+    MULT            shift and go to state 39
+    DIV             shift and go to state 40
+    POT             shift and go to state 41
 
+  ! COMA            [ reduce using rule 20 (operacion -> FLOTANTE .) ]
+  ! EOL             [ reduce using rule 20 (operacion -> FLOTANTE .) ]
+  ! RPAREN          [ reduce using rule 20 (operacion -> FLOTANTE .) ]
+
+    operador                       shift and go to state 42
 
 state 20
 
-    (41) numero -> ENTERO .
+    (13) valor -> BOOLEANO .
+    (33) argumentologico -> BOOLEANO . IGUAL VAR
+    (36) argumentologico -> BOOLEANO .
 
-    COMA            reduce using rule 41 (numero -> ENTERO .)
-    EOL             reduce using rule 41 (numero -> ENTERO .)
-    $end            reduce using rule 41 (numero -> ENTERO .)
-    IGUAL           reduce using rule 41 (numero -> ENTERO .)
-    DIFERENTE       reduce using rule 41 (numero -> ENTERO .)
-    MENOR           reduce using rule 41 (numero -> ENTERO .)
-    MAYOR           reduce using rule 41 (numero -> ENTERO .)
-    MENOR_IGUAL     reduce using rule 41 (numero -> ENTERO .)
-    MAYOR_IGUAL     reduce using rule 41 (numero -> ENTERO .)
-    RPAREN          reduce using rule 41 (numero -> ENTERO .)
+  ! reduce/reduce conflict for COMA resolved using rule 13 (valor -> BOOLEANO .)
+  ! reduce/reduce conflict for EOL resolved using rule 13 (valor -> BOOLEANO .)
+  ! reduce/reduce conflict for RPAREN resolved using rule 13 (valor -> BOOLEANO .)
+    COMA            reduce using rule 13 (valor -> BOOLEANO .)
+    EOL             reduce using rule 13 (valor -> BOOLEANO .)
+    RPAREN          reduce using rule 13 (valor -> BOOLEANO .)
+    IGUAL           shift and go to state 43
+
+  ! COMA            [ reduce using rule 36 (argumentologico -> BOOLEANO .) ]
+  ! EOL             [ reduce using rule 36 (argumentologico -> BOOLEANO .) ]
+  ! RPAREN          [ reduce using rule 36 (argumentologico -> BOOLEANO .) ]
 
 
 state 21
 
-    (42) numero -> FLOTANTE .
+    (14) valor -> CADENA .
+    (34) argumentologico -> CADENA . IGUAL VAR
+    (35) argumentologico -> CADENA . IGUAL CADENA
 
-    COMA            reduce using rule 42 (numero -> FLOTANTE .)
-    EOL             reduce using rule 42 (numero -> FLOTANTE .)
-    $end            reduce using rule 42 (numero -> FLOTANTE .)
-    IGUAL           reduce using rule 42 (numero -> FLOTANTE .)
-    DIFERENTE       reduce using rule 42 (numero -> FLOTANTE .)
-    MENOR           reduce using rule 42 (numero -> FLOTANTE .)
-    MAYOR           reduce using rule 42 (numero -> FLOTANTE .)
-    MENOR_IGUAL     reduce using rule 42 (numero -> FLOTANTE .)
-    MAYOR_IGUAL     reduce using rule 42 (numero -> FLOTANTE .)
-    RPAREN          reduce using rule 42 (numero -> FLOTANTE .)
+    COMA            reduce using rule 14 (valor -> CADENA .)
+    EOL             reduce using rule 14 (valor -> CADENA .)
+    RPAREN          reduce using rule 14 (valor -> CADENA .)
+    IGUAL           shift and go to state 44
 
 
 state 22
 
-    (17) while -> WHILE LPAREN . argumentologico RPAREN
-    (19) argumentologico -> . VAR simboloLogico VAR
-    (20) argumentologico -> . numero simboloLogico numero
-    (21) argumentologico -> . VAR simboloLogico numero
-    (22) argumentologico -> . VAR IGUAL BOOLEANO
-    (23) argumentologico -> . VAR IGUAL CADENA
-    (24) argumentologico -> . numero simboloLogico VAR
-    (25) argumentologico -> . BOOLEANO IGUAL VAR
-    (26) argumentologico -> . CADENA IGUAL VAR
-    (27) argumentologico -> . CADENA IGUAL CADENA
-    (28) argumentologico -> . BOOLEANO
-    (41) numero -> . ENTERO
-    (42) numero -> . FLOTANTE
+    (15) valor -> VAR .
+    (27) argumentologico -> VAR . simboloLogico VAR
+    (29) argumentologico -> VAR . simboloLogico numero
+    (30) argumentologico -> VAR . IGUAL BOOLEANO
+    (31) argumentologico -> VAR . IGUAL CADENA
+    (37) simboloLogico -> . IGUAL
+    (38) simboloLogico -> . DIFERENTE
+    (39) simboloLogico -> . MENOR
+    (40) simboloLogico -> . MAYOR
+    (41) simboloLogico -> . MENOR_IGUAL
+    (42) simboloLogico -> . MAYOR_IGUAL
 
-    VAR             shift and go to state 30
-    BOOLEANO        shift and go to state 32
-    CADENA          shift and go to state 33
-    ENTERO          shift and go to state 20
-    FLOTANTE        shift and go to state 21
+    COMA            reduce using rule 15 (valor -> VAR .)
+    EOL             reduce using rule 15 (valor -> VAR .)
+    RPAREN          reduce using rule 15 (valor -> VAR .)
+    IGUAL           shift and go to state 46
+    DIFERENTE       shift and go to state 47
+    MENOR           shift and go to state 48
+    MAYOR           shift and go to state 49
+    MENOR_IGUAL     shift and go to state 50
+    MAYOR_IGUAL     shift and go to state 51
 
-    argumentologico                shift and go to state 29
-    numero                         shift and go to state 31
+    simboloLogico                  shift and go to state 45
 
 state 23
 
-    (18) if -> IF LPAREN . argumentologico RPAREN
-    (19) argumentologico -> . VAR simboloLogico VAR
-    (20) argumentologico -> . numero simboloLogico numero
-    (21) argumentologico -> . VAR simboloLogico numero
-    (22) argumentologico -> . VAR IGUAL BOOLEANO
-    (23) argumentologico -> . VAR IGUAL CADENA
-    (24) argumentologico -> . numero simboloLogico VAR
-    (25) argumentologico -> . BOOLEANO IGUAL VAR
-    (26) argumentologico -> . CADENA IGUAL VAR
-    (27) argumentologico -> . CADENA IGUAL CADENA
-    (28) argumentologico -> . BOOLEANO
-    (41) numero -> . ENTERO
-    (42) numero -> . FLOTANTE
+    (16) valor -> VARIABLE_ARRAY .
 
-    VAR             shift and go to state 30
-    BOOLEANO        shift and go to state 32
-    CADENA          shift and go to state 33
-    ENTERO          shift and go to state 20
-    FLOTANTE        shift and go to state 21
+    COMA            reduce using rule 16 (valor -> VARIABLE_ARRAY .)
+    EOL             reduce using rule 16 (valor -> VARIABLE_ARRAY .)
+    RPAREN          reduce using rule 16 (valor -> VARIABLE_ARRAY .)
 
-    argumentologico                shift and go to state 34
-    numero                         shift and go to state 31
 
 state 24
 
-    (7) asignacion -> VAR ASIGNACION valor . EOL
+    (17) valor -> operacion .
 
-    EOL             shift and go to state 35
+    COMA            reduce using rule 17 (valor -> operacion .)
+    EOL             reduce using rule 17 (valor -> operacion .)
+    RPAREN          reduce using rule 17 (valor -> operacion .)
 
 
 state 25
 
-    (43) declaracion_numeros -> VAR ASIGNACION numero .
-    (49) valor -> numero .
+    (18) valor -> argumentologico .
 
-    $end            reduce using rule 43 (declaracion_numeros -> VAR ASIGNACION numero .)
-    EOL             reduce using rule 49 (valor -> numero .)
+    COMA            reduce using rule 18 (valor -> argumentologico .)
+    EOL             reduce using rule 18 (valor -> argumentologico .)
+    RPAREN          reduce using rule 18 (valor -> argumentologico .)
 
 
 state 26
 
-    (44) array -> VAR ASIGNACION ARRAY . LPAREN elementos RPAREN
+    (28) argumentologico -> numero . simboloLogico numero
+    (32) argumentologico -> numero . simboloLogico VAR
+    (37) simboloLogico -> . IGUAL
+    (38) simboloLogico -> . DIFERENTE
+    (39) simboloLogico -> . MENOR
+    (40) simboloLogico -> . MAYOR
+    (41) simboloLogico -> . MENOR_IGUAL
+    (42) simboloLogico -> . MAYOR_IGUAL
 
-    LPAREN          shift and go to state 36
+    IGUAL           shift and go to state 53
+    DIFERENTE       shift and go to state 47
+    MENOR           shift and go to state 48
+    MAYOR           shift and go to state 49
+    MENOR_IGUAL     shift and go to state 50
+    MAYOR_IGUAL     shift and go to state 51
 
+    simboloLogico                  shift and go to state 52
 
 state 27
+
+    (25) while -> WHILE LPAREN . argumentologico RPAREN
+    (27) argumentologico -> . VAR simboloLogico VAR
+    (28) argumentologico -> . numero simboloLogico numero
+    (29) argumentologico -> . VAR simboloLogico numero
+    (30) argumentologico -> . VAR IGUAL BOOLEANO
+    (31) argumentologico -> . VAR IGUAL CADENA
+    (32) argumentologico -> . numero simboloLogico VAR
+    (33) argumentologico -> . BOOLEANO IGUAL VAR
+    (34) argumentologico -> . CADENA IGUAL VAR
+    (35) argumentologico -> . CADENA IGUAL CADENA
+    (36) argumentologico -> . BOOLEANO
+    (49) numero -> . ENTERO
+    (50) numero -> . FLOTANTE
+
+    VAR             shift and go to state 55
+    BOOLEANO        shift and go to state 56
+    CADENA          shift and go to state 57
+    ENTERO          shift and go to state 58
+    FLOTANTE        shift and go to state 59
+
+    argumentologico                shift and go to state 54
+    numero                         shift and go to state 26
+
+state 28
+
+    (26) if -> IF LPAREN . argumentologico RPAREN
+    (27) argumentologico -> . VAR simboloLogico VAR
+    (28) argumentologico -> . numero simboloLogico numero
+    (29) argumentologico -> . VAR simboloLogico numero
+    (30) argumentologico -> . VAR IGUAL BOOLEANO
+    (31) argumentologico -> . VAR IGUAL CADENA
+    (32) argumentologico -> . numero simboloLogico VAR
+    (33) argumentologico -> . BOOLEANO IGUAL VAR
+    (34) argumentologico -> . CADENA IGUAL VAR
+    (35) argumentologico -> . CADENA IGUAL CADENA
+    (36) argumentologico -> . BOOLEANO
+    (49) numero -> . ENTERO
+    (50) numero -> . FLOTANTE
+
+    VAR             shift and go to state 55
+    BOOLEANO        shift and go to state 56
+    CADENA          shift and go to state 57
+    ENTERO          shift and go to state 58
+    FLOTANTE        shift and go to state 59
+
+    argumentologico                shift and go to state 60
+    numero                         shift and go to state 26
+
+state 29
+
+    (7) asignacion -> VAR ASIGNACION valor . EOL
+
+    EOL             shift and go to state 61
+
+
+state 30
+
+    (51) declaracion_numeros -> VAR ASIGNACION numero .
+    (28) argumentologico -> numero . simboloLogico numero
+    (32) argumentologico -> numero . simboloLogico VAR
+    (37) simboloLogico -> . IGUAL
+    (38) simboloLogico -> . DIFERENTE
+    (39) simboloLogico -> . MENOR
+    (40) simboloLogico -> . MAYOR
+    (41) simboloLogico -> . MENOR_IGUAL
+    (42) simboloLogico -> . MAYOR_IGUAL
+
+    $end            reduce using rule 51 (declaracion_numeros -> VAR ASIGNACION numero .)
+    IGUAL           shift and go to state 53
+    DIFERENTE       shift and go to state 47
+    MENOR           shift and go to state 48
+    MAYOR           shift and go to state 49
+    MENOR_IGUAL     shift and go to state 50
+    MAYOR_IGUAL     shift and go to state 51
+
+    simboloLogico                  shift and go to state 52
+
+state 31
+
+    (52) array -> VAR ASIGNACION ARRAY . LPAREN elementos RPAREN
+
+    LPAREN          shift and go to state 62
+
+
+state 32
+
+    (11) valor -> ENTERO .
+    (49) numero -> ENTERO .
+    (19) operacion -> ENTERO .
+    (21) operacion -> ENTERO . operador operacion
+    (44) operador -> . SUMA
+    (45) operador -> . RESTA
+    (46) operador -> . MULT
+    (47) operador -> . DIV
+    (48) operador -> . POT
+
+  ! reduce/reduce conflict for EOL resolved using rule 11 (valor -> ENTERO .)
+    EOL             reduce using rule 11 (valor -> ENTERO .)
+    IGUAL           reduce using rule 49 (numero -> ENTERO .)
+    DIFERENTE       reduce using rule 49 (numero -> ENTERO .)
+    MENOR           reduce using rule 49 (numero -> ENTERO .)
+    MAYOR           reduce using rule 49 (numero -> ENTERO .)
+    MENOR_IGUAL     reduce using rule 49 (numero -> ENTERO .)
+    MAYOR_IGUAL     reduce using rule 49 (numero -> ENTERO .)
+    $end            reduce using rule 49 (numero -> ENTERO .)
+    SUMA            shift and go to state 37
+    RESTA           shift and go to state 38
+    MULT            shift and go to state 39
+    DIV             shift and go to state 40
+    POT             shift and go to state 41
+
+  ! EOL             [ reduce using rule 19 (operacion -> ENTERO .) ]
+
+    operador                       shift and go to state 36
+
+state 33
+
+    (12) valor -> FLOTANTE .
+    (50) numero -> FLOTANTE .
+    (20) operacion -> FLOTANTE .
+    (22) operacion -> FLOTANTE . operador operacion
+    (44) operador -> . SUMA
+    (45) operador -> . RESTA
+    (46) operador -> . MULT
+    (47) operador -> . DIV
+    (48) operador -> . POT
+
+  ! reduce/reduce conflict for EOL resolved using rule 12 (valor -> FLOTANTE .)
+    EOL             reduce using rule 12 (valor -> FLOTANTE .)
+    IGUAL           reduce using rule 50 (numero -> FLOTANTE .)
+    DIFERENTE       reduce using rule 50 (numero -> FLOTANTE .)
+    MENOR           reduce using rule 50 (numero -> FLOTANTE .)
+    MAYOR           reduce using rule 50 (numero -> FLOTANTE .)
+    MENOR_IGUAL     reduce using rule 50 (numero -> FLOTANTE .)
+    MAYOR_IGUAL     reduce using rule 50 (numero -> FLOTANTE .)
+    $end            reduce using rule 50 (numero -> FLOTANTE .)
+    SUMA            shift and go to state 37
+    RESTA           shift and go to state 38
+    MULT            shift and go to state 39
+    DIV             shift and go to state 40
+    POT             shift and go to state 41
+
+  ! EOL             [ reduce using rule 20 (operacion -> FLOTANTE .) ]
+
+    operador                       shift and go to state 42
+
+state 34
 
     (8) echo -> ECHO valores EOL .
 
     $end            reduce using rule 8 (echo -> ECHO valores EOL .)
 
 
-state 28
+state 35
 
     (10) valores -> valor COMA . valores
     (9) valores -> . valor
     (10) valores -> . valor COMA valores
-    (49) valor -> . numero
-    (50) valor -> . CADENA
-    (41) numero -> . ENTERO
-    (42) numero -> . FLOTANTE
+    (11) valor -> . ENTERO
+    (12) valor -> . FLOTANTE
+    (13) valor -> . BOOLEANO
+    (14) valor -> . CADENA
+    (15) valor -> . VAR
+    (16) valor -> . VARIABLE_ARRAY
+    (17) valor -> . operacion
+    (18) valor -> . argumentologico
+    (19) operacion -> . ENTERO
+    (20) operacion -> . FLOTANTE
+    (21) operacion -> . ENTERO operador operacion
+    (22) operacion -> . FLOTANTE operador operacion
+    (27) argumentologico -> . VAR simboloLogico VAR
+    (28) argumentologico -> . numero simboloLogico numero
+    (29) argumentologico -> . VAR simboloLogico numero
+    (30) argumentologico -> . VAR IGUAL BOOLEANO
+    (31) argumentologico -> . VAR IGUAL CADENA
+    (32) argumentologico -> . numero simboloLogico VAR
+    (33) argumentologico -> . BOOLEANO IGUAL VAR
+    (34) argumentologico -> . CADENA IGUAL VAR
+    (35) argumentologico -> . CADENA IGUAL CADENA
+    (36) argumentologico -> . BOOLEANO
+    (49) numero -> . ENTERO
+    (50) numero -> . FLOTANTE
 
-    CADENA          shift and go to state 19
-    ENTERO          shift and go to state 20
-    FLOTANTE        shift and go to state 21
+    ENTERO          shift and go to state 18
+    FLOTANTE        shift and go to state 19
+    BOOLEANO        shift and go to state 20
+    CADENA          shift and go to state 21
+    VAR             shift and go to state 22
+    VARIABLE_ARRAY  shift and go to state 23
 
     valor                          shift and go to state 17
-    valores                        shift and go to state 37
-    numero                         shift and go to state 18
+    valores                        shift and go to state 63
+    operacion                      shift and go to state 24
+    argumentologico                shift and go to state 25
+    numero                         shift and go to state 26
 
-state 29
+state 36
 
-    (17) while -> WHILE LPAREN argumentologico . RPAREN
+    (21) operacion -> ENTERO operador . operacion
+    (19) operacion -> . ENTERO
+    (20) operacion -> . FLOTANTE
+    (21) operacion -> . ENTERO operador operacion
+    (22) operacion -> . FLOTANTE operador operacion
 
-    RPAREN          shift and go to state 38
+    ENTERO          shift and go to state 64
+    FLOTANTE        shift and go to state 66
 
+    operacion                      shift and go to state 65
 
-state 30
+state 37
 
-    (19) argumentologico -> VAR . simboloLogico VAR
-    (21) argumentologico -> VAR . simboloLogico numero
-    (22) argumentologico -> VAR . IGUAL BOOLEANO
-    (23) argumentologico -> VAR . IGUAL CADENA
-    (29) simboloLogico -> . IGUAL
-    (30) simboloLogico -> . DIFERENTE
-    (31) simboloLogico -> . MENOR
-    (32) simboloLogico -> . MAYOR
-    (33) simboloLogico -> . MENOR_IGUAL
-    (34) simboloLogico -> . MAYOR_IGUAL
+    (44) operador -> SUMA .
 
-    IGUAL           shift and go to state 40
-    DIFERENTE       shift and go to state 41
-    MENOR           shift and go to state 42
-    MAYOR           shift and go to state 43
-    MENOR_IGUAL     shift and go to state 44
-    MAYOR_IGUAL     shift and go to state 45
-
-    simboloLogico                  shift and go to state 39
-
-state 31
-
-    (20) argumentologico -> numero . simboloLogico numero
-    (24) argumentologico -> numero . simboloLogico VAR
-    (29) simboloLogico -> . IGUAL
-    (30) simboloLogico -> . DIFERENTE
-    (31) simboloLogico -> . MENOR
-    (32) simboloLogico -> . MAYOR
-    (33) simboloLogico -> . MENOR_IGUAL
-    (34) simboloLogico -> . MAYOR_IGUAL
-
-    IGUAL           shift and go to state 47
-    DIFERENTE       shift and go to state 41
-    MENOR           shift and go to state 42
-    MAYOR           shift and go to state 43
-    MENOR_IGUAL     shift and go to state 44
-    MAYOR_IGUAL     shift and go to state 45
-
-    simboloLogico                  shift and go to state 46
-
-state 32
-
-    (25) argumentologico -> BOOLEANO . IGUAL VAR
-    (28) argumentologico -> BOOLEANO .
-
-    IGUAL           shift and go to state 48
-    RPAREN          reduce using rule 28 (argumentologico -> BOOLEANO .)
+    ENTERO          reduce using rule 44 (operador -> SUMA .)
+    FLOTANTE        reduce using rule 44 (operador -> SUMA .)
 
 
-state 33
+state 38
 
-    (26) argumentologico -> CADENA . IGUAL VAR
-    (27) argumentologico -> CADENA . IGUAL CADENA
+    (45) operador -> RESTA .
 
-    IGUAL           shift and go to state 49
-
-
-state 34
-
-    (18) if -> IF LPAREN argumentologico . RPAREN
-
-    RPAREN          shift and go to state 50
+    ENTERO          reduce using rule 45 (operador -> RESTA .)
+    FLOTANTE        reduce using rule 45 (operador -> RESTA .)
 
 
-state 35
+state 39
+
+    (46) operador -> MULT .
+
+    ENTERO          reduce using rule 46 (operador -> MULT .)
+    FLOTANTE        reduce using rule 46 (operador -> MULT .)
+
+
+state 40
+
+    (47) operador -> DIV .
+
+    ENTERO          reduce using rule 47 (operador -> DIV .)
+    FLOTANTE        reduce using rule 47 (operador -> DIV .)
+
+
+state 41
+
+    (48) operador -> POT .
+
+    ENTERO          reduce using rule 48 (operador -> POT .)
+    FLOTANTE        reduce using rule 48 (operador -> POT .)
+
+
+state 42
+
+    (22) operacion -> FLOTANTE operador . operacion
+    (19) operacion -> . ENTERO
+    (20) operacion -> . FLOTANTE
+    (21) operacion -> . ENTERO operador operacion
+    (22) operacion -> . FLOTANTE operador operacion
+
+    ENTERO          shift and go to state 64
+    FLOTANTE        shift and go to state 66
+
+    operacion                      shift and go to state 67
+
+state 43
+
+    (33) argumentologico -> BOOLEANO IGUAL . VAR
+
+    VAR             shift and go to state 68
+
+
+state 44
+
+    (34) argumentologico -> CADENA IGUAL . VAR
+    (35) argumentologico -> CADENA IGUAL . CADENA
+
+    VAR             shift and go to state 70
+    CADENA          shift and go to state 69
+
+
+state 45
+
+    (27) argumentologico -> VAR simboloLogico . VAR
+    (29) argumentologico -> VAR simboloLogico . numero
+    (49) numero -> . ENTERO
+    (50) numero -> . FLOTANTE
+
+    VAR             shift and go to state 71
+    ENTERO          shift and go to state 58
+    FLOTANTE        shift and go to state 59
+
+    numero                         shift and go to state 72
+
+state 46
+
+    (30) argumentologico -> VAR IGUAL . BOOLEANO
+    (31) argumentologico -> VAR IGUAL . CADENA
+    (37) simboloLogico -> IGUAL .
+
+    BOOLEANO        shift and go to state 73
+    CADENA          shift and go to state 74
+    VAR             reduce using rule 37 (simboloLogico -> IGUAL .)
+    ENTERO          reduce using rule 37 (simboloLogico -> IGUAL .)
+    FLOTANTE        reduce using rule 37 (simboloLogico -> IGUAL .)
+
+
+state 47
+
+    (38) simboloLogico -> DIFERENTE .
+
+    VAR             reduce using rule 38 (simboloLogico -> DIFERENTE .)
+    ENTERO          reduce using rule 38 (simboloLogico -> DIFERENTE .)
+    FLOTANTE        reduce using rule 38 (simboloLogico -> DIFERENTE .)
+
+
+state 48
+
+    (39) simboloLogico -> MENOR .
+
+    VAR             reduce using rule 39 (simboloLogico -> MENOR .)
+    ENTERO          reduce using rule 39 (simboloLogico -> MENOR .)
+    FLOTANTE        reduce using rule 39 (simboloLogico -> MENOR .)
+
+
+state 49
+
+    (40) simboloLogico -> MAYOR .
+
+    VAR             reduce using rule 40 (simboloLogico -> MAYOR .)
+    ENTERO          reduce using rule 40 (simboloLogico -> MAYOR .)
+    FLOTANTE        reduce using rule 40 (simboloLogico -> MAYOR .)
+
+
+state 50
+
+    (41) simboloLogico -> MENOR_IGUAL .
+
+    VAR             reduce using rule 41 (simboloLogico -> MENOR_IGUAL .)
+    ENTERO          reduce using rule 41 (simboloLogico -> MENOR_IGUAL .)
+    FLOTANTE        reduce using rule 41 (simboloLogico -> MENOR_IGUAL .)
+
+
+state 51
+
+    (42) simboloLogico -> MAYOR_IGUAL .
+
+    VAR             reduce using rule 42 (simboloLogico -> MAYOR_IGUAL .)
+    ENTERO          reduce using rule 42 (simboloLogico -> MAYOR_IGUAL .)
+    FLOTANTE        reduce using rule 42 (simboloLogico -> MAYOR_IGUAL .)
+
+
+state 52
+
+    (28) argumentologico -> numero simboloLogico . numero
+    (32) argumentologico -> numero simboloLogico . VAR
+    (49) numero -> . ENTERO
+    (50) numero -> . FLOTANTE
+
+    VAR             shift and go to state 76
+    ENTERO          shift and go to state 58
+    FLOTANTE        shift and go to state 59
+
+    numero                         shift and go to state 75
+
+state 53
+
+    (37) simboloLogico -> IGUAL .
+
+    VAR             reduce using rule 37 (simboloLogico -> IGUAL .)
+    ENTERO          reduce using rule 37 (simboloLogico -> IGUAL .)
+    FLOTANTE        reduce using rule 37 (simboloLogico -> IGUAL .)
+
+
+state 54
+
+    (25) while -> WHILE LPAREN argumentologico . RPAREN
+
+    RPAREN          shift and go to state 77
+
+
+state 55
+
+    (27) argumentologico -> VAR . simboloLogico VAR
+    (29) argumentologico -> VAR . simboloLogico numero
+    (30) argumentologico -> VAR . IGUAL BOOLEANO
+    (31) argumentologico -> VAR . IGUAL CADENA
+    (37) simboloLogico -> . IGUAL
+    (38) simboloLogico -> . DIFERENTE
+    (39) simboloLogico -> . MENOR
+    (40) simboloLogico -> . MAYOR
+    (41) simboloLogico -> . MENOR_IGUAL
+    (42) simboloLogico -> . MAYOR_IGUAL
+
+    IGUAL           shift and go to state 46
+    DIFERENTE       shift and go to state 47
+    MENOR           shift and go to state 48
+    MAYOR           shift and go to state 49
+    MENOR_IGUAL     shift and go to state 50
+    MAYOR_IGUAL     shift and go to state 51
+
+    simboloLogico                  shift and go to state 45
+
+state 56
+
+    (33) argumentologico -> BOOLEANO . IGUAL VAR
+    (36) argumentologico -> BOOLEANO .
+
+    IGUAL           shift and go to state 43
+    RPAREN          reduce using rule 36 (argumentologico -> BOOLEANO .)
+
+
+state 57
+
+    (34) argumentologico -> CADENA . IGUAL VAR
+    (35) argumentologico -> CADENA . IGUAL CADENA
+
+    IGUAL           shift and go to state 44
+
+
+state 58
+
+    (49) numero -> ENTERO .
+
+    IGUAL           reduce using rule 49 (numero -> ENTERO .)
+    DIFERENTE       reduce using rule 49 (numero -> ENTERO .)
+    MENOR           reduce using rule 49 (numero -> ENTERO .)
+    MAYOR           reduce using rule 49 (numero -> ENTERO .)
+    MENOR_IGUAL     reduce using rule 49 (numero -> ENTERO .)
+    MAYOR_IGUAL     reduce using rule 49 (numero -> ENTERO .)
+    COMA            reduce using rule 49 (numero -> ENTERO .)
+    EOL             reduce using rule 49 (numero -> ENTERO .)
+    RPAREN          reduce using rule 49 (numero -> ENTERO .)
+
+
+state 59
+
+    (50) numero -> FLOTANTE .
+
+    IGUAL           reduce using rule 50 (numero -> FLOTANTE .)
+    DIFERENTE       reduce using rule 50 (numero -> FLOTANTE .)
+    MENOR           reduce using rule 50 (numero -> FLOTANTE .)
+    MAYOR           reduce using rule 50 (numero -> FLOTANTE .)
+    MENOR_IGUAL     reduce using rule 50 (numero -> FLOTANTE .)
+    MAYOR_IGUAL     reduce using rule 50 (numero -> FLOTANTE .)
+    COMA            reduce using rule 50 (numero -> FLOTANTE .)
+    EOL             reduce using rule 50 (numero -> FLOTANTE .)
+    RPAREN          reduce using rule 50 (numero -> FLOTANTE .)
+
+
+state 60
+
+    (26) if -> IF LPAREN argumentologico . RPAREN
+
+    RPAREN          shift and go to state 78
+
+
+state 61
 
     (7) asignacion -> VAR ASIGNACION valor EOL .
 
     $end            reduce using rule 7 (asignacion -> VAR ASIGNACION valor EOL .)
 
 
-state 36
+state 62
 
-    (44) array -> VAR ASIGNACION ARRAY LPAREN . elementos RPAREN
-    (45) elementos -> . lista
-    (46) elementos -> . diccionario
-    (51) lista -> . palabras
-    (52) lista -> . numeros
-    (53) lista -> . variables
-    (47) diccionario -> . CADENA ASIGNACION MAYOR valor
-    (48) diccionario -> . CADENA ASIGNACION MAYOR valor COMA diccionario
-    (54) palabras -> . CADENA COMA palabras
-    (55) palabras -> . CADENA
-    (56) numeros -> . numero COMA numeros
-    (57) numeros -> . numero
-    (58) variables -> . VAR COMA variables
-    (59) variables -> . VAR
-    (41) numero -> . ENTERO
-    (42) numero -> . FLOTANTE
+    (52) array -> VAR ASIGNACION ARRAY LPAREN . elementos RPAREN
+    (53) elementos -> . lista
+    (54) elementos -> . diccionario
+    (57) lista -> . palabras
+    (58) lista -> . numeros
+    (59) lista -> . variables
+    (55) diccionario -> . CADENA ASIGNACION MAYOR valor
+    (56) diccionario -> . CADENA ASIGNACION MAYOR valor COMA diccionario
+    (60) palabras -> . CADENA COMA palabras
+    (61) palabras -> . CADENA
+    (62) numeros -> . numero COMA numeros
+    (63) numeros -> . numero
+    (64) variables -> . VAR COMA variables
+    (65) variables -> . VAR
+    (49) numero -> . ENTERO
+    (50) numero -> . FLOTANTE
 
-    CADENA          shift and go to state 58
-    VAR             shift and go to state 51
-    ENTERO          shift and go to state 20
-    FLOTANTE        shift and go to state 21
+    CADENA          shift and go to state 86
+    VAR             shift and go to state 79
+    ENTERO          shift and go to state 58
+    FLOTANTE        shift and go to state 59
 
-    elementos                      shift and go to state 52
-    lista                          shift and go to state 53
-    diccionario                    shift and go to state 54
-    palabras                       shift and go to state 55
-    numeros                        shift and go to state 56
-    variables                      shift and go to state 57
-    numero                         shift and go to state 59
+    elementos                      shift and go to state 80
+    lista                          shift and go to state 81
+    diccionario                    shift and go to state 82
+    palabras                       shift and go to state 83
+    numeros                        shift and go to state 84
+    variables                      shift and go to state 85
+    numero                         shift and go to state 87
 
-state 37
+state 63
 
     (10) valores -> valor COMA valores .
 
     EOL             reduce using rule 10 (valores -> valor COMA valores .)
 
 
-state 38
-
-    (17) while -> WHILE LPAREN argumentologico RPAREN .
-
-    $end            reduce using rule 17 (while -> WHILE LPAREN argumentologico RPAREN .)
-
-
-state 39
-
-    (19) argumentologico -> VAR simboloLogico . VAR
-    (21) argumentologico -> VAR simboloLogico . numero
-    (41) numero -> . ENTERO
-    (42) numero -> . FLOTANTE
-
-    VAR             shift and go to state 60
-    ENTERO          shift and go to state 20
-    FLOTANTE        shift and go to state 21
-
-    numero                         shift and go to state 61
-
-state 40
-
-    (22) argumentologico -> VAR IGUAL . BOOLEANO
-    (23) argumentologico -> VAR IGUAL . CADENA
-    (29) simboloLogico -> IGUAL .
-
-    BOOLEANO        shift and go to state 62
-    CADENA          shift and go to state 63
-    VAR             reduce using rule 29 (simboloLogico -> IGUAL .)
-    ENTERO          reduce using rule 29 (simboloLogico -> IGUAL .)
-    FLOTANTE        reduce using rule 29 (simboloLogico -> IGUAL .)
-
-
-state 41
-
-    (30) simboloLogico -> DIFERENTE .
-
-    VAR             reduce using rule 30 (simboloLogico -> DIFERENTE .)
-    ENTERO          reduce using rule 30 (simboloLogico -> DIFERENTE .)
-    FLOTANTE        reduce using rule 30 (simboloLogico -> DIFERENTE .)
-
-
-state 42
-
-    (31) simboloLogico -> MENOR .
-
-    VAR             reduce using rule 31 (simboloLogico -> MENOR .)
-    ENTERO          reduce using rule 31 (simboloLogico -> MENOR .)
-    FLOTANTE        reduce using rule 31 (simboloLogico -> MENOR .)
-
-
-state 43
-
-    (32) simboloLogico -> MAYOR .
-
-    VAR             reduce using rule 32 (simboloLogico -> MAYOR .)
-    ENTERO          reduce using rule 32 (simboloLogico -> MAYOR .)
-    FLOTANTE        reduce using rule 32 (simboloLogico -> MAYOR .)
-
-
-state 44
-
-    (33) simboloLogico -> MENOR_IGUAL .
-
-    VAR             reduce using rule 33 (simboloLogico -> MENOR_IGUAL .)
-    ENTERO          reduce using rule 33 (simboloLogico -> MENOR_IGUAL .)
-    FLOTANTE        reduce using rule 33 (simboloLogico -> MENOR_IGUAL .)
-
-
-state 45
-
-    (34) simboloLogico -> MAYOR_IGUAL .
-
-    VAR             reduce using rule 34 (simboloLogico -> MAYOR_IGUAL .)
-    ENTERO          reduce using rule 34 (simboloLogico -> MAYOR_IGUAL .)
-    FLOTANTE        reduce using rule 34 (simboloLogico -> MAYOR_IGUAL .)
-
-
-state 46
-
-    (20) argumentologico -> numero simboloLogico . numero
-    (24) argumentologico -> numero simboloLogico . VAR
-    (41) numero -> . ENTERO
-    (42) numero -> . FLOTANTE
-
-    VAR             shift and go to state 65
-    ENTERO          shift and go to state 20
-    FLOTANTE        shift and go to state 21
-
-    numero                         shift and go to state 64
-
-state 47
-
-    (29) simboloLogico -> IGUAL .
-
-    VAR             reduce using rule 29 (simboloLogico -> IGUAL .)
-    ENTERO          reduce using rule 29 (simboloLogico -> IGUAL .)
-    FLOTANTE        reduce using rule 29 (simboloLogico -> IGUAL .)
-
-
-state 48
-
-    (25) argumentologico -> BOOLEANO IGUAL . VAR
-
-    VAR             shift and go to state 66
-
-
-state 49
-
-    (26) argumentologico -> CADENA IGUAL . VAR
-    (27) argumentologico -> CADENA IGUAL . CADENA
-
-    VAR             shift and go to state 68
-    CADENA          shift and go to state 67
-
-
-state 50
-
-    (18) if -> IF LPAREN argumentologico RPAREN .
-
-    $end            reduce using rule 18 (if -> IF LPAREN argumentologico RPAREN .)
-
-
-state 51
-
-    (58) variables -> VAR . COMA variables
-    (59) variables -> VAR .
-
-    COMA            shift and go to state 69
-    RPAREN          reduce using rule 59 (variables -> VAR .)
-
-
-state 52
-
-    (44) array -> VAR ASIGNACION ARRAY LPAREN elementos . RPAREN
-
-    RPAREN          shift and go to state 70
-
-
-state 53
-
-    (45) elementos -> lista .
-
-    RPAREN          reduce using rule 45 (elementos -> lista .)
-
-
-state 54
-
-    (46) elementos -> diccionario .
-
-    RPAREN          reduce using rule 46 (elementos -> diccionario .)
-
-
-state 55
-
-    (51) lista -> palabras .
-
-    RPAREN          reduce using rule 51 (lista -> palabras .)
-
-
-state 56
-
-    (52) lista -> numeros .
-
-    RPAREN          reduce using rule 52 (lista -> numeros .)
-
-
-state 57
-
-    (53) lista -> variables .
-
-    RPAREN          reduce using rule 53 (lista -> variables .)
-
-
-state 58
-
-    (47) diccionario -> CADENA . ASIGNACION MAYOR valor
-    (48) diccionario -> CADENA . ASIGNACION MAYOR valor COMA diccionario
-    (54) palabras -> CADENA . COMA palabras
-    (55) palabras -> CADENA .
-
-    ASIGNACION      shift and go to state 71
-    COMA            shift and go to state 72
-    RPAREN          reduce using rule 55 (palabras -> CADENA .)
-
-
-state 59
-
-    (56) numeros -> numero . COMA numeros
-    (57) numeros -> numero .
-
-    COMA            shift and go to state 73
-    RPAREN          reduce using rule 57 (numeros -> numero .)
-
-
-state 60
-
-    (19) argumentologico -> VAR simboloLogico VAR .
-
-    RPAREN          reduce using rule 19 (argumentologico -> VAR simboloLogico VAR .)
-
-
-state 61
-
-    (21) argumentologico -> VAR simboloLogico numero .
-
-    RPAREN          reduce using rule 21 (argumentologico -> VAR simboloLogico numero .)
-
-
-state 62
-
-    (22) argumentologico -> VAR IGUAL BOOLEANO .
-
-    RPAREN          reduce using rule 22 (argumentologico -> VAR IGUAL BOOLEANO .)
-
-
-state 63
-
-    (23) argumentologico -> VAR IGUAL CADENA .
-
-    RPAREN          reduce using rule 23 (argumentologico -> VAR IGUAL CADENA .)
-
-
 state 64
 
-    (20) argumentologico -> numero simboloLogico numero .
+    (19) operacion -> ENTERO .
+    (21) operacion -> ENTERO . operador operacion
+    (44) operador -> . SUMA
+    (45) operador -> . RESTA
+    (46) operador -> . MULT
+    (47) operador -> . DIV
+    (48) operador -> . POT
 
-    RPAREN          reduce using rule 20 (argumentologico -> numero simboloLogico numero .)
+    COMA            reduce using rule 19 (operacion -> ENTERO .)
+    EOL             reduce using rule 19 (operacion -> ENTERO .)
+    RPAREN          reduce using rule 19 (operacion -> ENTERO .)
+    SUMA            shift and go to state 37
+    RESTA           shift and go to state 38
+    MULT            shift and go to state 39
+    DIV             shift and go to state 40
+    POT             shift and go to state 41
 
+    operador                       shift and go to state 36
 
 state 65
 
-    (24) argumentologico -> numero simboloLogico VAR .
+    (21) operacion -> ENTERO operador operacion .
 
-    RPAREN          reduce using rule 24 (argumentologico -> numero simboloLogico VAR .)
+    COMA            reduce using rule 21 (operacion -> ENTERO operador operacion .)
+    EOL             reduce using rule 21 (operacion -> ENTERO operador operacion .)
+    RPAREN          reduce using rule 21 (operacion -> ENTERO operador operacion .)
 
 
 state 66
 
-    (25) argumentologico -> BOOLEANO IGUAL VAR .
+    (20) operacion -> FLOTANTE .
+    (22) operacion -> FLOTANTE . operador operacion
+    (44) operador -> . SUMA
+    (45) operador -> . RESTA
+    (46) operador -> . MULT
+    (47) operador -> . DIV
+    (48) operador -> . POT
 
-    RPAREN          reduce using rule 25 (argumentologico -> BOOLEANO IGUAL VAR .)
+    COMA            reduce using rule 20 (operacion -> FLOTANTE .)
+    EOL             reduce using rule 20 (operacion -> FLOTANTE .)
+    RPAREN          reduce using rule 20 (operacion -> FLOTANTE .)
+    SUMA            shift and go to state 37
+    RESTA           shift and go to state 38
+    MULT            shift and go to state 39
+    DIV             shift and go to state 40
+    POT             shift and go to state 41
 
+    operador                       shift and go to state 42
 
 state 67
 
-    (27) argumentologico -> CADENA IGUAL CADENA .
+    (22) operacion -> FLOTANTE operador operacion .
 
-    RPAREN          reduce using rule 27 (argumentologico -> CADENA IGUAL CADENA .)
+    COMA            reduce using rule 22 (operacion -> FLOTANTE operador operacion .)
+    EOL             reduce using rule 22 (operacion -> FLOTANTE operador operacion .)
+    RPAREN          reduce using rule 22 (operacion -> FLOTANTE operador operacion .)
 
 
 state 68
 
-    (26) argumentologico -> CADENA IGUAL VAR .
+    (33) argumentologico -> BOOLEANO IGUAL VAR .
 
-    RPAREN          reduce using rule 26 (argumentologico -> CADENA IGUAL VAR .)
+    COMA            reduce using rule 33 (argumentologico -> BOOLEANO IGUAL VAR .)
+    EOL             reduce using rule 33 (argumentologico -> BOOLEANO IGUAL VAR .)
+    RPAREN          reduce using rule 33 (argumentologico -> BOOLEANO IGUAL VAR .)
 
 
 state 69
 
-    (58) variables -> VAR COMA . variables
-    (58) variables -> . VAR COMA variables
-    (59) variables -> . VAR
+    (35) argumentologico -> CADENA IGUAL CADENA .
 
-    VAR             shift and go to state 51
+    COMA            reduce using rule 35 (argumentologico -> CADENA IGUAL CADENA .)
+    EOL             reduce using rule 35 (argumentologico -> CADENA IGUAL CADENA .)
+    RPAREN          reduce using rule 35 (argumentologico -> CADENA IGUAL CADENA .)
 
-    variables                      shift and go to state 74
 
 state 70
 
-    (44) array -> VAR ASIGNACION ARRAY LPAREN elementos RPAREN .
+    (34) argumentologico -> CADENA IGUAL VAR .
 
-    $end            reduce using rule 44 (array -> VAR ASIGNACION ARRAY LPAREN elementos RPAREN .)
+    COMA            reduce using rule 34 (argumentologico -> CADENA IGUAL VAR .)
+    EOL             reduce using rule 34 (argumentologico -> CADENA IGUAL VAR .)
+    RPAREN          reduce using rule 34 (argumentologico -> CADENA IGUAL VAR .)
 
 
 state 71
 
-    (47) diccionario -> CADENA ASIGNACION . MAYOR valor
-    (48) diccionario -> CADENA ASIGNACION . MAYOR valor COMA diccionario
+    (27) argumentologico -> VAR simboloLogico VAR .
 
-    MAYOR           shift and go to state 75
+    COMA            reduce using rule 27 (argumentologico -> VAR simboloLogico VAR .)
+    EOL             reduce using rule 27 (argumentologico -> VAR simboloLogico VAR .)
+    RPAREN          reduce using rule 27 (argumentologico -> VAR simboloLogico VAR .)
 
 
 state 72
 
-    (54) palabras -> CADENA COMA . palabras
-    (54) palabras -> . CADENA COMA palabras
-    (55) palabras -> . CADENA
+    (29) argumentologico -> VAR simboloLogico numero .
 
-    CADENA          shift and go to state 76
+    COMA            reduce using rule 29 (argumentologico -> VAR simboloLogico numero .)
+    EOL             reduce using rule 29 (argumentologico -> VAR simboloLogico numero .)
+    RPAREN          reduce using rule 29 (argumentologico -> VAR simboloLogico numero .)
 
-    palabras                       shift and go to state 77
 
 state 73
 
-    (56) numeros -> numero COMA . numeros
-    (56) numeros -> . numero COMA numeros
-    (57) numeros -> . numero
-    (41) numero -> . ENTERO
-    (42) numero -> . FLOTANTE
+    (30) argumentologico -> VAR IGUAL BOOLEANO .
 
-    ENTERO          shift and go to state 20
-    FLOTANTE        shift and go to state 21
+    COMA            reduce using rule 30 (argumentologico -> VAR IGUAL BOOLEANO .)
+    EOL             reduce using rule 30 (argumentologico -> VAR IGUAL BOOLEANO .)
+    RPAREN          reduce using rule 30 (argumentologico -> VAR IGUAL BOOLEANO .)
 
-    numero                         shift and go to state 59
-    numeros                        shift and go to state 78
 
 state 74
 
-    (58) variables -> VAR COMA variables .
+    (31) argumentologico -> VAR IGUAL CADENA .
 
-    RPAREN          reduce using rule 58 (variables -> VAR COMA variables .)
+    COMA            reduce using rule 31 (argumentologico -> VAR IGUAL CADENA .)
+    EOL             reduce using rule 31 (argumentologico -> VAR IGUAL CADENA .)
+    RPAREN          reduce using rule 31 (argumentologico -> VAR IGUAL CADENA .)
 
 
 state 75
 
-    (47) diccionario -> CADENA ASIGNACION MAYOR . valor
-    (48) diccionario -> CADENA ASIGNACION MAYOR . valor COMA diccionario
-    (49) valor -> . numero
-    (50) valor -> . CADENA
-    (41) numero -> . ENTERO
-    (42) numero -> . FLOTANTE
+    (28) argumentologico -> numero simboloLogico numero .
 
-    CADENA          shift and go to state 19
-    ENTERO          shift and go to state 20
-    FLOTANTE        shift and go to state 21
+    COMA            reduce using rule 28 (argumentologico -> numero simboloLogico numero .)
+    EOL             reduce using rule 28 (argumentologico -> numero simboloLogico numero .)
+    RPAREN          reduce using rule 28 (argumentologico -> numero simboloLogico numero .)
 
-    valor                          shift and go to state 79
-    numero                         shift and go to state 18
 
 state 76
 
-    (54) palabras -> CADENA . COMA palabras
-    (55) palabras -> CADENA .
+    (32) argumentologico -> numero simboloLogico VAR .
 
-    COMA            shift and go to state 72
-    RPAREN          reduce using rule 55 (palabras -> CADENA .)
+    COMA            reduce using rule 32 (argumentologico -> numero simboloLogico VAR .)
+    EOL             reduce using rule 32 (argumentologico -> numero simboloLogico VAR .)
+    RPAREN          reduce using rule 32 (argumentologico -> numero simboloLogico VAR .)
 
 
 state 77
 
-    (54) palabras -> CADENA COMA palabras .
+    (25) while -> WHILE LPAREN argumentologico RPAREN .
 
-    RPAREN          reduce using rule 54 (palabras -> CADENA COMA palabras .)
+    $end            reduce using rule 25 (while -> WHILE LPAREN argumentologico RPAREN .)
 
 
 state 78
 
-    (56) numeros -> numero COMA numeros .
+    (26) if -> IF LPAREN argumentologico RPAREN .
 
-    RPAREN          reduce using rule 56 (numeros -> numero COMA numeros .)
+    $end            reduce using rule 26 (if -> IF LPAREN argumentologico RPAREN .)
 
 
 state 79
 
-    (47) diccionario -> CADENA ASIGNACION MAYOR valor .
-    (48) diccionario -> CADENA ASIGNACION MAYOR valor . COMA diccionario
+    (64) variables -> VAR . COMA variables
+    (65) variables -> VAR .
 
-    RPAREN          reduce using rule 47 (diccionario -> CADENA ASIGNACION MAYOR valor .)
-    COMA            shift and go to state 80
+    COMA            shift and go to state 88
+    RPAREN          reduce using rule 65 (variables -> VAR .)
 
 
 state 80
 
-    (48) diccionario -> CADENA ASIGNACION MAYOR valor COMA . diccionario
-    (47) diccionario -> . CADENA ASIGNACION MAYOR valor
-    (48) diccionario -> . CADENA ASIGNACION MAYOR valor COMA diccionario
+    (52) array -> VAR ASIGNACION ARRAY LPAREN elementos . RPAREN
 
-    CADENA          shift and go to state 81
+    RPAREN          shift and go to state 89
 
-    diccionario                    shift and go to state 82
 
 state 81
 
-    (47) diccionario -> CADENA . ASIGNACION MAYOR valor
-    (48) diccionario -> CADENA . ASIGNACION MAYOR valor COMA diccionario
+    (53) elementos -> lista .
 
-    ASIGNACION      shift and go to state 71
+    RPAREN          reduce using rule 53 (elementos -> lista .)
 
 
 state 82
 
-    (48) diccionario -> CADENA ASIGNACION MAYOR valor COMA diccionario .
+    (54) elementos -> diccionario .
 
-    RPAREN          reduce using rule 48 (diccionario -> CADENA ASIGNACION MAYOR valor COMA diccionario .)
+    RPAREN          reduce using rule 54 (elementos -> diccionario .)
 
+
+state 83
+
+    (57) lista -> palabras .
+
+    RPAREN          reduce using rule 57 (lista -> palabras .)
+
+
+state 84
+
+    (58) lista -> numeros .
+
+    RPAREN          reduce using rule 58 (lista -> numeros .)
+
+
+state 85
+
+    (59) lista -> variables .
+
+    RPAREN          reduce using rule 59 (lista -> variables .)
+
+
+state 86
+
+    (55) diccionario -> CADENA . ASIGNACION MAYOR valor
+    (56) diccionario -> CADENA . ASIGNACION MAYOR valor COMA diccionario
+    (60) palabras -> CADENA . COMA palabras
+    (61) palabras -> CADENA .
+
+    ASIGNACION      shift and go to state 90
+    COMA            shift and go to state 91
+    RPAREN          reduce using rule 61 (palabras -> CADENA .)
+
+
+state 87
+
+    (62) numeros -> numero . COMA numeros
+    (63) numeros -> numero .
+
+    COMA            shift and go to state 92
+    RPAREN          reduce using rule 63 (numeros -> numero .)
+
+
+state 88
+
+    (64) variables -> VAR COMA . variables
+    (64) variables -> . VAR COMA variables
+    (65) variables -> . VAR
+
+    VAR             shift and go to state 79
+
+    variables                      shift and go to state 93
+
+state 89
+
+    (52) array -> VAR ASIGNACION ARRAY LPAREN elementos RPAREN .
+
+    $end            reduce using rule 52 (array -> VAR ASIGNACION ARRAY LPAREN elementos RPAREN .)
+
+
+state 90
+
+    (55) diccionario -> CADENA ASIGNACION . MAYOR valor
+    (56) diccionario -> CADENA ASIGNACION . MAYOR valor COMA diccionario
+
+    MAYOR           shift and go to state 94
+
+
+state 91
+
+    (60) palabras -> CADENA COMA . palabras
+    (60) palabras -> . CADENA COMA palabras
+    (61) palabras -> . CADENA
+
+    CADENA          shift and go to state 95
+
+    palabras                       shift and go to state 96
+
+state 92
+
+    (62) numeros -> numero COMA . numeros
+    (62) numeros -> . numero COMA numeros
+    (63) numeros -> . numero
+    (49) numero -> . ENTERO
+    (50) numero -> . FLOTANTE
+
+    ENTERO          shift and go to state 58
+    FLOTANTE        shift and go to state 59
+
+    numero                         shift and go to state 87
+    numeros                        shift and go to state 97
+
+state 93
+
+    (64) variables -> VAR COMA variables .
+
+    RPAREN          reduce using rule 64 (variables -> VAR COMA variables .)
+
+
+state 94
+
+    (55) diccionario -> CADENA ASIGNACION MAYOR . valor
+    (56) diccionario -> CADENA ASIGNACION MAYOR . valor COMA diccionario
+    (11) valor -> . ENTERO
+    (12) valor -> . FLOTANTE
+    (13) valor -> . BOOLEANO
+    (14) valor -> . CADENA
+    (15) valor -> . VAR
+    (16) valor -> . VARIABLE_ARRAY
+    (17) valor -> . operacion
+    (18) valor -> . argumentologico
+    (19) operacion -> . ENTERO
+    (20) operacion -> . FLOTANTE
+    (21) operacion -> . ENTERO operador operacion
+    (22) operacion -> . FLOTANTE operador operacion
+    (27) argumentologico -> . VAR simboloLogico VAR
+    (28) argumentologico -> . numero simboloLogico numero
+    (29) argumentologico -> . VAR simboloLogico numero
+    (30) argumentologico -> . VAR IGUAL BOOLEANO
+    (31) argumentologico -> . VAR IGUAL CADENA
+    (32) argumentologico -> . numero simboloLogico VAR
+    (33) argumentologico -> . BOOLEANO IGUAL VAR
+    (34) argumentologico -> . CADENA IGUAL VAR
+    (35) argumentologico -> . CADENA IGUAL CADENA
+    (36) argumentologico -> . BOOLEANO
+    (49) numero -> . ENTERO
+    (50) numero -> . FLOTANTE
+
+    ENTERO          shift and go to state 18
+    FLOTANTE        shift and go to state 19
+    BOOLEANO        shift and go to state 20
+    CADENA          shift and go to state 21
+    VAR             shift and go to state 22
+    VARIABLE_ARRAY  shift and go to state 23
+
+    valor                          shift and go to state 98
+    operacion                      shift and go to state 24
+    argumentologico                shift and go to state 25
+    numero                         shift and go to state 26
+
+state 95
+
+    (60) palabras -> CADENA . COMA palabras
+    (61) palabras -> CADENA .
+
+    COMA            shift and go to state 91
+    RPAREN          reduce using rule 61 (palabras -> CADENA .)
+
+
+state 96
+
+    (60) palabras -> CADENA COMA palabras .
+
+    RPAREN          reduce using rule 60 (palabras -> CADENA COMA palabras .)
+
+
+state 97
+
+    (62) numeros -> numero COMA numeros .
+
+    RPAREN          reduce using rule 62 (numeros -> numero COMA numeros .)
+
+
+state 98
+
+    (55) diccionario -> CADENA ASIGNACION MAYOR valor .
+    (56) diccionario -> CADENA ASIGNACION MAYOR valor . COMA diccionario
+
+    RPAREN          reduce using rule 55 (diccionario -> CADENA ASIGNACION MAYOR valor .)
+    COMA            shift and go to state 99
+
+
+state 99
+
+    (56) diccionario -> CADENA ASIGNACION MAYOR valor COMA . diccionario
+    (55) diccionario -> . CADENA ASIGNACION MAYOR valor
+    (56) diccionario -> . CADENA ASIGNACION MAYOR valor COMA diccionario
+
+    CADENA          shift and go to state 100
+
+    diccionario                    shift and go to state 101
+
+state 100
+
+    (55) diccionario -> CADENA . ASIGNACION MAYOR valor
+    (56) diccionario -> CADENA . ASIGNACION MAYOR valor COMA diccionario
+
+    ASIGNACION      shift and go to state 90
+
+
+state 101
+
+    (56) diccionario -> CADENA ASIGNACION MAYOR valor COMA diccionario .
+
+    RPAREN          reduce using rule 56 (diccionario -> CADENA ASIGNACION MAYOR valor COMA diccionario .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: reduce/reduce conflict in state 18 resolved using rule (valor -> ENTERO)
+WARNING: rejected rule (operacion -> ENTERO) in state 18
+WARNING: reduce/reduce conflict in state 19 resolved using rule (valor -> FLOTANTE)
+WARNING: rejected rule (operacion -> FLOTANTE) in state 19
+WARNING: reduce/reduce conflict in state 20 resolved using rule (valor -> BOOLEANO)
+WARNING: rejected rule (argumentologico -> BOOLEANO) in state 20
+WARNING: reduce/reduce conflict in state 32 resolved using rule (valor -> ENTERO)
+WARNING: rejected rule (operacion -> ENTERO) in state 32
+WARNING: reduce/reduce conflict in state 33 resolved using rule (valor -> FLOTANTE)
+WARNING: rejected rule (operacion -> FLOTANTE) in state 33

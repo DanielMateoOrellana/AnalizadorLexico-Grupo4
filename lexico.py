@@ -99,7 +99,7 @@ t_IGUAL = r'\=='
 t_DIFERENTE = r'\!='
 t_MENOR = r'\<'
 t_MAYOR = r'\>'
-t_MENOR_IGUAL = r'\>='
+t_MENOR_IGUAL = r'\<='
 t_MAYOR_IGUAL = r'\>='
 
 # Simbolos para delimitar bloques
@@ -179,14 +179,14 @@ def t_VAR(t):
 
 # Flotantes
 def t_FLOTANTE(t):
-  r'\-?\d+\.\d+'
+  r'\d+\.\d+'
   t.value = float(t.value)
   return t
 
 
 # Enteros
 def t_ENTERO(t):
-  r'\-?\d+'
+  r'\d+'
   t.value = int(t.value)
   return t
 
