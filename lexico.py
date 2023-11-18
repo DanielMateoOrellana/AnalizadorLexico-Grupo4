@@ -121,9 +121,6 @@ t_EOL = r'\;'
 #---Definicion de funciones---
 # Aporte Cristopher -------
 # Variable Array
-def t_VARIABLE_ARRAY(t):
-  r'array\((((\d+)(,\s\d)+)|("\w+"(,\s"\w+")*)|(\$\w+(,\s\$\w+)*))\)'
-  return t
 
 
 # Variable Funcion
@@ -163,11 +160,6 @@ def t_COMNT(t):
   t.type = reservadas.get(t.value, 'COMNT')
   return t
   
-# Diccionarios
-def t_DICT(t):
-  r'array\("\w+"\s=>\s(("\w+")|(\d+))(,\s"\w+"\s=>\s("\w+"|\d+))*\)'
-  return t
-
 
 # Identificadores
 def t_ID(t):
