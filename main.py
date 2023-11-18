@@ -15,6 +15,10 @@ def p_sentencia(p):
                 | declaracion_numeros
                 | array
                 | funcion
+                | readline
+                | ingreso_datos
+                | objeto
+                | public
   '''
 
 # ---Declaracion y asignacion de variables---
@@ -60,30 +64,32 @@ def p_estructuracontrol(p):
    '''
    estructuracontrol : while
                      | if
+                     | for
    '''
 
 def p_while(p):
    '''
-   while : WHILE LPAREN condicion RPAREN LBRACE RBRACE
+   while : WHILE LPAREN condicion RPAREN LBRACE lineas RBRACE
    '''
 
 
 def p_if(p):
    '''
-   if : IF LPAREN condicion RPAREN LBRACE RBRACE
+   if : IF LPAREN condicion RPAREN LBRACE lineas RBRACE
       | if else
       | if elseif else
       | if elseif
    '''
+  
 def p_elseif(p):
    '''
-   elseif : ELSEIF LPAREN condicion RPAREN LBRACE RBRACE
-          | ELSEIF LPAREN condicion RPAREN LBRACE RBRACE elseif
+   elseif : ELSEIF LPAREN condicion RPAREN LBRACE lineas RBRACE
+          | ELSEIF LPAREN condicion RPAREN LBRACE lineas RBRACE elseif
    '''
 
 def p_else(p):
    '''
-   else : ELSE LBRACE RBRACE
+   else : ELSE LBRACE lineas RBRACE
    '''
 
 def p_condicion(p):
@@ -227,24 +233,19 @@ def p_error(p):
 
 # Aporte Daniel Mateo
 
+def p_readline(p):
+  '''readline : READLINE LPAREN RPAREN EOL'''
+
 def p_ingreso_datos(p):
    '''
-    ingreso_datos : VAR ASIGNACION readline EOL
-    '''
-
-def p_readline(p):
-  '''
-  readline : READLINE LPAREN CADENA RPAREN
-  '''
+   ingreso_datos : VAR ASIGNACION readline
+   '''
 
 def p_objeto(p):
    '''
-    objeto : CLASE OBJETO LBRACE mas_objetos RBRACE VAR ASIGNACION NEW OBJETO LPAREN RPAREN EOL VARIABLE_OBJETO ASIGNACION CADENA EOL
-           | CLASE OBJETO LBRACE mas_objetos PUBLIC VAR EOL RBRACE
-           | CLASE OBJETO LBRACE mas_objetos RBRACE VAR ASIGNACION NEW OBJETO LPAREN RPAREN EOL
-           | CLASE OBJETO LBRACE mas_objetos RBRACE VAR ASIGNACION NEW OBJETO LPAREN RPAREN EOL VARIABLE_OBJETO EOL
-    '''
-
+   objeto : CLASE OBJETO LBRACE mas_objetos RBRACE VAR ASIGNACION NEW OBJETO LPAREN RPAREN EOL mas_atributos
+   '''
+  
 def p_cuerpo_objeto(p):
    '''
    cuerpo_objeto : PUBLIC VAR EOL
@@ -254,6 +255,36 @@ def p_mas_objetos(p):
    '''
    mas_objetos : cuerpo_objeto
                | cuerpo_objeto mas_objetos 
+   '''
+
+def p_atributo(p):
+   '''
+   atributo : VAR RESTA MAYOR ID ASIGNACION CADENA EOL
+   '''
+
+def p_mas_atributos(p):
+   '''
+   mas_atributos : atributo
+                 | atributo mas_atributos
+   '''
+
+def p_for(p):
+   '''
+   for : FOR LPAREN asignacion argumentologico EOL VAR SUMA SUMA RPAREN LBRACE lineas RBRACE
+                  | FOR LPAREN asignacion argumentologico EOL VAR RESTA RESTA RPAREN LBRACE lineas RBRACE
+   '''
+
+def p_linea(p):
+   '''
+   linea : ECHO CADENA EOL 
+         | ECHO VAR EOL 
+         | estructura_control
+   '''
+
+def p_lineas(p):
+   '''
+   lineas : linea
+          | linea lineas
    '''
   
 parser = sint.yacc()
@@ -331,18 +362,12 @@ for linea in lCristopher:
   if result != None:
       print(result)
 
-testDaniel = '''echo "El valor de pi es: ", pi;
-echo "<br>";
-$nombre = readline("Ingrese su nombre: ");
-$edad = readline("Ingrese su edad: ");
-$suma = $edad + 1;
-$resta = $edad - 1;
-$multiplicacion = $edad * 2;
-$division = $edad / 2;
-echo "El símbolo de dólar es: \$";
-echo "El símbolo de porcentaje es: %";
-$persona = new stdClass();
-$persona->nombre = $nombre;
-$persona->edad = $edad;
-echo "El nombre de la persona es: " . $persona->nombre;
-echo "La edad de la persona es: " . $persona->edad;'''
+testDaniel = """class Producto { public $nombre; public $precio; public $nombre;} $producto1 = new Producto(); $producto1 -> nombre = \"asd\"; $producto1 -> nombre = \"asd\"; """
+
+
+lDaniel = testDaniel.split("\n")
+
+for linea in lDaniel:
+  result = parser.parse(linea)
+  if result != None:
+      print(result)
