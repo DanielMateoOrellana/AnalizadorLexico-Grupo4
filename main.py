@@ -68,9 +68,42 @@ def p_while(p):
    while : WHILE LPAREN argumentologico RPAREN LBRACE RBRACE
    '''
 
+# def p_if(p):
+#    '''
+#    if : IF LPAREN argumentologico RPAREN LBRACE RBRACE
+#    '''
+
 def p_if(p):
    '''
-   if : IF LPAREN argumentologico RPAREN LBRACE RBRACE
+   if : IF LPAREN condicion RPAREN LBRACE RBRACE
+   '''
+
+def p_condicion(p):
+   '''
+   condicion : argumentologico 
+             | argumentologico conector_logico condicion
+             | vacio
+   '''
+def p_vacio(p):
+   '''
+   vacio : EOL
+   '''
+
+# def p_expresion(p):
+#    '''
+#    expresion : valor_logico operador_logico valor_logico
+#    '''
+
+def p_conector_logico(p):
+   '''
+   conector_logico : AND
+                   | OR
+   '''
+
+def p_valor_logico(p):
+   '''
+   valor_logico : numero
+                | VAR
    '''
 
 def p_argumentologico(p):
@@ -97,7 +130,7 @@ def p_numero(p):
           | FLOTANTE
    '''
 
-def p_simboloLogico(p):
+def p_operador_logico(p):
    '''
    simboloLogico : IGUAL
                  | DIFERENTE
@@ -263,7 +296,7 @@ echo 'Hello world';
 echo True;
 echo False;
 echo 'Hola mundo', 1.4, 2, True, False, $a21;
-if ( $a1 > $a2 ){}'''
+if ( $a1 > $a2 and $a1 > $a2 or $a1 > $a2 ){}'''
 lRoberto = testRoberto.split("\n")
 print("---PRUEBA ROBERTO PATINO---")
 for linea in lRoberto:

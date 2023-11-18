@@ -6,6 +6,8 @@ import ply.lex as lex
 # ---Palabras reservadas---
 reservadas = {
     'if': 'IF',
+    'and': 'AND',
+    'or' : 'OR',
     'while': 'WHILE',
     'else': 'ELSE',
     'case': 'CASE',
@@ -146,6 +148,7 @@ def t_BOOLEANO(t):
   r'True|False'
   t.value = bool(t.value)
   return t
+
 
 
 # Objeto
