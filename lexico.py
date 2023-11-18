@@ -6,10 +6,10 @@ import ply.lex as lex
 # ---Palabras reservadas---
 reservadas = {
     'if': 'IF',
+    'else': 'ELSE',
     'and': 'AND',
     'or' : 'OR',
     'while': 'WHILE',
-    'else': 'ELSE',
     'case': 'CASE',
     'break': 'BREAK',
     'continue': 'CONTINUE',
@@ -178,7 +178,7 @@ def t_ID(t):
 
 # Definicion de variables
 def t_VAR(t):
-  r'\$([a-zA-z]|_)+\w*[^\$\s\;\+\-\/\*\>\<\>=\<=\=]*'
+  r'\$([a-zA-z]|_)+\w*[^\$\s\;\+\-\/\*\>\<\>=\<=\=\(\)]*'
   t.type = reservadas.get(t.value, 'VAR')
   return t
 

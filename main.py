@@ -61,8 +61,7 @@ def p_estructuracontrol(p):
    estructuracontrol : while
                      | if
    '''
-# TODO: DA ERROR SI NO SE COLOCAN ESPACIOS. POR EJEMPLO while() Da error
-# while (variable simbolo variable) tambien da error, pero si funciona si se coloca espacios antes y despues de variable
+
 def p_while(p):
    '''
    while : WHILE LPAREN condicion RPAREN LBRACE RBRACE
@@ -72,13 +71,25 @@ def p_while(p):
 def p_if(p):
    '''
    if : IF LPAREN condicion RPAREN LBRACE RBRACE
+      | if else
+      | if elseif else
+      | if elseif
+   '''
+def p_elseif(p):
+   '''
+   elseif : ELSEIF LPAREN condicion RPAREN LBRACE RBRACE
+          | ELSEIF LPAREN condicion RPAREN LBRACE RBRACE elseif
+   '''
+
+def p_else(p):
+   '''
+   else : ELSE LBRACE RBRACE
    '''
 
 def p_condicion(p):
    '''
    condicion : argumentologico 
              | argumentologico conector_logico condicion
-             | vacio
    '''
 def p_vacio(p):
    '''
@@ -104,14 +115,14 @@ def p_valor_logico(p):
 
 def p_argumentologico(p):
    '''
-   argumentologico : VAR simboloLogico VAR
-                   | numero simboloLogico numero
-                   | VAR simboloLogico numero
+   argumentologico : VAR operador_logico VAR
+                   | numero operador_logico numero
+                   | VAR operador_logico numero
                    | VAR IGUAL BOOLEANO
                    | VAR IGUAL CADENA
                    | VAR DIFERENTE BOOLEANO
                    | VAR DIFERENTE CADENA
-                   | numero simboloLogico VAR
+                   | numero operador_logico VAR
                    | BOOLEANO IGUAL VAR
                    | CADENA IGUAL VAR
                    | CADENA IGUAL CADENA
@@ -128,7 +139,7 @@ def p_numero(p):
 
 def p_operador_logico(p):
    '''
-   simboloLogico : IGUAL
+   operador_logico : IGUAL
                  | DIFERENTE
                  | MENOR
                  | MAYOR
@@ -293,6 +304,9 @@ echo True;
 echo False;
 echo 'Hola mundo', 1.4, 2, True, False, $a21;
 if ($a1> $a2 and $a1>$a2 or $a1 > $a2 or "hola mundo" == $a3 ){}
+if($a1<=$a2){}else{}
+if($a1<=$a2){}elseif($a>3 or 1!=$num){}else{}
+if($a1<=$a2){}elseif($a>3 or 1!=$num){}elseif($a<3 or 1==$num){}else{}
 while ( $a3 == "Hola" and $costo <= 27.8 and $bool == True ){}'''
 lRoberto = testRoberto.split("\n")
 print("---PRUEBA ROBERTO PATINO---")
