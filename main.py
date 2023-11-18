@@ -65,13 +65,9 @@ def p_estructuracontrol(p):
 # while (variable simbolo variable) tambien da error, pero si funciona si se coloca espacios antes y despues de variable
 def p_while(p):
    '''
-   while : WHILE LPAREN argumentologico RPAREN LBRACE RBRACE
+   while : WHILE LPAREN condicion RPAREN LBRACE RBRACE
    '''
 
-# def p_if(p):
-#    '''
-#    if : IF LPAREN argumentologico RPAREN LBRACE RBRACE
-#    '''
 
 def p_if(p):
    '''
@@ -296,7 +292,8 @@ echo 'Hello world';
 echo True;
 echo False;
 echo 'Hola mundo', 1.4, 2, True, False, $a21;
-if ( $a1 > $a2 and $a1 > $a2 or $a1 > $a2 ){}'''
+if ( $a1 > $a2 and $a1 > $a2 or $a1 > $a2 or "hola mundo" == $a3 ){}
+while ( $a3 == "Hola" and $costo <= 27.8 and $bool == True ){}'''
 lRoberto = testRoberto.split("\n")
 print("---PRUEBA ROBERTO PATINO---")
 for linea in lRoberto:

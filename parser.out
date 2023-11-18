@@ -63,7 +63,7 @@ Rule 22    operacion -> ENTERO operador operacion
 Rule 23    operacion -> FLOTANTE operador operacion
 Rule 24    estructuracontrol -> while
 Rule 25    estructuracontrol -> if
-Rule 26    while -> WHILE LPAREN argumentologico RPAREN LBRACE RBRACE
+Rule 26    while -> WHILE LPAREN condicion RPAREN LBRACE RBRACE
 Rule 27    if -> IF LPAREN condicion RPAREN LBRACE RBRACE
 Rule 28    condicion -> argumentologico
 Rule 29    condicion -> argumentologico conector_logico condicion
@@ -215,11 +215,11 @@ error                :
 
 Nonterminals, with rules where they appear
 
-argumentologico      : 19 26 28 29
+argumentologico      : 19 28 29
 array                : 6 87
 asignacion           : 1
 comentario           : 4
-condicion            : 27 29
+condicion            : 26 27 29
 conector_logico      : 29
 cuerpo_funcion       : 85
 cuerpo_objeto        : 96 97
@@ -272,7 +272,7 @@ state 0
     (64) declaracion_numeros -> . VAR ASIGNACION numero EOL
     (65) array -> . VAR ASIGNACION ARRAY LPAREN elementos RPAREN EOL
     (81) funcion -> . FUNCTION tipo_funcion LBRACE final_funcion RBRACE
-    (26) while -> . WHILE LPAREN argumentologico RPAREN LBRACE RBRACE
+    (26) while -> . WHILE LPAREN condicion RPAREN LBRACE RBRACE
     (27) if -> . IF LPAREN condicion RPAREN LBRACE RBRACE
 
     VAR             shift and go to state 9
@@ -446,7 +446,7 @@ state 14
 
 state 15
 
-    (26) while -> WHILE . LPAREN argumentologico RPAREN LBRACE RBRACE
+    (26) while -> WHILE . LPAREN condicion RPAREN LBRACE RBRACE
 
     LPAREN          shift and go to state 32
 
@@ -711,7 +711,10 @@ state 31
 
 state 32
 
-    (26) while -> WHILE LPAREN . argumentologico RPAREN LBRACE RBRACE
+    (26) while -> WHILE LPAREN . condicion RPAREN LBRACE RBRACE
+    (28) condicion -> . argumentologico
+    (29) condicion -> . argumentologico conector_logico condicion
+    (30) condicion -> . vacio
     (36) argumentologico -> . VAR simboloLogico VAR
     (37) argumentologico -> . numero simboloLogico numero
     (38) argumentologico -> . VAR simboloLogico numero
@@ -726,16 +729,20 @@ state 32
     (47) argumentologico -> . CADENA DIFERENTE VAR
     (48) argumentologico -> . CADENA DIFERENTE CADENA
     (49) argumentologico -> . BOOLEANO
+    (31) vacio -> . EOL
     (62) numero -> . ENTERO
     (63) numero -> . FLOTANTE
 
-    VAR             shift and go to state 63
-    BOOLEANO        shift and go to state 64
-    CADENA          shift and go to state 65
-    ENTERO          shift and go to state 66
-    FLOTANTE        shift and go to state 67
+    VAR             shift and go to state 65
+    BOOLEANO        shift and go to state 66
+    CADENA          shift and go to state 67
+    EOL             shift and go to state 68
+    ENTERO          shift and go to state 69
+    FLOTANTE        shift and go to state 70
 
-    argumentologico                shift and go to state 62
+    condicion                      shift and go to state 62
+    argumentologico                shift and go to state 63
+    vacio                          shift and go to state 64
     numero                         shift and go to state 28
 
 state 33
@@ -762,16 +769,16 @@ state 33
     (62) numero -> . ENTERO
     (63) numero -> . FLOTANTE
 
-    VAR             shift and go to state 63
-    BOOLEANO        shift and go to state 64
-    CADENA          shift and go to state 65
-    EOL             shift and go to state 71
-    ENTERO          shift and go to state 66
-    FLOTANTE        shift and go to state 67
+    VAR             shift and go to state 65
+    BOOLEANO        shift and go to state 66
+    CADENA          shift and go to state 67
+    EOL             shift and go to state 68
+    ENTERO          shift and go to state 69
+    FLOTANTE        shift and go to state 70
 
-    condicion                      shift and go to state 68
-    argumentologico                shift and go to state 69
-    vacio                          shift and go to state 70
+    condicion                      shift and go to state 71
+    argumentologico                shift and go to state 63
+    vacio                          shift and go to state 64
     numero                         shift and go to state 28
 
 state 34
@@ -1035,8 +1042,8 @@ state 51
     (63) numero -> . FLOTANTE
 
     VAR             shift and go to state 85
-    ENTERO          shift and go to state 66
-    FLOTANTE        shift and go to state 67
+    ENTERO          shift and go to state 69
+    FLOTANTE        shift and go to state 70
 
     numero                         shift and go to state 86
 
@@ -1110,8 +1117,8 @@ state 58
     (63) numero -> . FLOTANTE
 
     VAR             shift and go to state 92
-    ENTERO          shift and go to state 66
-    FLOTANTE        shift and go to state 67
+    ENTERO          shift and go to state 69
+    FLOTANTE        shift and go to state 70
 
     numero                         shift and go to state 91
 
@@ -1145,7 +1152,7 @@ state 61
     (65) array -> . VAR ASIGNACION ARRAY LPAREN elementos RPAREN EOL
     (24) estructuracontrol -> . while
     (25) estructuracontrol -> . if
-    (26) while -> . WHILE LPAREN argumentologico RPAREN LBRACE RBRACE
+    (26) while -> . WHILE LPAREN condicion RPAREN LBRACE RBRACE
     (27) if -> . IF LPAREN condicion RPAREN LBRACE RBRACE
 
     RETURN          shift and go to state 94
@@ -1163,12 +1170,32 @@ state 61
 
 state 62
 
-    (26) while -> WHILE LPAREN argumentologico . RPAREN LBRACE RBRACE
+    (26) while -> WHILE LPAREN condicion . RPAREN LBRACE RBRACE
 
     RPAREN          shift and go to state 100
 
 
 state 63
+
+    (28) condicion -> argumentologico .
+    (29) condicion -> argumentologico . conector_logico condicion
+    (32) conector_logico -> . AND
+    (33) conector_logico -> . OR
+
+    RPAREN          reduce using rule 28 (condicion -> argumentologico .)
+    AND             shift and go to state 102
+    OR              shift and go to state 103
+
+    conector_logico                shift and go to state 101
+
+state 64
+
+    (30) condicion -> vacio .
+
+    RPAREN          reduce using rule 30 (condicion -> vacio .)
+
+
+state 65
 
     (36) argumentologico -> VAR . simboloLogico VAR
     (38) argumentologico -> VAR . simboloLogico numero
@@ -1192,18 +1219,18 @@ state 63
 
     simboloLogico                  shift and go to state 51
 
-state 64
+state 66
 
     (44) argumentologico -> BOOLEANO . IGUAL VAR
     (49) argumentologico -> BOOLEANO .
 
     IGUAL           shift and go to state 48
-    RPAREN          reduce using rule 49 (argumentologico -> BOOLEANO .)
     AND             reduce using rule 49 (argumentologico -> BOOLEANO .)
     OR              reduce using rule 49 (argumentologico -> BOOLEANO .)
+    RPAREN          reduce using rule 49 (argumentologico -> BOOLEANO .)
 
 
-state 65
+state 67
 
     (45) argumentologico -> CADENA . IGUAL VAR
     (46) argumentologico -> CADENA . IGUAL CADENA
@@ -1214,7 +1241,14 @@ state 65
     DIFERENTE       shift and go to state 50
 
 
-state 66
+state 68
+
+    (31) vacio -> EOL .
+
+    RPAREN          reduce using rule 31 (vacio -> EOL .)
+
+
+state 69
 
     (62) numero -> ENTERO .
 
@@ -1226,12 +1260,12 @@ state 66
     MAYOR_IGUAL     reduce using rule 62 (numero -> ENTERO .)
     COMA            reduce using rule 62 (numero -> ENTERO .)
     EOL             reduce using rule 62 (numero -> ENTERO .)
-    RPAREN          reduce using rule 62 (numero -> ENTERO .)
     AND             reduce using rule 62 (numero -> ENTERO .)
     OR              reduce using rule 62 (numero -> ENTERO .)
+    RPAREN          reduce using rule 62 (numero -> ENTERO .)
 
 
-state 67
+state 70
 
     (63) numero -> FLOTANTE .
 
@@ -1243,43 +1277,16 @@ state 67
     MAYOR_IGUAL     reduce using rule 63 (numero -> FLOTANTE .)
     COMA            reduce using rule 63 (numero -> FLOTANTE .)
     EOL             reduce using rule 63 (numero -> FLOTANTE .)
-    RPAREN          reduce using rule 63 (numero -> FLOTANTE .)
     AND             reduce using rule 63 (numero -> FLOTANTE .)
     OR              reduce using rule 63 (numero -> FLOTANTE .)
-
-
-state 68
-
-    (27) if -> IF LPAREN condicion . RPAREN LBRACE RBRACE
-
-    RPAREN          shift and go to state 101
-
-
-state 69
-
-    (28) condicion -> argumentologico .
-    (29) condicion -> argumentologico . conector_logico condicion
-    (32) conector_logico -> . AND
-    (33) conector_logico -> . OR
-
-    RPAREN          reduce using rule 28 (condicion -> argumentologico .)
-    AND             shift and go to state 103
-    OR              shift and go to state 104
-
-    conector_logico                shift and go to state 102
-
-state 70
-
-    (30) condicion -> vacio .
-
-    RPAREN          reduce using rule 30 (condicion -> vacio .)
+    RPAREN          reduce using rule 63 (numero -> FLOTANTE .)
 
 
 state 71
 
-    (31) vacio -> EOL .
+    (27) if -> IF LPAREN condicion . RPAREN LBRACE RBRACE
 
-    RPAREN          reduce using rule 31 (vacio -> EOL .)
+    RPAREN          shift and go to state 104
 
 
 state 72
@@ -1321,8 +1328,8 @@ state 74
 
     CADENA          shift and go to state 112
     VAR             shift and go to state 105
-    ENTERO          shift and go to state 66
-    FLOTANTE        shift and go to state 67
+    ENTERO          shift and go to state 69
+    FLOTANTE        shift and go to state 70
 
     elementos                      shift and go to state 106
     lista                          shift and go to state 107
@@ -1401,9 +1408,9 @@ state 80
 
     COMA            reduce using rule 44 (argumentologico -> BOOLEANO IGUAL VAR .)
     EOL             reduce using rule 44 (argumentologico -> BOOLEANO IGUAL VAR .)
-    RPAREN          reduce using rule 44 (argumentologico -> BOOLEANO IGUAL VAR .)
     AND             reduce using rule 44 (argumentologico -> BOOLEANO IGUAL VAR .)
     OR              reduce using rule 44 (argumentologico -> BOOLEANO IGUAL VAR .)
+    RPAREN          reduce using rule 44 (argumentologico -> BOOLEANO IGUAL VAR .)
 
 
 state 81
@@ -1412,9 +1419,9 @@ state 81
 
     COMA            reduce using rule 46 (argumentologico -> CADENA IGUAL CADENA .)
     EOL             reduce using rule 46 (argumentologico -> CADENA IGUAL CADENA .)
-    RPAREN          reduce using rule 46 (argumentologico -> CADENA IGUAL CADENA .)
     AND             reduce using rule 46 (argumentologico -> CADENA IGUAL CADENA .)
     OR              reduce using rule 46 (argumentologico -> CADENA IGUAL CADENA .)
+    RPAREN          reduce using rule 46 (argumentologico -> CADENA IGUAL CADENA .)
 
 
 state 82
@@ -1423,9 +1430,9 @@ state 82
 
     COMA            reduce using rule 45 (argumentologico -> CADENA IGUAL VAR .)
     EOL             reduce using rule 45 (argumentologico -> CADENA IGUAL VAR .)
-    RPAREN          reduce using rule 45 (argumentologico -> CADENA IGUAL VAR .)
     AND             reduce using rule 45 (argumentologico -> CADENA IGUAL VAR .)
     OR              reduce using rule 45 (argumentologico -> CADENA IGUAL VAR .)
+    RPAREN          reduce using rule 45 (argumentologico -> CADENA IGUAL VAR .)
 
 
 state 83
@@ -1434,9 +1441,9 @@ state 83
 
     COMA            reduce using rule 48 (argumentologico -> CADENA DIFERENTE CADENA .)
     EOL             reduce using rule 48 (argumentologico -> CADENA DIFERENTE CADENA .)
-    RPAREN          reduce using rule 48 (argumentologico -> CADENA DIFERENTE CADENA .)
     AND             reduce using rule 48 (argumentologico -> CADENA DIFERENTE CADENA .)
     OR              reduce using rule 48 (argumentologico -> CADENA DIFERENTE CADENA .)
+    RPAREN          reduce using rule 48 (argumentologico -> CADENA DIFERENTE CADENA .)
 
 
 state 84
@@ -1445,9 +1452,9 @@ state 84
 
     COMA            reduce using rule 47 (argumentologico -> CADENA DIFERENTE VAR .)
     EOL             reduce using rule 47 (argumentologico -> CADENA DIFERENTE VAR .)
-    RPAREN          reduce using rule 47 (argumentologico -> CADENA DIFERENTE VAR .)
     AND             reduce using rule 47 (argumentologico -> CADENA DIFERENTE VAR .)
     OR              reduce using rule 47 (argumentologico -> CADENA DIFERENTE VAR .)
+    RPAREN          reduce using rule 47 (argumentologico -> CADENA DIFERENTE VAR .)
 
 
 state 85
@@ -1456,9 +1463,9 @@ state 85
 
     COMA            reduce using rule 36 (argumentologico -> VAR simboloLogico VAR .)
     EOL             reduce using rule 36 (argumentologico -> VAR simboloLogico VAR .)
-    RPAREN          reduce using rule 36 (argumentologico -> VAR simboloLogico VAR .)
     AND             reduce using rule 36 (argumentologico -> VAR simboloLogico VAR .)
     OR              reduce using rule 36 (argumentologico -> VAR simboloLogico VAR .)
+    RPAREN          reduce using rule 36 (argumentologico -> VAR simboloLogico VAR .)
 
 
 state 86
@@ -1467,9 +1474,9 @@ state 86
 
     COMA            reduce using rule 38 (argumentologico -> VAR simboloLogico numero .)
     EOL             reduce using rule 38 (argumentologico -> VAR simboloLogico numero .)
-    RPAREN          reduce using rule 38 (argumentologico -> VAR simboloLogico numero .)
     AND             reduce using rule 38 (argumentologico -> VAR simboloLogico numero .)
     OR              reduce using rule 38 (argumentologico -> VAR simboloLogico numero .)
+    RPAREN          reduce using rule 38 (argumentologico -> VAR simboloLogico numero .)
 
 
 state 87
@@ -1478,9 +1485,9 @@ state 87
 
     COMA            reduce using rule 39 (argumentologico -> VAR IGUAL BOOLEANO .)
     EOL             reduce using rule 39 (argumentologico -> VAR IGUAL BOOLEANO .)
-    RPAREN          reduce using rule 39 (argumentologico -> VAR IGUAL BOOLEANO .)
     AND             reduce using rule 39 (argumentologico -> VAR IGUAL BOOLEANO .)
     OR              reduce using rule 39 (argumentologico -> VAR IGUAL BOOLEANO .)
+    RPAREN          reduce using rule 39 (argumentologico -> VAR IGUAL BOOLEANO .)
 
 
 state 88
@@ -1489,9 +1496,9 @@ state 88
 
     COMA            reduce using rule 40 (argumentologico -> VAR IGUAL CADENA .)
     EOL             reduce using rule 40 (argumentologico -> VAR IGUAL CADENA .)
-    RPAREN          reduce using rule 40 (argumentologico -> VAR IGUAL CADENA .)
     AND             reduce using rule 40 (argumentologico -> VAR IGUAL CADENA .)
     OR              reduce using rule 40 (argumentologico -> VAR IGUAL CADENA .)
+    RPAREN          reduce using rule 40 (argumentologico -> VAR IGUAL CADENA .)
 
 
 state 89
@@ -1500,9 +1507,9 @@ state 89
 
     COMA            reduce using rule 41 (argumentologico -> VAR DIFERENTE BOOLEANO .)
     EOL             reduce using rule 41 (argumentologico -> VAR DIFERENTE BOOLEANO .)
-    RPAREN          reduce using rule 41 (argumentologico -> VAR DIFERENTE BOOLEANO .)
     AND             reduce using rule 41 (argumentologico -> VAR DIFERENTE BOOLEANO .)
     OR              reduce using rule 41 (argumentologico -> VAR DIFERENTE BOOLEANO .)
+    RPAREN          reduce using rule 41 (argumentologico -> VAR DIFERENTE BOOLEANO .)
 
 
 state 90
@@ -1511,9 +1518,9 @@ state 90
 
     COMA            reduce using rule 42 (argumentologico -> VAR DIFERENTE CADENA .)
     EOL             reduce using rule 42 (argumentologico -> VAR DIFERENTE CADENA .)
-    RPAREN          reduce using rule 42 (argumentologico -> VAR DIFERENTE CADENA .)
     AND             reduce using rule 42 (argumentologico -> VAR DIFERENTE CADENA .)
     OR              reduce using rule 42 (argumentologico -> VAR DIFERENTE CADENA .)
+    RPAREN          reduce using rule 42 (argumentologico -> VAR DIFERENTE CADENA .)
 
 
 state 91
@@ -1522,9 +1529,9 @@ state 91
 
     COMA            reduce using rule 37 (argumentologico -> numero simboloLogico numero .)
     EOL             reduce using rule 37 (argumentologico -> numero simboloLogico numero .)
-    RPAREN          reduce using rule 37 (argumentologico -> numero simboloLogico numero .)
     AND             reduce using rule 37 (argumentologico -> numero simboloLogico numero .)
     OR              reduce using rule 37 (argumentologico -> numero simboloLogico numero .)
+    RPAREN          reduce using rule 37 (argumentologico -> numero simboloLogico numero .)
 
 
 state 92
@@ -1533,9 +1540,9 @@ state 92
 
     COMA            reduce using rule 43 (argumentologico -> numero simboloLogico VAR .)
     EOL             reduce using rule 43 (argumentologico -> numero simboloLogico VAR .)
-    RPAREN          reduce using rule 43 (argumentologico -> numero simboloLogico VAR .)
     AND             reduce using rule 43 (argumentologico -> numero simboloLogico VAR .)
     OR              reduce using rule 43 (argumentologico -> numero simboloLogico VAR .)
+    RPAREN          reduce using rule 43 (argumentologico -> numero simboloLogico VAR .)
 
 
 state 93
@@ -1579,7 +1586,7 @@ state 97
     (65) array -> . VAR ASIGNACION ARRAY LPAREN elementos RPAREN EOL
     (24) estructuracontrol -> . while
     (25) estructuracontrol -> . if
-    (26) while -> . WHILE LPAREN argumentologico RPAREN LBRACE RBRACE
+    (26) while -> . WHILE LPAREN condicion RPAREN LBRACE RBRACE
     (27) if -> . IF LPAREN condicion RPAREN LBRACE RBRACE
 
     RETURN          shift and go to state 94
@@ -1607,7 +1614,7 @@ state 98
     (65) array -> . VAR ASIGNACION ARRAY LPAREN elementos RPAREN EOL
     (24) estructuracontrol -> . while
     (25) estructuracontrol -> . if
-    (26) while -> . WHILE LPAREN argumentologico RPAREN LBRACE RBRACE
+    (26) while -> . WHILE LPAREN condicion RPAREN LBRACE RBRACE
     (27) if -> . IF LPAREN condicion RPAREN LBRACE RBRACE
 
     RETURN          shift and go to state 94
@@ -1635,7 +1642,7 @@ state 99
     (65) array -> . VAR ASIGNACION ARRAY LPAREN elementos RPAREN EOL
     (24) estructuracontrol -> . while
     (25) estructuracontrol -> . if
-    (26) while -> . WHILE LPAREN argumentologico RPAREN LBRACE RBRACE
+    (26) while -> . WHILE LPAREN condicion RPAREN LBRACE RBRACE
     (27) if -> . IF LPAREN condicion RPAREN LBRACE RBRACE
 
     RETURN          shift and go to state 94
@@ -1653,19 +1660,12 @@ state 99
 
 state 100
 
-    (26) while -> WHILE LPAREN argumentologico RPAREN . LBRACE RBRACE
+    (26) while -> WHILE LPAREN condicion RPAREN . LBRACE RBRACE
 
     LBRACE          shift and go to state 120
 
 
 state 101
-
-    (27) if -> IF LPAREN condicion RPAREN . LBRACE RBRACE
-
-    LBRACE          shift and go to state 121
-
-
-state 102
 
     (29) condicion -> argumentologico conector_logico . condicion
     (28) condicion -> . argumentologico
@@ -1689,19 +1689,19 @@ state 102
     (62) numero -> . ENTERO
     (63) numero -> . FLOTANTE
 
-    VAR             shift and go to state 63
-    BOOLEANO        shift and go to state 64
-    CADENA          shift and go to state 65
-    EOL             shift and go to state 71
-    ENTERO          shift and go to state 66
-    FLOTANTE        shift and go to state 67
+    VAR             shift and go to state 65
+    BOOLEANO        shift and go to state 66
+    CADENA          shift and go to state 67
+    EOL             shift and go to state 68
+    ENTERO          shift and go to state 69
+    FLOTANTE        shift and go to state 70
 
-    argumentologico                shift and go to state 69
-    condicion                      shift and go to state 122
-    vacio                          shift and go to state 70
+    argumentologico                shift and go to state 63
+    condicion                      shift and go to state 121
+    vacio                          shift and go to state 64
     numero                         shift and go to state 28
 
-state 103
+state 102
 
     (32) conector_logico -> AND .
 
@@ -1713,7 +1713,7 @@ state 103
     FLOTANTE        reduce using rule 32 (conector_logico -> AND .)
 
 
-state 104
+state 103
 
     (33) conector_logico -> OR .
 
@@ -1723,6 +1723,13 @@ state 104
     EOL             reduce using rule 33 (conector_logico -> OR .)
     ENTERO          reduce using rule 33 (conector_logico -> OR .)
     FLOTANTE        reduce using rule 33 (conector_logico -> OR .)
+
+
+state 104
+
+    (27) if -> IF LPAREN condicion RPAREN . LBRACE RBRACE
+
+    LBRACE          shift and go to state 122
 
 
 state 105
@@ -1819,8 +1826,8 @@ state 116
     (63) numero -> . FLOTANTE
 
     ARRAY           shift and go to state 36
-    ENTERO          shift and go to state 66
-    FLOTANTE        shift and go to state 67
+    ENTERO          shift and go to state 69
+    FLOTANTE        shift and go to state 70
 
     numero                         shift and go to state 129
 
@@ -1847,23 +1854,23 @@ state 119
 
 state 120
 
-    (26) while -> WHILE LPAREN argumentologico RPAREN LBRACE . RBRACE
+    (26) while -> WHILE LPAREN condicion RPAREN LBRACE . RBRACE
 
     RBRACE          shift and go to state 130
 
 
 state 121
 
-    (27) if -> IF LPAREN condicion RPAREN LBRACE . RBRACE
+    (29) condicion -> argumentologico conector_logico condicion .
 
-    RBRACE          shift and go to state 131
+    RPAREN          reduce using rule 29 (condicion -> argumentologico conector_logico condicion .)
 
 
 state 122
 
-    (29) condicion -> argumentologico conector_logico condicion .
+    (27) if -> IF LPAREN condicion RPAREN LBRACE . RBRACE
 
-    RPAREN          reduce using rule 29 (condicion -> argumentologico conector_logico condicion .)
+    RBRACE          shift and go to state 131
 
 
 state 123
@@ -1909,8 +1916,8 @@ state 127
     (62) numero -> . ENTERO
     (63) numero -> . FLOTANTE
 
-    ENTERO          shift and go to state 66
-    FLOTANTE        shift and go to state 67
+    ENTERO          shift and go to state 69
+    FLOTANTE        shift and go to state 70
 
     numero                         shift and go to state 113
     numeros                        shift and go to state 137
@@ -1931,13 +1938,13 @@ state 129
 
 state 130
 
-    (26) while -> WHILE LPAREN argumentologico RPAREN LBRACE RBRACE .
+    (26) while -> WHILE LPAREN condicion RPAREN LBRACE RBRACE .
 
-    $end            reduce using rule 26 (while -> WHILE LPAREN argumentologico RPAREN LBRACE RBRACE .)
-    RETURN          reduce using rule 26 (while -> WHILE LPAREN argumentologico RPAREN LBRACE RBRACE .)
-    VAR             reduce using rule 26 (while -> WHILE LPAREN argumentologico RPAREN LBRACE RBRACE .)
-    WHILE           reduce using rule 26 (while -> WHILE LPAREN argumentologico RPAREN LBRACE RBRACE .)
-    IF              reduce using rule 26 (while -> WHILE LPAREN argumentologico RPAREN LBRACE RBRACE .)
+    $end            reduce using rule 26 (while -> WHILE LPAREN condicion RPAREN LBRACE RBRACE .)
+    RETURN          reduce using rule 26 (while -> WHILE LPAREN condicion RPAREN LBRACE RBRACE .)
+    VAR             reduce using rule 26 (while -> WHILE LPAREN condicion RPAREN LBRACE RBRACE .)
+    WHILE           reduce using rule 26 (while -> WHILE LPAREN condicion RPAREN LBRACE RBRACE .)
+    IF              reduce using rule 26 (while -> WHILE LPAREN condicion RPAREN LBRACE RBRACE .)
 
 
 state 131
