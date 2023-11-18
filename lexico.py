@@ -178,7 +178,7 @@ def t_ID(t):
 
 # Definicion de variables
 def t_VAR(t):
-  r'\$([a-zA-z]|_)+\w*[^\$\s\;]*'
+  r'\$([a-zA-z]|_)+\w*[^\$\s\;\+\-\/\*\>\<\>=\<=\=]*'
   t.type = reservadas.get(t.value, 'VAR')
   return t
 

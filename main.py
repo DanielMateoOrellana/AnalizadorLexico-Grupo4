@@ -292,7 +292,7 @@ echo 'Hello world';
 echo True;
 echo False;
 echo 'Hola mundo', 1.4, 2, True, False, $a21;
-if ( $a1 > $a2 and $a1 > $a2 or $a1 > $a2 or "hola mundo" == $a3 ){}
+if ($a1> $a2 and $a1>$a2 or $a1 > $a2 or "hola mundo" == $a3 ){}
 while ( $a3 == "Hola" and $costo <= 27.8 and $bool == True ){}'''
 lRoberto = testRoberto.split("\n")
 print("---PRUEBA ROBERTO PATINO---")
