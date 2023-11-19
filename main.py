@@ -32,7 +32,7 @@ def p_echo(p):
 
 
 
-# VARIABLE_ARRAY NO FUNCIONA PARA ARRAYS DE 1 SOLO ELEMENTO
+
 
 def p_valores(p):
    '''
@@ -78,7 +78,7 @@ def p_if(p):
       | if elseif else
       | if elseif
    '''
-  
+
 def p_elseif(p):
    '''
    elseif : ELSEIF LPAREN condicion RPAREN LBRACE lineas RBRACE
@@ -134,7 +134,7 @@ def p_argumentologico(p):
                    | CADENA DIFERENTE CADENA
                    | BOOLEANO
    '''
-  
+
 def p_numero(p):
    '''
    numero : ENTERO
@@ -205,7 +205,7 @@ def p_numeros(p):
 def p_variables(p):
   '''variables : VAR COMA variables
                | VAR'''
-  
+
 def p_funcion(p):
   '''funcion : FUNCTION tipo_funcion LBRACE final_funcion RBRACE'''''
 
@@ -215,7 +215,7 @@ def p_tipo_funcion(p):
 
 def p_final_funcion(p):
   '''final_funcion : RETURN VAR EOL
-                    | cuerpo_funcion
+                    | lineas final_funcion
   '''
 
 def p_cuerpo_funcion(p):
@@ -242,7 +242,7 @@ def p_objeto(p):
    '''
    objeto : CLASE OBJETO LBRACE mas_objetos RBRACE VAR ASIGNACION NEW OBJETO LPAREN RPAREN EOL mas_atributos
    '''
-  
+
 def p_cuerpo_objeto(p):
    '''
    cuerpo_objeto : PUBLIC VAR EOL
@@ -279,6 +279,8 @@ def p_linea(p):
          | VAR ASIGNACION CADENA EOL 
          | estructuracontrol
          | comentario
+         | declaracion_numeros
+         | array
    '''
 
 def p_lineas(p):
@@ -286,7 +288,7 @@ def p_lineas(p):
    lineas : linea
           | linea lineas
    '''
-  
+
 parser = sint.yacc()
 
 # while True:
@@ -352,12 +354,17 @@ $array2 = array(1.2, 5.2, 6.5);
 $array3 = array($p1 , $p2 , $p3 );
 $array4 = array("rojo", "verde", "azul" );
 $array5 = array("Hola" => "valor", "Clave" => 35 );
+$array6 = array("Hola" => "valor" );
+$array7 = array(1);
+$array8 = array($p1 );
 $entero = 45;
 $decimal = 53.2;
-function longitud($texto) {$entero = 45; $array1 = array(1,2,3); $array5 = array("Hola" => "valor", "Clave" => 35 ); return $entero ;}'''
+function longitud($texto) {$entero = 45; $array1 = array(1,2,3); if($a1<=$a2){ $asd = "Hola"; }elseif($a>3 or 1!=$num){ $asd = "Hola"; }elseif($a<3 or 1==$num){ $asd = "Hola"; }else{ $asd = "Hola"; } $array5 = array("Hola" => "valor", "Clave" => 35 ); return $entero ;}
+function longitud($texto) {$entero = 45; for ($i=5;$i<6;$i++) {echo "Hola"; echo "Chao"; for ( $i = 5; $i <6;$i++) {if ($a1> $a2 and $a1>$a2 or $a1 > $a2 or "hola mundo" == $a3 ){ $asd = "Hola"; }}} return $entero;}
+function longitud($texto) {while ( $a3 == "Hola" and $costo <= 27.8 and $bool == True ){ $asd = "Hola"; if($a1<=$a2){ $asd = "Hola"; }else{ $asd = "Hola";}} $entero = 45; for ( $i = 5; $i <6;$i++) { echo "Hola"; echo "Chao"; for ( $i = 5; $i <6;$i++) { echo "Hola"; echo "Chao"; }} return $entero;}'''
 
 lCristopher = testCristopher.split("\n")
-
+print("\n--- Prueba Cristopher ---\n")
 for linea in lCristopher:
   result = parser.parse(linea)
   if result != None:
