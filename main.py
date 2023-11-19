@@ -18,6 +18,7 @@ def p_sentencia(p):
                 | readline
                 | ingreso_datos
                 | objeto
+                | expresionAritmetica
   '''
 
 # ---Declaracion y asignacion de variables---
@@ -289,6 +290,23 @@ def p_lineas(p):
           | linea lineas
    '''
 
+def p_expresionAritmetica(p):
+   '''
+   expresionAritmetica : VAR ASIGNACION numero masTerminos EOL
+                       | VAR ASIGNACION VAR masTerminos EOL
+   '''
+
+def p_termino(p):
+   '''
+   termino : operador numero
+           | operador VAR
+   '''
+def p_masTerminos(p):
+   '''
+   masTerminos : termino
+               | termino masTerminos
+   '''
+
 parser = sint.yacc()
 
 # while True:
@@ -386,8 +404,15 @@ if($a1<=$a2){ $asd = "Hola"; }else{ $asd = "Hola"; }
 if($a1<=$a2){ $asd = "Hola"; }elseif($a>3 or 1!=$num){ $asd = "Hola"; }else{ $asd = "Hola"; }
 if($a1<=$a2){ $asd = "Hola"; }else{ $asd = "Hola"; for ($i=5;$i<6;$i++) {echo "Hola"; echo "Chao"; for ( $i = 5; $i <6;$i++) { echo "Hola"; echo "Chao"; }}}
 if($a1<=$a2){ $asd = "Hola"; }elseif($a>3 or 1!=$num){ $asd = "Hola"; }elseif($a<3 or 1==$num){ $asd = "Hola"; }else{ $asd = "Hola"; }
-while ( $a3 == "Hola" and $costo <= 27.8 and $bool == True ){ $asd = "Hola"; if($a1<=$a2){ $asd = "Hola"; }else{ $asd = "Hola";}}'''
-
+while ( $a3 == "Hola" and $costo <= 27.8 and $bool == True ){ $asd = "Hola"; if($a1<=$a2){ $asd = "Hola"; }else{ $asd = "Hola";}}
+$a = $b + $a;
+$a = $a + 15 +$b + $x + $y + 15; 
+$a1 = 2;
+$a = 15 + 17;
+$asd = $ab + $bc * 5;
+$edad = $edad1 + $edad2;
+$total = 10 + 10;
+$totalIVA = 20 * 0.12;'''
 
 lDaniel = testDaniel.split("\n")
 
