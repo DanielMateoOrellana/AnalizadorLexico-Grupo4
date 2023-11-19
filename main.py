@@ -18,7 +18,6 @@ def p_sentencia(p):
                 | readline
                 | ingreso_datos
                 | objeto
-                | public
   '''
 
 # ---Declaracion y asignacion de variables---
@@ -71,7 +70,6 @@ def p_while(p):
    '''
    while : WHILE LPAREN condicion RPAREN LBRACE lineas RBRACE
    '''
-
 
 def p_if(p):
    '''
@@ -171,9 +169,7 @@ def p_operador(p):
 #--------------------------
 
 # Aporte Cristopher Arroba
-def p_numero(p):
-  '''numero : ENTERO
-            | FLOTANTE'''
+
 
 def p_declaracion_numeros(p):
   '''declaracion_numeros : VAR ASIGNACION numero EOL'''
@@ -234,12 +230,13 @@ def p_error(p):
 # Aporte Daniel Mateo
 
 def p_readline(p):
-  '''readline : READLINE LPAREN RPAREN EOL'''
+  '''readline : READLINE LPAREN CADENA RPAREN EOL'''
 
 def p_ingreso_datos(p):
    '''
    ingreso_datos : VAR ASIGNACION readline
    '''
+
 
 def p_objeto(p):
    '''
@@ -249,6 +246,7 @@ def p_objeto(p):
 def p_cuerpo_objeto(p):
    '''
    cuerpo_objeto : PUBLIC VAR EOL
+                 | PUBLIC asignacion
    '''
 
 def p_mas_objetos(p):
@@ -277,8 +275,10 @@ def p_for(p):
 def p_linea(p):
    '''
    linea : ECHO CADENA EOL 
-         | ECHO VAR EOL 
-         | estructura_control
+         | ECHO VAR EOL
+         | VAR ASIGNACION CADENA EOL 
+         | estructuracontrol
+         | comentario
    '''
 
 def p_lineas(p):
@@ -334,11 +334,11 @@ echo 'Hello world';
 echo True;
 echo False;
 echo 'Hola mundo', 1.4, 2, True, False, $a21;
-if ($a1> $a2 and $a1>$a2 or $a1 > $a2 or "hola mundo" == $a3 ){}
-if($a1<=$a2){}else{}
-if($a1<=$a2){}elseif($a>3 or 1!=$num){}else{}
-if($a1<=$a2){}elseif($a>3 or 1!=$num){}elseif($a<3 or 1==$num){}else{}
-while ( $a3 == "Hola" and $costo <= 27.8 and $bool == True ){}'''
+if ($a1> $a2 and $a1>$a2 or $a1 > $a2 or "hola mundo" == $a3 ){ $asd = "Hola"; }
+if($a1<=$a2){ $asd = "Hola"; }else{ $asd = "Hola"; }
+if($a1<=$a2){ $asd = "Hola"; }elseif($a>3 or 1!=$num){ $asd = "Hola"; }else{ $asd = "Hola"; }
+if($a1<=$a2){ $asd = "Hola"; }elseif($a>3 or 1!=$num){ $asd = "Hola"; }elseif($a<3 or 1==$num){ $asd = "Hola"; }else{ $asd = "Hola"; }
+while ( $a3 == "Hola" and $costo <= 27.8 and $bool == True ){ $asd = "Hola"; }'''
 lRoberto = testRoberto.split("\n")
 print("---PRUEBA ROBERTO PATINO---")
 for linea in lRoberto:
@@ -355,6 +355,7 @@ $array5 = array("Hola" => "valor", "Clave" => 35 );
 $entero = 45;
 $decimal = 53.2;
 function longitud($texto) {$entero = 45; $array1 = array(1,2,3); $array5 = array("Hola" => "valor", "Clave" => 35 ); return $entero ;}'''
+
 lCristopher = testCristopher.split("\n")
 
 for linea in lCristopher:
@@ -362,7 +363,23 @@ for linea in lCristopher:
   if result != None:
       print(result)
 
-testDaniel = """class Producto { public $nombre; public $precio; public $nombre;} $producto1 = new Producto(); $producto1 -> nombre = \"asd\"; $producto1 -> nombre = \"asd\"; """
+print("\n--- Prueba Daniel ---\n")
+
+testDaniel = '''class Producto {public $nombre; public $precio = 5; public $nombre;} $producto1 = new Producto(); $producto1 -> nombre = "asd"; $producto1 -> nombre = "asd";
+class Persona {public $nombre; public $apellido = "Mateo" ;} $persona1 = new Persona(); $persona1 -> nombre = "Daniel"; $producto1 -> nombre = "Alfredo";
+class Producto {public $nombre;} $producto1 = new Producto(); $producto1 -> nombre = "asd"; $producto1 -> nombre = "asd";
+class Producto {public $precio = 5; public $nombre; } $producto1 = new Producto(); $producto1 -> nombre = "asd";
+$edad = readline("Escribe tu edad");
+$nombre = readline("Escribe tu nombre");
+for ($i=5;$i<6;$i++) {echo "Hola"; echo "Chao"; for ( $i = 5; $i <6;$i++) { echo "Hola"; echo "Chao"; }}
+for ($i=5;$i<6;$i++) {echo "Hola"; echo "Chao"; for ( $i = 5; $i <6;$i++) { for ( $i = 5; $i <6;$i++) { echo "Hola"; echo "Chao"; }}}
+for ($i=5;$i<6;$i++) {echo "Hola"; echo "Chao"; for ( $i = 5; $i <6;$i++) {if ($a1> $a2 and $a1>$a2 or $a1 > $a2 or "hola mundo" == $a3 ){ $asd = "Hola"; }}}
+if ($a1> $a2 and $a1>$a2 or $a1 > $a2 or "hola mundo" == $a3 ){ $asd = "Hola"; }
+if($a1<=$a2){ $asd = "Hola"; }else{ $asd = "Hola"; }
+if($a1<=$a2){ $asd = "Hola"; }elseif($a>3 or 1!=$num){ $asd = "Hola"; }else{ $asd = "Hola"; }
+if($a1<=$a2){ $asd = "Hola"; }else{ $asd = "Hola"; for ($i=5;$i<6;$i++) {echo "Hola"; echo "Chao"; for ( $i = 5; $i <6;$i++) { echo "Hola"; echo "Chao"; }}}
+if($a1<=$a2){ $asd = "Hola"; }elseif($a>3 or 1!=$num){ $asd = "Hola"; }elseif($a<3 or 1==$num){ $asd = "Hola"; }else{ $asd = "Hola"; }
+while ( $a3 == "Hola" and $costo <= 27.8 and $bool == True ){ $asd = "Hola"; if($a1<=$a2){ $asd = "Hola"; }else{ $asd = "Hola";}}'''
 
 
 lDaniel = testDaniel.split("\n")
