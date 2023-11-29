@@ -1,0 +1,31 @@
+
+body {
+    background-color: #2c2b2b; /* Color gris claro */
+}
+
+h1,h2,h3{
+    color: white;
+}
+
+#runBtn{
+    background-color: greenyellow;
+    text-decoration:solid;
+}
+
+.files{
+    background-color: rgb(135, 135, 135);
+    color: white;
+}
+
+.editor{
+    background-color: #515151;
+}
+
+.line-numbers{
+    background-color: rgb(41, 41, 41);
+}
+
+.console{
+    background-color: black;
+    color: greenyellow;
+}
