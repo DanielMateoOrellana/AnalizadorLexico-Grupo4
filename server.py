@@ -8,7 +8,7 @@ CORS(app, resources={r"/*": {"origins": "http://127.0.0.1:5500"}})
 @app.route('/', methods=['POST'])
 def write_to_file():
     content = request.get_data(as_text=True)
-    file_path = 'assets/code_input.txt'
+    file_path = 'gui/assets/code_input.txt'
 
     with open(file_path, 'w') as file:
         file.write(content)
@@ -16,7 +16,7 @@ def write_to_file():
     return 'File written successfully'
 def write_to_output_file():
     content = request.get_data(as_text=True)
-    file_path = 'assets/code_output.txt'
+    file_path = 'gui/assets/code_output.txt'
 
     with open(file_path, 'w') as file:
         file.write(content)
@@ -25,19 +25,19 @@ def write_to_output_file():
 
 @app.route('/get_content', methods=['GET'])
 def get_content():
-    file_path = 'assets/code_input.txt'
+    file_path = 'gui/assets/code_input.txt'
     return send_file(file_path)
 
 
 @app.route('/get_output_content', methods=['GET'])
 def get_output_content():
-    file_path = 'assets/code_output.txt'
+    file_path = 'gui/assets/code_output.txt'
     return send_file(file_path)
 
 @app.route('/execute_script', methods=['POST'])
 def execute_script():
     try:
-        subprocess.run(['python', '../python/main.py'])  # Reemplaza 'ruta_al_script.py' con la ruta a tu script Python
+        subprocess.run(['python', 'analizador/main.py'])  # Reemplaza 'ruta_al_script.py' con la ruta a tu script Python
         return 'Script executed successfully'
     except Exception as e:
         return f'Error: {str(e)}'

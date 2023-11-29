@@ -1,4 +1,2 @@
-$array1 = array(1,2,3);
-echo "Hola mundo";
-//Hola 
-\\\\
+a
+z
