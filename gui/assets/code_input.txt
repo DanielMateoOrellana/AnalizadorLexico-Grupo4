@@ -1,2 +1,2 @@
-Hola
-Mundo
+$array1 = array(1,2,3);
+a

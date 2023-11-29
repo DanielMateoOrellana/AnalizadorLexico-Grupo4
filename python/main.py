@@ -420,3 +420,16 @@ for linea in lDaniel:
   result = parser.parse(linea)
   if result != None:
       print(result)
+
+
+print("##################################################")
+archivo = open("../gui/assets/code_input.txt","r")
+line_number = 1
+for linea in archivo:
+   print("-------------------")
+   result = parser.parse(linea)
+   if result != None:
+      
+      print(result)
+   print("Linea ejecutada: ",line_number)
+   line_number+=1
