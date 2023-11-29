@@ -1,7 +1,10 @@
 //Funcion para iniciar el servidor
-(function () {
-
-})();
+// (function () {
+//     // Get the path to the Python script.
+//     var pythonScriptPath = "../../server.py";
+//     // Run the Python script.
+//     subprocess.run(["python", pythonScriptPath]);
+// })();
 
 
 // Función para agregar números de línea dinámicamente

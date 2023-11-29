@@ -1,2 +1,5 @@
+echo "Hola mundo";
 a
-z
+a
+a
+a
