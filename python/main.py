@@ -227,6 +227,8 @@ def p_cuerpo_funcion(p):
 
 def p_error(p):
   print("Error de sintaxis")
+  output_file = open("../gui/assets/code_output.txt","a")
+  output_file.write("Error de sintaxis\n")
 
 # Aporte Daniel Mateo
 

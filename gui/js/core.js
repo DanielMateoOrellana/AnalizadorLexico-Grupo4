@@ -40,13 +40,28 @@ document.getElementById('runBtn').addEventListener('click', function() {
     .catch(error => {
         console.error('Hubo un error:', error);
     });
+    fetch('http://localhost:8000/execute_script', {
+        method: 'POST'
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok on script exec');
+        }
+        return response.text();
+    })
+    .then(data => {
+        console.log('Respuesta del servidor:', data);
+    })
+    .catch(error => {
+        console.error('Hubo un error:', error);
+    });
 });
 
 function getContent() {
     fetch('http://localhost:8000/get_content')
     .then(response => {
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error('Network response was not ok on input read');
         }
         return response.text();
     })
@@ -57,9 +72,25 @@ function getContent() {
         console.error('Hubo un error:', error);
     });
 }
+function getContentOutput() {
+    fetch('http://localhost:8000/get_output_content')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok on output read');
+        }
+        return response.text();
+    })
+    .then(data => {
+        const node = document.createTextNode(data);
 
+        document.getElementById('console').appendChild(node) // Establecer el contenido en el textarea
+    })
+    .catch(error => {
+        console.error('Hubo un error:', error);
+    });
+}
 getContent();
-
+getContentOutput();
 
 // Evento para actualizar los números de línea al escribir
 document.getElementById('codeEditor').addEventListener('input', updateLineNumbers);
