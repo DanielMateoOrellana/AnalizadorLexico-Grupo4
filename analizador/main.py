@@ -21,6 +21,7 @@ def p_sentencia(p):
                 | expresionAritmetica
   '''
 
+
 # ---Declaracion y asignacion de variables---
 def p_asignacion(p):
   "asignacion : VAR ASIGNACION valor EOL"
@@ -226,17 +227,34 @@ def p_cuerpo_funcion(p):
 
 
 def p_error(p):
-   mensaje = ""
-   if p:
-      print(f"Error de sintaxis en la línea {p.lineno}: Token inesperado '{p.value}'")
-      m = f"Error en la línea {p.lineno}: Token inesperado '{p.value}'"
-   else:
-      print("Error de sintaxis: entrada inesperada al final del archivo ")
-      m = "Error: entrada inesperada al final del archivo "
+    mensaje = ""
+    if p:
+        if p.type == 'EOL':
+            mensaje = f"Error en la línea {p.lineno}: Las sentencias solo pueden terminar con un punto y coma"
+        else:
+            mensaje = f"Error de sintaxis en la línea {p.lineno}: Token inesperado '{p.value}'"
+            # Verificación adicional para detectar si el token siguiente es un operador
+            index = p.lexpos + len(p.value) -1
+            if index < len(p.lexer.lexdata):
+                next_char = p.lexer.lexdata[index]
+                if next_char in '+-*/=':
+                    mensaje = f". El caracter '{next_char}' después del operador '{p.lexer.lexdata[index-1]}' no es válido"
+        print(mensaje)
+        output_file = open("gui/assets/code_output.txt", "a")
+        output_file.write(mensaje + "\n")
+        output_file.close()
+    else:
+        print("Error de sintaxis: entrada inesperada al final del archivo ")
+        mensaje = "Error: entrada inesperada al final del archivo "
+        output_file = open("gui/assets/code_output.txt", "a")
+        output_file.write(mensaje + "\n")
+        output_file.close()
 
-   output_file = open("gui/assets/code_output.txt", "a")
-   output_file.write(m+"\n")
-   output_file.close()
+
+
+
+
+
 # Aporte Daniel Mateo
 
 def p_readline(p):
@@ -361,10 +379,10 @@ if($a1<=$a2){ $asd = "Hola"; }elseif($a>3 or 1!=$num){ $asd = "Hola"; }elseif($a
 while ( $a3 == "Hola" and $costo <= 27.8 and $bool == True ){ $asd = "Hola"; }'''
 lRoberto = testRoberto.split("\n")
 print("---PRUEBA ROBERTO PATINO---")
-# for linea in lRoberto:
-#   result = parser.parse(linea)
-#   if result != None:
-#       print(result)
+for linea in lRoberto:
+  result = parser.parse(linea)
+  if result != None:
+      print(result)
 
 testCristopher = '''$array1 = array("hola","mundo");
 $array1 = array(1,2,3);
@@ -382,11 +400,11 @@ function longitud($texto) {$entero = 45; for ($i=5;$i<6;$i++) {echo "Hola"; echo
 function longitud($texto) {while ( $a3 == "Hola" and $costo <= 27.8 and $bool == True ){ $asd = "Hola"; if($a1<=$a2){ $asd = "Hola"; }else{ $asd = "Hola";}} $entero = 45; for ( $i = 5; $i <6;$i++) { echo "Hola"; echo "Chao"; for ( $i = 5; $i <6;$i++) { echo "Hola"; echo "Chao"; }} return $entero;}'''
 
 lCristopher = testCristopher.split("\n")
-# print("\n--- Prueba Cristopher ---\n")
-# for linea in lCristopher:
-#   result = parser.parse(linea)
-#   if result != None:
-#       print(result)
+print("\n--- Prueba Cristopher ---\n")
+for linea in lCristopher:
+  result = parser.parse(linea)
+  if result != None:
+      print(result)
 
 print("\n--- Prueba Daniel ---\n")
 
@@ -416,10 +434,10 @@ $totalIVA = 20 * 0.12;'''
 
 lDaniel = testDaniel.split("\n")
 
-# for linea in lDaniel:
-#   result = parser.parse(linea)
-#   if result != None:
-#       print(result)
+for linea in lDaniel:
+  result = parser.parse(linea)
+  if result != None:
+      print(result)
 
 
 archivo = open("gui/assets/code_input.txt","r")
