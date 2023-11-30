@@ -119,6 +119,14 @@ def p_valor_logico(p):
                 | VAR
    '''
 
+
+###################################################################
+############## Regla semantica 1: Roberto Patiño ##################
+#Esta regla se usa en conjunto con las sentencias condicionales   #
+#y estructuras iterativas como while para validar que su argumento#
+#siempre sea algo booleano.                                       #
+###################################################################
+
 def p_argumentologico(p):
    '''
    argumentologico : VAR operador_logico VAR
@@ -136,7 +144,7 @@ def p_argumentologico(p):
                    | CADENA DIFERENTE CADENA
                    | BOOLEANO
    '''
-
+################### Fin de regla semantica 1: Roberto Patiño############
 def p_numero(p):
    '''
    numero : ENTERO
