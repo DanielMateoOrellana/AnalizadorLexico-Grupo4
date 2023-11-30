@@ -192,29 +192,46 @@ def p_elementos(p):
                | diccionario'''
 
 def p_diccionario(p):
-  '''diccionario : CADENA ASIGNACION MAYOR valor_dic
-                 | CADENA ASIGNACION MAYOR valor COMA diccionario'''
+  '''diccionario : clave_dic ASIGNACION MAYOR valor_dic
+                 | clave_dic ASIGNACION MAYOR valor_dic COMA diccionario'''
+
+def p_clave_dic(p):
+  '''clave_dic : ENTERO
+                | CADENA'''
 
 def p_valor_dic(p):
   '''valor_dic : numero
-           | CADENA'''
+           | CADENA
+           | VAR
+           | BOOLEANO
+           | array_l'''
 
 def p_lista(p):
   '''lista : palabras
            | numeros
-           | variables'''
+           | variables
+           | array_l
+           | bool'''
+  
+def p_array_l(p):
+  '''array_l : ARRAY LPAREN elementos RPAREN
+             | ARRAY LPAREN elementos RPAREN COMA lista'''
 
 def p_palabras(p):
-  '''palabras : CADENA COMA palabras
-              | CADENA'''
+  '''palabras : CADENA
+              | CADENA COMA lista'''
 
 def p_numeros(p):
-  '''numeros : numero COMA numeros
-             | numero'''
+  '''numeros : numero
+             | numero COMA lista'''
 
 def p_variables(p):
-  '''variables : VAR COMA variables
-               | VAR'''
+  '''variables : VAR
+               | VAR COMA lista'''
+
+def p_bool(p):
+  '''bool : BOOLEANO
+          | BOOLEANO COMA lista'''
 
 def p_funcion(p):
   '''funcion : FUNCTION tipo_funcion LBRACE final_funcion RBRACE'''''
@@ -401,6 +418,8 @@ $array5 = array("Hola" => "valor", "Clave" => 35 );
 $array6 = array("Hola" => "valor" );
 $array7 = array(1);
 $array8 = array($p1 );
+$array9 = array($p1 , $p2 , $p3 , array($p1 , $p2 , $p3 ), array("Hola" => "valor" , "Clave" => 35 ) );
+$array10 = array(1.2, $p1 , $p2 , $p3 , array($p1 , True , $p3 ,array(2 => 5 , "Clave" => array("Hola" => $p1 , "Clave" => False))), array(2 => 5));
 $entero = 45;
 $decimal = 53.2;
 function longitud($texto) {$entero = 45; $array1 = array(1,2,3); if($a1<=$a2){ $asd = "Hola"; }elseif($a>3 or 1!=$num){ $asd = "Hola"; }elseif($a<3 or 1==$num){ $asd = "Hola"; }else{ $asd = "Hola"; } $array5 = array("Hola" => "valor", "Clave" => 35 ); return $entero ;}
