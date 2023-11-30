@@ -207,10 +207,6 @@ def t_CADENA(t):
 # ---- Tipos de datos avanzados ----
 
 
-# Listas
-def t_ARRAY(t):
-  r'\[(((\d+)(,\s?\d)+)|("\w+"(,\s?"\w+")*)|(\$\w+(,\s?\$\w+)*))\]'
-  return t
 
 
 
