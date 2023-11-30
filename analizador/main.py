@@ -245,7 +245,7 @@ def p_error(p):
         output_file.close()
     else:
         print("Error de sintaxis: entrada inesperada al final del archivo ")
-        mensaje = "Error: entrada inesperada al final del archivo "
+        mensaje = "Error: entrada inesperada al final del archivo, asegurese de finalizar cada sentencia con punto y coma"
         output_file = open("gui/assets/code_output.txt", "a")
         output_file.write(mensaje + "\n")
         output_file.close()
