@@ -3,7 +3,7 @@ from flask_cors import CORS
 import subprocess
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "http://127.0.0.1:5500"}})
+CORS(app, resources={r"/*": {"origins": "*"}})  # Permitir conexiones desde cualquier origen
 
 @app.route('/', methods=['POST'])
 def write_to_file():
@@ -15,9 +15,7 @@ def write_to_file():
     return 'File written successfully'
 @app.route('/reset_file', methods=['POST'])
 def resetFile():
-    content = request.get_data(as_text=True)
     file_path = 'gui/assets/code_output.txt'
-
     with open(file_path, 'w') as file:
         file.truncate()
     return 'File reset successfully'

@@ -248,49 +248,49 @@ def test_tokens(code):
 # Prueba Daniel
 print("\n---- Prueba Daniel ----\n")
 
-codigo_prueba_daniel = '''[3,4,5,6] array("nombre" => "Juan", "edad" => 30, "ciudad" => "Madrid") (4,5,6) ; x = 3 + - * / 
-  $diccionario = array(
-    "gato" => "animal doméstico",
-    "perro" => "animal doméstico",
-    "pez" => "animal acuático"
-);'''
+# codigo_prueba_daniel = '''[3,4,5,6] array("nombre" => "Juan", "edad" => 30, "ciudad" => "Madrid") (4,5,6) ; x = 3 + - * / 
+#   $diccionario = array(
+#     "gato" => "animal doméstico",
+#     "perro" => "animal doméstico",
+#     "pez" => "animal acuático"
+# );'''
 # test_tokens(codigo_prueba_daniel)
 
 # Prueba Roberto
 print("\n---- Prueba Roberto ----\n")
 
-test_tokens('''
-            //hola mundo
-            /*
-            Hola
-            mundo
-            */
-            $mivar1 = (12.5+12)*7-(2/1)+3**2;
+# test_tokens('''
+#             //hola mundo
+#             /*
+#             Hola
+#             mundo
+#             */
+#             $mivar1 = (12.5+12)*7-(2/1)+3**2;
 
-            $mivarBool1 = True;
-            $mivarBool2 = False;
+#             $mivarBool1 = True;
+#             $mivarBool2 = False;
 
-            $mivarBool3 = $mivar1 > 12;
-            $mivarBool4 = 4>=10.5;
-            $mivarBool5 = 5.5==5.5;
-            $mivarBool6 = 7<5;
-            $mivarBool7 = 1<=1.5;
-            $stringComillasDobles = "Hola mundo";
-            $stringComillasSimples = 'Hola mundo';
+#             $mivarBool3 = $mivar1 > 12;
+#             $mivarBool4 = 4>=10.5;
+#             $mivarBool5 = 5.5==5.5;
+#             $mivarBool6 = 7<5;
+#             $mivarBool7 = 1<=1.5;
+#             $stringComillasDobles = "Hola mundo";
+#             $stringComillasSimples = 'Hola mundo';
 
-            if($mivarBool1 == False){
-              while(True){
-                $mivar1 = $mivar1 + 1;
-                if($mivar1 > 10){
-                  break;
-                }
-              }
-            }elseif($mivarBool2 == True){
-              $mivar1 = $mivar1 - 1;
-            }else{
-              $mivar1 = 0;
-            }
-            ''')
+#             if($mivarBool1 == False){
+#               while(True){
+#                 $mivar1 = $mivar1 + 1;
+#                 if($mivar1 > 10){
+#                   break;
+#                 }
+#               }
+#             }elseif($mivarBool2 == True){
+#               $mivar1 = $mivar1 - 1;
+#             }else{
+#               $mivar1 = 0;
+#             }
+#             ''')
 
 # Prueba Cristopher
 print("\n---- Prueba Cristopher ----\n")

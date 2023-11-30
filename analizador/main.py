@@ -226,10 +226,16 @@ def p_cuerpo_funcion(p):
 
 
 def p_error(p):
-   valid = False
-   print("Error de sintaxis")
-   output_file = open("gui/assets/code_output.txt","a")
-   output_file.write("Error de sintaxis\n")
+   mensaje = ""
+   if p:
+      print(f"Error de sintaxis en la línea {p.lineno}: Token inesperado '{p.value}'")
+      m = f"Error en la línea {p.lineno}: Token inesperado '{p.value}'"
+   else:
+      print("Error de sintaxis: entrada inesperada al final del archivo ")
+      m = "Error: entrada inesperada al final del archivo "
+
+   output_file = open("gui/assets/code_output.txt", "a")
+   output_file.write(m+"\n")
    output_file.close()
 # Aporte Daniel Mateo
 
@@ -312,15 +318,6 @@ def p_masTerminos(p):
 
 parser = sint.yacc()
 
-# while True:
-#    try:
-#        s = input('calc >>> ')
-#    except EOFError:
-#        break
-#    if not s: continue
-#    result = parser.parse(s)
-#    if result != None:
-#      print(result)
 
 testRoberto = '''//Hola mundo
 $a1 = 2;
@@ -364,10 +361,10 @@ if($a1<=$a2){ $asd = "Hola"; }elseif($a>3 or 1!=$num){ $asd = "Hola"; }elseif($a
 while ( $a3 == "Hola" and $costo <= 27.8 and $bool == True ){ $asd = "Hola"; }'''
 lRoberto = testRoberto.split("\n")
 print("---PRUEBA ROBERTO PATINO---")
-for linea in lRoberto:
-  result = parser.parse(linea)
-  if result != None:
-      print(result)
+# for linea in lRoberto:
+#   result = parser.parse(linea)
+#   if result != None:
+#       print(result)
 
 testCristopher = '''$array1 = array("hola","mundo");
 $array1 = array(1,2,3);
@@ -385,11 +382,11 @@ function longitud($texto) {$entero = 45; for ($i=5;$i<6;$i++) {echo "Hola"; echo
 function longitud($texto) {while ( $a3 == "Hola" and $costo <= 27.8 and $bool == True ){ $asd = "Hola"; if($a1<=$a2){ $asd = "Hola"; }else{ $asd = "Hola";}} $entero = 45; for ( $i = 5; $i <6;$i++) { echo "Hola"; echo "Chao"; for ( $i = 5; $i <6;$i++) { echo "Hola"; echo "Chao"; }} return $entero;}'''
 
 lCristopher = testCristopher.split("\n")
-print("\n--- Prueba Cristopher ---\n")
-for linea in lCristopher:
-  result = parser.parse(linea)
-  if result != None:
-      print(result)
+# print("\n--- Prueba Cristopher ---\n")
+# for linea in lCristopher:
+#   result = parser.parse(linea)
+#   if result != None:
+#       print(result)
 
 print("\n--- Prueba Daniel ---\n")
 
@@ -419,13 +416,12 @@ $totalIVA = 20 * 0.12;'''
 
 lDaniel = testDaniel.split("\n")
 
-for linea in lDaniel:
-  result = parser.parse(linea)
-  if result != None:
-      print(result)
+# for linea in lDaniel:
+#   result = parser.parse(linea)
+#   if result != None:
+#       print(result)
 
 
-print("##################################################")
 archivo = open("gui/assets/code_input.txt","r")
 line_number = 1
 for linea in archivo:
