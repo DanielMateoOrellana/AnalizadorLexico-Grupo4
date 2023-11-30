@@ -2,7 +2,7 @@ import ply.yacc as sint
 from lexico import tokens
 # Roberto: Declaración de Variables, Comentarios, Identificadores, Strings.
 #Primera regla
-
+valid = True
 #--------------------------
 # Aporte Roberto Patiño
 #--------------------------
@@ -226,10 +226,11 @@ def p_cuerpo_funcion(p):
 
 
 def p_error(p):
-  print("Error de sintaxis")
-  output_file = open("gui/assets/code_output.txt","a")
-  output_file.write("Error de sintaxis\n")
-
+   valid = False
+   print("Error de sintaxis")
+   output_file = open("gui/assets/code_output.txt","w")
+   output_file.write("Error de sintaxis\n")
+   output_file.close()
 # Aporte Daniel Mateo
 
 def p_readline(p):
@@ -428,10 +429,8 @@ print("##################################################")
 archivo = open("gui/assets/code_input.txt","r")
 line_number = 1
 for linea in archivo:
-   print("-------------------")
-   result = parser.parse(linea)
-   if result != None:
-      
-      print(result)
-   print("Linea ejecutada: ",line_number)
-   line_number+=1
+    result = parser.parse(linea)
+    if result is not None:
+        print("### LÍNEA VÁLIDA ###")
+    print("Linea ejecutada: ", line_number)
+    line_number += 1

@@ -13,6 +13,14 @@ def write_to_file():
     with open(file_path, 'w') as file:
         file.write(content)
     return 'File written successfully'
+@app.route('/reset_file', methods=['POST'])
+def resetFile():
+    content = request.get_data(as_text=True)
+    file_path = 'gui/assets/code_output.txt'
+
+    with open(file_path, 'w') as file:
+        file.truncate()
+    return 'File reset successfully'
 
 @app.route('/get_content', methods=['GET'])
 def get_content():

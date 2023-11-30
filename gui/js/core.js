@@ -1,12 +1,3 @@
-//Funcion para iniciar el servidor
-// (function () {
-//     // Get the path to the Python script.
-//     var pythonScriptPath = "../../server.py";
-//     // Run the Python script.
-//     subprocess.run(["python", pythonScriptPath]);
-// })();
-
-
 // Función para agregar números de línea dinámicamente
 function updateLineNumbers() {
     const textarea = document.getElementById('codeEditor');
@@ -48,6 +39,22 @@ document.getElementById('runBtn').addEventListener('click', function() {
     .catch(error => {
         console.error('Hubo un error:', error);
     });
+    fetch('http://localhost:8000/reset_file', {
+        method: 'POST'
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok on script exec');
+        }
+        return response.text();
+    })
+    .then(data => {
+        console.log('Respuesta del servidor:', data);
+    })
+    .catch(error => {
+        console.error('Hubo un error:', error);
+    });  
+
     fetch('http://localhost:8000/execute_script', {
         method: 'POST'
     })
@@ -91,11 +98,14 @@ function getContentOutput() {
     .then(data => {
         // const node = document.createTextNode(data);
         const sp1 = document.createElement("p");
+        sp1.textContent = data
+        
         const br = document.createElement("br");
         sp1.id = "output_content"
-        const sp1_content = document.createTextNode(data)
-        sp1.appendChild(sp1_content)
-        document.getElementById('console').replaceChild(sp1,sp1) // Establecer el contenido en el textarea
+        // const sp1_content = document.createTextNode(data)
+        // sp1.appendChild(sp1_content)
+        sp1.appendChild(br)
+        document.getElementById('console').appendChild(sp1) // Establecer el contenido en el textarea
         document.getElementById('console').appendChild(br)
     })
     .catch(error => {
