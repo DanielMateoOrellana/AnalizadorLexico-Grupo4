@@ -96,22 +96,20 @@ function getContentOutput() {
         return response.text();
     })
     .then(data => {
-        // const node = document.createTextNode(data);
-        const sp1 = document.createElement("p");
-        sp1.textContent = data
-        
-        const br = document.createElement("br");
-        sp1.id = "output_content"
-        // const sp1_content = document.createTextNode(data)
-        // sp1.appendChild(sp1_content)
-        sp1.appendChild(br)
-        document.getElementById('console').appendChild(sp1) // Establecer el contenido en el textarea
-        document.getElementById('console').appendChild(br)
+        const texts = data.split('\n'); // Separar el texto por saltos de línea
+
+        const consoleContainer = document.getElementById('console');
+        texts.forEach(text => {
+            const paragraph = document.createElement('p'); // Crear un nuevo elemento <p>
+            paragraph.textContent = text; // Establecer el texto del párrafo
+            consoleContainer.appendChild(paragraph); // Agregar el párrafo al contenedor
+        });
     })
     .catch(error => {
         console.error('Hubo un error:', error);
     });
 }
+
 getContent();
 getContentOutput();
 
@@ -120,40 +118,3 @@ document.getElementById('codeEditor').addEventListener('input', updateLineNumber
 
 // Llamar a la función al cargar la página
 updateLineNumbers();
-
-
-/*
-########################
-Para iniciar el servidor
-########################
-*/
-
-// const { spawn } = require('child_process');
-
-// // Run a Python script and return output
-// function runPythonScript(scriptPath) {
-
-//   // Use child_process.spawn method from 
-//   // child_process module and assign it to variable
-//   const pyProg = spawn('python', [scriptPath]);
-
-//   // Collect data from script and print to console
-//   let data = '';
-//   pyProg.stdout.on('data', (stdout) => {
-//     data += stdout.toString();
-//   });
-
-//   // Print errors to console, if any
-//   pyProg.stderr.on('data', (stderr) => {
-//     console.log(`stderr: ${stderr}`);
-//   });
-
-//   // When script is finished, print collected data
-//   pyProg.on('close', (code) => {
-//     console.log(`child process exited with code ${code}`);
-//     console.log(data);
-//   });
-// }
-
-// // Run the Python file
-// runPythonScript('../server.py');
