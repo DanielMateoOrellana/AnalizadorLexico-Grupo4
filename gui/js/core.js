@@ -89,9 +89,14 @@ function getContentOutput() {
         return response.text();
     })
     .then(data => {
-        const node = document.createTextNode(data);
-
-        document.getElementById('console').appendChild(node) // Establecer el contenido en el textarea
+        // const node = document.createTextNode(data);
+        const sp1 = document.createElement("p");
+        const br = document.createElement("br");
+        sp1.id = "output_content"
+        const sp1_content = document.createTextNode(data)
+        sp1.appendChild(sp1_content)
+        document.getElementById('console').replaceChild(sp1,sp1) // Establecer el contenido en el textarea
+        document.getElementById('console').appendChild(br)
     })
     .catch(error => {
         console.error('Hubo un error:', error);

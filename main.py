@@ -359,12 +359,12 @@ if($a1<=$a2){ $asd = "Hola"; }else{ $asd = "Hola"; }
 if($a1<=$a2){ $asd = "Hola"; }elseif($a>3 or 1!=$num){ $asd = "Hola"; }else{ $asd = "Hola"; }
 if($a1<=$a2){ $asd = "Hola"; }elseif($a>3 or 1!=$num){ $asd = "Hola"; }elseif($a<3 or 1==$num){ $asd = "Hola"; }else{ $asd = "Hola"; }
 while ( $a3 == "Hola" and $costo <= 27.8 and $bool == True ){ $asd = "Hola"; }'''
-lRoberto = testRoberto.split("\n")
-print("---PRUEBA ROBERTO PATINO---")
-for linea in lRoberto:
-  result = parser.parse(linea)
-  if result != None:
-      print(result)
+# lRoberto = testRoberto.split("\n")
+# print("---PRUEBA ROBERTO PATINO---")
+# for linea in lRoberto:
+#   result = parser.parse(linea)
+#   if result != None:
+#       print(result)
 
 testCristopher = '''$array1 = array("hola","mundo");
 $array1 = array(1,2,3);
@@ -381,12 +381,12 @@ function longitud($texto) {$entero = 45; $array1 = array(1,2,3); if($a1<=$a2){ $
 function longitud($texto) {$entero = 45; for ($i=5;$i<6;$i++) {echo "Hola"; echo "Chao"; for ( $i = 5; $i <6;$i++) {if ($a1> $a2 and $a1>$a2 or $a1 > $a2 or "hola mundo" == $a3 ){ $asd = "Hola"; }}} return $entero;}
 function longitud($texto) {while ( $a3 == "Hola" and $costo <= 27.8 and $bool == True ){ $asd = "Hola"; if($a1<=$a2){ $asd = "Hola"; }else{ $asd = "Hola";}} $entero = 45; for ( $i = 5; $i <6;$i++) { echo "Hola"; echo "Chao"; for ( $i = 5; $i <6;$i++) { echo "Hola"; echo "Chao"; }} return $entero;}'''
 
-lCristopher = testCristopher.split("\n")
-print("\n--- Prueba Cristopher ---\n")
-for linea in lCristopher:
-  result = parser.parse(linea)
-  if result != None:
-      print(result)
+# lCristopher = testCristopher.split("\n")
+# print("\n--- Prueba Cristopher ---\n")
+# for linea in lCristopher:
+#   result = parser.parse(linea)
+#   if result != None:
+#       print(result)
 
 print("\n--- Prueba Daniel ---\n")
 
@@ -414,9 +414,9 @@ $edad = $edad1 + $edad2;
 $total = 10 + 10;
 $totalIVA = 20 * 0.12;'''
 
-lDaniel = testDaniel.split("\n")
+# lDaniel = testDaniel.split("\n")
 
-for linea in lDaniel:
-  result = parser.parse(linea)
-  if result != None:
-      print(result)
+# for linea in lDaniel:
+#   result = parser.parse(linea)
+#   if result != None:
+#       print(result)

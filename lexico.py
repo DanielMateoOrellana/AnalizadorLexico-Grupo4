@@ -239,10 +239,10 @@ lexer = lex.lex()
 # #################################################################
 # # Funcion para validar que los tokens sean validos (Reutilizable)
 # #################################################################
-def test_tokens(code):
-  lexer.input(code)
-  for token in lexer:
-    print(token)
+# def test_tokens(code):
+#   lexer.input(code)
+#   for token in lexer:
+#     print(token)
 
 
 # Prueba Daniel
