@@ -12,16 +12,7 @@ def write_to_file():
 
     with open(file_path, 'w') as file:
         file.write(content)
-    
     return 'File written successfully'
-# def write_to_output_file():
-#     content = request.get_data(as_text=True)
-#     file_path = 'gui/assets/code_output.txt'
-
-#     with open(file_path, 'w') as file:
-#         # file.write(content)
-#         file.write("CAACACACCA")
-#     return 'File written successfully'
 
 @app.route('/get_content', methods=['GET'])
 def get_content():
