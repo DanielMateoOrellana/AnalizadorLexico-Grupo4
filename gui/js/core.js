@@ -101,7 +101,7 @@ function getContentOutput() {
         const consoleContainer = document.getElementById('console');
         texts.forEach(text => {
             const paragraph = document.createElement('p'); // Crear un nuevo elemento <p>
-            paragraph.textContent = text; // Establecer el texto del párrafo
+            paragraph.textContent = ">>> "+text; // Establecer el texto del párrafo
             consoleContainer.appendChild(paragraph); // Agregar el párrafo al contenedor
         });
     })

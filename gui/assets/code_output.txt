@@ -1,0 +1,4 @@
+Error de sintaxis en la línea 1: Token inesperado 'a'
+Error de sintaxis en la línea 2: Token inesperado 'a'
+Error de sintaxis en la línea 3: Token inesperado 'a'
+Error de sintaxis en la línea 4: Token inesperado 'a'
