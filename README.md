@@ -43,16 +43,5 @@ Antes de comenzar, asegúrate de tener instalado:
 
 Una vez que el servidor esté en funcionamiento y la extensión "Live Server" esté ejecutándose en Visual Studio Code, podrás interactuar con el IDE accediendo a la dirección local proporcionada por la extensión "Live Server".
 
-## Contribución
-
-Si deseas contribuir a este proyecto, sigue estos pasos:
-
-1. Haz un fork del proyecto
-2. Crea una rama (`git checkout -b feature/nueva-funcionalidad`)
-3. Realiza cambios y haz commit (`git commit -am 'Agrega nueva funcionalidad'`)
-4. Haz push a la rama (`git push origin feature/nueva-funcionalidad`)
-5. Abre un Pull Request
-
-## Licencia
-
-Este proyecto está bajo la Licencia [Tipo de Licencia]. Consulta el archivo `LICENSE` para más detalles.
+Lo siguiente será escribir las sentencias de código en el espacio correspondiente, y una vez se desee validar el mismo se debe dar click en el botón run.
+En la terminal de la parte inferior se mostrarán detalles en caso de existir algún posible error.
