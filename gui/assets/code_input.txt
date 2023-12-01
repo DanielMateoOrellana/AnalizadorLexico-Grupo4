@@ -1,4 +1,4 @@
-//Creando un diccionario
-$diccionario = array("Peras" => "Agotado" , "Manzanas" => 0.25, "Cebolla"=>0.30, "Apio"=>"Agotado","Helado"=>0.30 );
-echo $diccionario ["Peras"], $diccionario ["Manzanas"];
-if($diccionario ["Peras"]=="Agotado"){echo "No hay peras disponibles en stock";}
+$diccionario = array("Peras" => "Agotado" , "Manzanas" => 0.25 , "Cebollas"=>0.30, "Apio"=>0.41,"Cilantro"=>0.20, "Perejil"=>0.3);
+echo $diccionario ["peras"], $diccionario ["Manzanas"];
+$precio_cilantro = $diccionario ["Cilantro"];
+$precio_perejil = $diccionario ["Perejil"];

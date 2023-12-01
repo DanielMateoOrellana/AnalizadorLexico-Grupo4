@@ -181,14 +181,7 @@ def p_argumentologico(p):
                    | CADENA IGUAL CADENA
                    | CADENA DIFERENTE VAR
                    | CADENA DIFERENTE CADENA
-                   | BOOLEANO
-                   | VAR operador_logico VAR mul_dimensiones
-                   | VAR mul_dimensiones operador_logico VAR
-                   | VAR mul_dimensiones operador_logico numero
-                   | VAR mul_dimensiones operador_logico CADENA
-                   | VAR operador_logico VAR mul_dimensiones
-                   | numero operador_logico VAR mul_dimensiones
-                   | CADENA operador_logico VAR mul_dimensiones
+                   | BOOLEANO     
    '''
 ################### Fin de regla semantica 2: Roberto Patiño############
 def p_numero(p):
@@ -313,13 +306,6 @@ def p_error(p):
         output_file = open("gui/assets/code_output.txt", "a")
         output_file.write(mensaje + "\n")
         output_file.close()
-
-# def p_error(p):
-#    print("Error de sintaxis")
-
-
-
-
 
 
 # Aporte Daniel Mateo
@@ -540,10 +526,10 @@ if ($juan>=18) { echo "Juan es mayor de edad";}else{ echo "Juan es menor de edad
 
 ###### ALGORITMO DE PRUEBA ROBERTO #####
 
-testFinalRoberto = '''//Creando un diccionario
-$diccionario = array("Peras" => "Agotado" , "Manzanas" => 0.25, "Cebolla"=>0.30, "Apio"=>"Agotado","Helado"=>0.30 );
-echo $diccionario ["Peras"], $diccionario ["Manzanas"];
-if($diccionario ["Peras"]=="Agotado"){echo "No hay peras disponibles en stock";}'''
+testFinalRoberto = '''$diccionario = array("Peras" => "Agotado" , "Manzanas" => 0.25 , "Cebollas"=>0.30, "Apio"=>0.41,"Cilantro"=>0.20, "Perejil"=>0.3);
+echo $diccionario ["peras"], $diccionario ["Manzanas"];
+$precio_cilantro = $diccionario ["Cilantro"];
+$precio_perejil = $diccionario ["Perejil"];'''
 
 
 
