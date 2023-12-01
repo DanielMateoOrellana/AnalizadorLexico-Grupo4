@@ -222,6 +222,10 @@ def t_error(t):
   print(
       f"{t.type.upper()}: No se reconoce el caracter {t.value[0]} en la línea {t.lineno}"
   )
+  mensaje = f"{t.type.upper()}: No se reconoce el caracter {t.value[0]} en la línea {t.lineno}"
+  output_file = open("gui/assets/code_output.txt", "a")
+  output_file.write(mensaje + "\n")
+  output_file.close()
   t.lexer.skip(1)
 
 

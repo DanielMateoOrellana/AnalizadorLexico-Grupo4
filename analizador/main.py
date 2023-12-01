@@ -556,7 +556,7 @@ function calcularPrecio($precio) {$precio = 12.3; for ($i=5;$i<6;$i++) {echo "El
 echo $diccionario [3];
 echo $diccionario ["Perejil"], $diccionario ["Apio"];
 $diccionario2 = array("Pera" => "Agotado" , "Manzana" => "Agotado" , "Cebolla"=> "Agotado", "Apio"=>0.41,"Cilantro"=>0.20, "Perejil"=>0.3);
-if($a1<=$a2){ $asd = "Hola"; }elseif($a>3 or 1!=$num){ $asd = "Hola"; }else{ $asd = "Hola"; }'''
+if($a1<=$a2){ $asd = "Hola";}elseif($a>3 or 1!=$num){ $asd = "Hola"; }else{ $asd = "Hola"; }'''
 ###### ALGORITMO DE PRUEBA DANIEL #####
 
 
@@ -580,7 +580,7 @@ if($a1<=$a2){ $asd = "Hola"; }else{ $asd = "Hola"; for ($i=5;$i<6;$i++) {echo "H
 if($a1<=$a2){ $asd = "Hola"; }elseif($a>3 or 1!=$num){ $asd = "Hola"; }elseif($a<3 or 1==$num){ $asd = "Hola"; }else{ $asd = "Hola"; }
 while ( $a3 == "Hola" and $costo <= 27.8 and $bool == True ){ $asd = "Hola"; if($a1<=$a2){ $asd = "Hola"; }else{ $asd = "Hola";}}
 class Producto {public $nombre; public $precio = 5; public $nombre;} $producto1 = new Producto(); $producto1 -> nombre = "asd"; $producto1 -> nombre = "asd";
-class Persona {public $nombre; public $apellido = "Mateo" ;} $persona1 = new Persona(); $persona1 -> nombre = "Daniel"; $producto1 -> nombre = "Alfredo";
+class Persona extends Doctor {public $nombre; public $apellido = "Mateo" ;} $persona1 = new Persona(); $persona1 -> nombre = "Daniel"; $producto1 -> nombre = "Alfredo";
 class Producto {public $nombre;} $producto1 = new Producto(); $producto1 -> nombre = "asd"; $producto1 -> nombre = "asd";
 class Producto {public $precio = 5; public $nombre; } $producto1 = new Producto(); $producto1 -> nombre = "asd";'''
 

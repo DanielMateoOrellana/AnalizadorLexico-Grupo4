@@ -1,1 +1,1 @@
-if($a1<=$a2){ $asd = "Hola"; }elseif($a>3 or 1!=$num){ $asd = "Hola"; }else{ $asd = "Hola"; }
+$a_____ = 1;
