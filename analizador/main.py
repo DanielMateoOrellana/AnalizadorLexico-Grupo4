@@ -302,7 +302,7 @@ def p_error(p):
         output_file.close()
     else:
         print("Error de sintaxis: entrada inesperada al final del archivo ")
-        mensaje = "Error: entrada inesperada al final del archivo, asegurese de finalizar cada sentencia con punto y coma"
+        mensaje = "Error: entrada inesperada al final del archivo, asegurese de finalizar cada sentencia con punto y coma o definir un cuerpo para estructuras de control y funciones"
         output_file = open("gui/assets/code_output.txt", "a")
         output_file.write(mensaje + "\n")
         output_file.close()
@@ -526,10 +526,21 @@ if ($juan>=18) { echo "Juan es mayor de edad";}else{ echo "Juan es menor de edad
 
 ###### ALGORITMO DE PRUEBA ROBERTO #####
 
-testFinalRoberto = '''$diccionario = array("Peras" => "Agotado" , "Manzanas" => 0.25 , "Cebollas"=>0.30, "Apio"=>0.41,"Cilantro"=>0.20, "Perejil"=>0.3);
-echo $diccionario ["peras"], $diccionario ["Manzanas"];
+testFinalRoberto = '''//Creacion del diccionario
+$diccionario = array("Pera" => "Agotado" , "Manzana" => 0.25 , "Cebolla"=>0.30, "Apio"=>0.41,"Cilantro"=>0.20, "Perejil"=>0.3);
+echo $diccionario ["Pera"], $diccionario ["Manzana"];
+//Guardando los valores del diccionario en variables
 $precio_cilantro = $diccionario ["Cilantro"];
-$precio_perejil = $diccionario ["Perejil"];'''
+$precio_perejil = $diccionario ["Perejil"];
+if($precio_perejil==$precio_cilantro and $precio_perejil>=0.29){echo "El precio es el mismo";}elseif($precio_perejil<$precio_cilantro){echo "El perejil es mas barato que el cilantro";}
+$precio_apio = $diccionario ["Apio"];
+$precio_pera = $diccionario ["Pera"];
+while ($precio_perejil <= $precio_apio and $precio_pera == "Agotado" ){$precio_perejil = 11; }
+function calcularPrecio($precio) {$precio = 12.3; for ($i=5;$i<6;$i++) {echo "El precio es: ",$precio; for ( $i = 5; $i <6;$i++)  {$mensaje=""; if ($precio<20 and $precio>10 ){ $mensaje = "El precio esta en el rango admitido"; }else{$mensaje = "El precio no esta en el rango admitido";}}} return $mensaje;}
+echo $diccionario [3];
+echo $diccionario ["Perejil"], $diccionario ["Apio"];
+$diccionario2 = array("Pera" => "Agotado" , "Manzana" => "Agorado" , "Cebolla"=> "Agotado", "Apio"=>0.41,"Cilantro"=>0.20, "Perejil"=>0.3);
+'''
 
 
 
