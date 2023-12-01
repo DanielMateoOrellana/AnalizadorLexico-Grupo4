@@ -63,14 +63,40 @@ def p_valor(p):
 #o cadenas, y las mismas se acceden usando corchetes siguiendo    #
 #esta notacion: $diccionario["clave"]                             #
 ###################################################################
+def p_diccionario(p):
+  '''diccionario : clave_dic ASIGNACION MAYOR valor_dic
+                 | clave_dic ASIGNACION MAYOR valor_dic COMA diccionario'''
+
+def p_clave_dic(p):
+  '''clave_dic : ENTERO
+                | CADENA'''
+
+def p_valor_dic(p):
+  '''valor_dic : numero
+           | CADENA
+           | VAR
+           | BOOLEANO
+           | array_l'''
+
 def p_array_index(p):
   '''array_index : VAR multi_dimensiones '''
+  
+################### Fin de regla semantica 1: Roberto Patiño############
 
+
+###################################################################
+############## Regla semantica 1: Cristopher Arroba ###############
+#Los arrays pueden ser multidimensionales, es decir, pueden       #
+#contener otros arrays.                                           #
+#Los elementos de un array multidimensional pueden ser accedidos  #
+#utilizando múltiples índices.                                    #  
+###################################################################
 def p_mul_dimensiones(p):
   '''multi_dimensiones : LBRACKET clave_dic RBRACKET
                        | LBRACKET clave_dic RBRACKET multi_dimensiones
   '''
- 
+################### Fin de regla semantica 1: Cristopher Arroba############
+
 def p_operacion(p):
    '''
    operacion : ENTERO 
@@ -156,6 +182,13 @@ def p_argumentologico(p):
                    | CADENA DIFERENTE VAR
                    | CADENA DIFERENTE CADENA
                    | BOOLEANO
+                   | VAR operador_logico VAR mul_dimensiones
+                   | VAR mul_dimensiones operador_logico VAR
+                   | VAR mul_dimensiones operador_logico numero
+                   | VAR mul_dimensiones operador_logico CADENA
+                   | VAR operador_logico VAR mul_dimensiones
+                   | numero operador_logico VAR mul_dimensiones
+                   | CADENA operador_logico VAR mul_dimensiones
    '''
 ################### Fin de regla semantica 2: Roberto Patiño############
 def p_numero(p):
@@ -197,27 +230,19 @@ def p_operador(p):
 def p_declaracion_numeros(p):
   '''declaracion_numeros : VAR ASIGNACION numero EOL'''
 
+
+###################################################################
+############## Regla semantica 2: Cristopher Arroba ###############
+# Al igual que con los arrays en general, los diccionarios pueden #
+# contener valores de diferentes tipos, como cadenas, números,    #
+# booleanos, objetos, otros arrays, etc.                          #  
+###################################################################
 def p_array(p):
   '''array : VAR ASIGNACION ARRAY LPAREN elementos RPAREN EOL'''
 
 def p_elementos(p):
   '''elementos : lista
                | diccionario'''
-
-def p_diccionario(p):
-  '''diccionario : clave_dic ASIGNACION MAYOR valor_dic
-                 | clave_dic ASIGNACION MAYOR valor_dic COMA diccionario'''
-
-def p_clave_dic(p):
-  '''clave_dic : ENTERO
-                | CADENA'''
-
-def p_valor_dic(p):
-  '''valor_dic : numero
-           | CADENA
-           | VAR
-           | BOOLEANO
-           | array_l'''
 
 def p_lista(p):
   '''lista : palabras
@@ -245,6 +270,7 @@ def p_variables(p):
 def p_bool(p):
   '''bool : BOOLEANO
           | BOOLEANO COMA lista'''
+################### Fin de regla semantica 2: Cristopher Arroba############
 
 def p_funcion(p):
   '''funcion : FUNCTION tipo_funcion LBRACE final_funcion RBRACE'''''
@@ -495,7 +521,29 @@ for linea in lDaniel:
 ##############################################################
 
 
+###### ALGORITMO DE PRUEBA CRISTOPHER #####
+testFinalCristopher = '''$numeros = array(1, 2, 3, 4, 5);
+$persona = array("nombre" => "Juan","edad" => 25,"activo" => True);
+echo "Elementos del array numérico: ";
+$indice = 0;
+echo $numeros [0];
+echo $persona ["nombre"];
+$array9 = array($p1 , $p2 , $p3 , array($p1 , $p2 , $p3 ), array("Hola" => "valor" , "Clave" => 35 ) );
+echo 'Hola mundo', 1.4, 2, True, False, $a [4]["cadena"][3] ;
+echo $a [4]["cadena"][3];
+while ($indice < $numeros) {echo $numeros ["indice"];}
+echo "Elementos del diccionario asociativo: ";
+function sumar($a, $b) {return $a;}
+echo "Resultado de la función sumar:", $resultado;
+class Persona {public $nombre = "Vacio"; public $edad; } $persona1 = new Persona(); $persona -> edad = "20";
+if ($juan>=18) { echo "Juan es mayor de edad";}else{ echo "Juan es menor de edad"; }'''
 
+###### ALGORITMO DE PRUEBA ROBERTO #####
+
+testFinalRoberto = '''//Creando un diccionario
+$diccionario = array("Peras" => "Agotado" , "Manzanas" => 0.25, "Cebolla"=>0.30, "Apio"=>"Agotado","Helado"=>0.30 );
+echo $diccionario ["Peras"], $diccionario ["Manzanas"];
+if($diccionario ["Peras"]=="Agotado"){echo "No hay peras disponibles en stock";}'''
 
 
 
