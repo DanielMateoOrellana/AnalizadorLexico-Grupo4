@@ -318,32 +318,17 @@ def p_ingreso_datos(p):
    ingreso_datos : VAR ASIGNACION readline
    '''
 
-############## Regla semantica 1: Daniel Mateo ##################
-# Herencia: Los objetos pueden heredar propiedades y métodos de otras clases. 
-# La herencia se indica utilizando la palabra clave extends.
-###################################################################
 
 def p_objeto(p):
    '''
    objeto : CLASE OBJETO LBRACE mas_objetos RBRACE VAR ASIGNACION NEW OBJETO LPAREN RPAREN EOL mas_atributos
-          | CLASE OBJETO EXTENDS OBJETO LBRACE mas_objetos RBRACE VAR ASIGNACION NEW OBJETO LPAREN RPAREN EOL mas_atributos
    '''
-################### Fin de regla semantica 1: Daniel Mateo############
-
-############## Regla semantica 2: Daniel Mateo ##################
-# Métodos de un objeto: 
-# Los objetos pueden contener métodos, que son funciones definidas en 
-# la clase y asociadas a las instancias del objeto.
-###################################################################
 
 def p_cuerpo_objeto(p):
    '''
    cuerpo_objeto : PUBLIC VAR EOL
                  | PUBLIC asignacion
-                 | PUBLIC funcion
    '''
-
-################### Fin de regla semantica 2: Daniel Mateo ############
 
 def p_mas_objetos(p):
    '''
@@ -557,31 +542,7 @@ echo $diccionario ["Perejil"], $diccionario ["Apio"];
 $diccionario2 = array("Pera" => "Agotado" , "Manzana" => "Agorado" , "Cebolla"=> "Agotado", "Apio"=>0.41,"Cilantro"=>0.20, "Perejil"=>0.3);
 '''
 
-###### ALGORITMO DE PRUEBA DANIEL #####
 
-testFinalDaniel = '''$edad = readline("Escribe tu edad");
-$nombre = readline("Escribe tu nombre");
-for ($i=5;$i<6;$i++) {echo "Hola"; echo "Chao"; for ( $i = 5; $i <6;$i++) { echo "Hola"; echo "Chao"; }}
-$a = $b + $a;
-$a = $a + 15 +$b + $x + $y + 15; 
-$a1 = 2;
-$a = 15 + 17;
-$asd = $ab + $bc * 5;
-$edad = $edad1 + $edad2;
-$total = 10 + 10;
-$totalIVA = 20 * 0.12;
-for ($i=5;$i<6;$i++) {echo "Hola"; echo "Chao"; for ( $i = 5; $i <6;$i++) { for ( $i = 5; $i <6;$i++) { echo "Hola"; echo "Chao"; }}}
-for ($i=5;$i<6;$i++) {echo "Hola"; echo "Chao"; for ( $i = 5; $i <6;$i++) {if ($a1> $a2 and $a1>$a2 or $a1 > $a2 or "hola mundo" == $a3 ){ $asd = "Hola"; }}}
-if ($a1> $a2 and $a1>$a2 or $a1 > $a2 or "hola mundo" == $a3 ){ $asd = "Hola"; }
-if($a1<=$a2){ $asd = "Hola"; }else{ $asd = "Hola"; }
-if($a1<=$a2){ $asd = "Hola"; }elseif($a>3 or 1!=$num){ $asd = "Hola"; }else{ $asd = "Hola"; }
-if($a1<=$a2){ $asd = "Hola"; }else{ $asd = "Hola"; for ($i=5;$i<6;$i++) {echo "Hola"; echo "Chao"; for ( $i = 5; $i <6;$i++) { echo "Hola"; echo "Chao"; }}}
-if($a1<=$a2){ $asd = "Hola"; }elseif($a>3 or 1!=$num){ $asd = "Hola"; }elseif($a<3 or 1==$num){ $asd = "Hola"; }else{ $asd = "Hola"; }
-while ( $a3 == "Hola" and $costo <= 27.8 and $bool == True ){ $asd = "Hola"; if($a1<=$a2){ $asd = "Hola"; }else{ $asd = "Hola";}}
-class Producto {public $nombre; public $precio = 5; public $nombre;} $producto1 = new Producto(); $producto1 -> nombre = "asd"; $producto1 -> nombre = "asd";
-class Persona {public $nombre; public $apellido = "Mateo" ;} $persona1 = new Persona(); $persona1 -> nombre = "Daniel"; $producto1 -> nombre = "Alfredo";
-class Producto {public $nombre;} $producto1 = new Producto(); $producto1 -> nombre = "asd"; $producto1 -> nombre = "asd";
-class Producto {public $precio = 5; public $nombre; } $producto1 = new Producto(); $producto1 -> nombre = "asd";'''
 
 archivo = open("gui/assets/code_input.txt","r")
 line_number = 1
