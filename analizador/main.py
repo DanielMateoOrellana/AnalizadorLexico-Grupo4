@@ -51,8 +51,16 @@ def p_valor(p):
           | VARIABLE_ARRAY
           | operacion
           | argumentologico
+          | array_index
   '''
+def p_array_index(p):
+  '''array_index : VAR multi_dimensiones '''
 
+def p_mul_dimensiones(p):
+  '''multi_dimensiones : LBRACKET clave_dic RBRACKET
+                       | LBRACKET clave_dic RBRACKET multi_dimensiones
+  '''
+ 
 def p_operacion(p):
    '''
    operacion : ENTERO 
@@ -396,7 +404,9 @@ echo 2.4;
 echo 'Hello world';
 echo True;
 echo False;
-echo 'Hola mundo', 1.4, 2, True, False, $a21;
+echo 'Hola mundo', 1.4, 2, True, False, $a21 ;
+echo 'Hola mundo', 1.4, 2, True, False, $a [4]["cadena"][3] ;
+echo $a [4]["cadena"][3];
 if ($a1> $a2 and $a1>$a2 or $a1 > $a2 or "hola mundo" == $a3 ){ $asd = "Hola"; }
 if($a1<=$a2){ $asd = "Hola"; }else{ $asd = "Hola"; }
 if($a1<=$a2){ $asd = "Hola"; }elseif($a>3 or 1!=$num){ $asd = "Hola"; }else{ $asd = "Hola"; }
