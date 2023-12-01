@@ -116,6 +116,8 @@ t_RBRACE = r'\}'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_EOL = r'\;'
+t_RBRACKET = r'\]'
+t_LBRACKET = r'\['
 
 
 #---Definicion de funciones---
@@ -170,7 +172,7 @@ def t_ID(t):
 
 # Definicion de variables
 def t_VAR(t):
-  r'\$([a-zA-z]|_)+\w*[^\$\s\;\+\-\/\*\>\<\>=\<=\=\(\)]*'
+  r'\$([a-zA-z]|_)+\w*[^\$\s\;\+\-\/\*\>\<\>=\<=\=\(\)\[\]]*'
   t.type = reservadas.get(t.value, 'VAR')
   return t
 
