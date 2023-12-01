@@ -19,8 +19,9 @@ def p_sentencia(p):
                 | ingreso_datos
                 | objeto
                 | expresionAritmetica
+                | echo SALTO
+                
   '''
-
 
 # ---Declaracion y asignacion de variables---
 def p_asignacion(p):
@@ -29,7 +30,8 @@ def p_asignacion(p):
 # ---Sentencia echo para imprimir valores---
 def p_echo(p):
    '''
-   echo : ECHO valores EOL
+   echo : ECHO valores EOL 
+         | ECHO valores EOL SALTO
    '''
 
 
@@ -53,6 +55,14 @@ def p_valor(p):
           | argumentologico
           | array_index
   '''
+
+###################################################################
+############## Regla semantica 1: Roberto Patiño ##################
+#Esta regla se usa para acceder a los elementos de un diccionario #
+#por clave, teniendo en cuenta que las claves pueden ser numeros  #
+#o cadenas, y las mismas se acceden usando corchetes siguiendo    #
+#esta notacion: $diccionario["clave"]                             #
+###################################################################
 def p_array_index(p):
   '''array_index : VAR multi_dimensiones '''
 
@@ -110,11 +120,6 @@ def p_vacio(p):
    vacio : EOL
    '''
 
-# def p_expresion(p):
-#    '''
-#    expresion : valor_logico operador_logico valor_logico
-#    '''
-
 def p_conector_logico(p):
    '''
    conector_logico : AND
@@ -129,7 +134,7 @@ def p_valor_logico(p):
 
 
 ###################################################################
-############## Regla semantica 1: Roberto Patiño ##################
+############## Regla semantica 2: Roberto Patiño ##################
 #Esta regla se usa en conjunto con las sentencias condicionales   #
 #y estructuras iterativas como while para validar que su argumento#
 #siempre sea algo booleano.                                       #
@@ -152,7 +157,7 @@ def p_argumentologico(p):
                    | CADENA DIFERENTE CADENA
                    | BOOLEANO
    '''
-################### Fin de regla semantica 1: Roberto Patiño############
+################### Fin de regla semantica 2: Roberto Patiño############
 def p_numero(p):
    '''
    numero : ENTERO
@@ -283,6 +288,9 @@ def p_error(p):
         output_file.write(mensaje + "\n")
         output_file.close()
 
+# def p_error(p):
+#    print("Error de sintaxis")
+
 
 
 
@@ -331,6 +339,7 @@ def p_for(p):
    '''
    for : FOR LPAREN asignacion argumentologico EOL VAR SUMA SUMA RPAREN LBRACE lineas RBRACE
                   | FOR LPAREN asignacion argumentologico EOL VAR RESTA RESTA RPAREN LBRACE lineas RBRACE
+                  | FOR LPAREN asignacion argumentologico EOL VAR SUMA SUMA RPAREN LBRACE SALTO lineas SALTO RBRACE
    '''
 
 def p_linea(p):
@@ -470,12 +479,24 @@ $edad = $edad1 + $edad2;
 $total = 10 + 10;
 $totalIVA = 20 * 0.12;'''
 
+
 lDaniel = testDaniel.split("\n")
 
 for linea in lDaniel:
   result = parser.parse(linea)
   if result != None:
       print(result)
+
+
+##############################################################
+##############################################################
+# INICIO DE TESTS PARA LA ENTREGA FINAL ######################
+##############################################################
+##############################################################
+
+
+
+
 
 
 archivo = open("gui/assets/code_input.txt","r")
@@ -486,3 +507,6 @@ for linea in archivo:
         print("### LÍNEA VÁLIDA ###")
     print("Linea ejecutada: ", line_number)
     line_number += 1
+
+
+

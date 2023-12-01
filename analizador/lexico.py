@@ -47,6 +47,8 @@ tokens = (
     'RBRACKET',
     'LBRACE',
     'RBRACE',
+    'SALTO',
+    'INDENT',
     'COMA',
     'PUNTO',
     'DOSPUNTOS',
@@ -118,7 +120,8 @@ t_RPAREN = r'\)'
 t_EOL = r'\;'
 t_RBRACKET = r'\]'
 t_LBRACKET = r'\['
-
+t_SALTO = r'\n'
+t_INDENT = r'\t'
 
 #---Definicion de funciones---
 # Aporte Cristopher -------

@@ -1,1 +1,1 @@
-echo "Hola mundo";
+for ($i=5;$i<6;$i++) {echo "Chao"; echo "cacaa";}
