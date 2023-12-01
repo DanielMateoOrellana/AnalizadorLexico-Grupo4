@@ -27,7 +27,8 @@ reservadas = {
     'class' : 'CLASE',
     'new': 'NEW',
     'public': 'PUBLIC',
-    'readline': 'READLINE'
+    'readline': 'READLINE',
+    'extends':'EXTENDS'
 }
 # Secuencia de tokens
 tokens = (
