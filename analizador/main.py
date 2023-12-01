@@ -335,7 +335,8 @@ def p_for(p):
 
 def p_linea(p):
    '''
-   linea : ECHO CADENA EOL 
+   linea : echo 
+         | ECHO CADENA EOL 
          | ECHO VAR EOL
          | VAR ASIGNACION CADENA EOL 
          | estructuracontrol
